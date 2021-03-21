@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+body {
+  width: 414px;
+  height: 736px;
+  margin: 0 auto;
+}
+p,
+span {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*
+  Header
+*/
+
+.header {
+  width: 100%;
+  height: 100px;
+  background: #b7def8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header__flex {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.header__flex a {
+  position: absolute;
+  top: 30px;
+  left: 15px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header__flex .header_title {
+  font-size: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header__flex .header_desc {
+  font-size: 10px;
+}
+/*
+  Recommend
+*/
+.recommend {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.recommend__img {
+  width: 414px;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+}
+.recommend__img img {
+  width: 170px;
+  height: 150px;
+  padding: 5px 15px;
+}
+
+.recommend__img .recommend__wrap p {
+  padding: 0 15px;
+}
+.recommend span {
+  font-size: 16px;
+}
+
+/*
+  Rutin
+*/
+.wrap {
+  margin-top: 30px;
+}
+
+.rutin {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.rutin__img {
+  width: 414px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.rutin__img .rutin__wrap {
+  width: 170px;
+}
+.rutin__img .rutin__wrap p {
+  padding: 0px 15px;
+}
+.rutin__img img {
+  width: 100%;
+  padding: 5px 15px;
+}
+
+.rutin span {
+  font-size: 16px;
 }
