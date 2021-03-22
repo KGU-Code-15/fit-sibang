@@ -29,3 +29,7 @@
 - 임한민 [Hminsss](https://github.com/Hminsss)
 - 정범식 [JeongBeomSik](https://github.com/JeongBeomSik)
 - 한상준 [sangzun](https://github.com/sangzun-han)
+
+## Schedule management
+
+[Capstone Design](https://www.notion.so/Capstone-Design-5cf2c2e66ce64994b1e4b06464d2c610)
