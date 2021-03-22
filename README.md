@@ -24,9 +24,7 @@
 
 ## Contributors
 
----
-
-- 이상민 [iDeal]([https://github.com/d9249](https://github.com/d9249))
+- 이상민 [iDeal](https://github.com/d9249)
 - 이선우
 - 임한민
 - 정범식
