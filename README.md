@@ -25,7 +25,7 @@
 ## Contributors
 
 - 이상민 [iDeal](https://github.com/d9249)
-- 이선우
-- 임한민
-- 정범식
-- 한상준
+- 이선우 [happyssun96](https://github.com/happyssun96)
+- 임한민 [Hminsss](https://github.com/Hminsss)
+- 정범식 [JeongBeomSik](https://github.com/JeongBeomSik)
+- 한상준 [sangzun](https://github.com/sangzun-han)
