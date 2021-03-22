@@ -21,3 +21,13 @@
    8. SET : 변수 값을 변경하는 등의 작은 수정에 주로 사용합니다.
    9. Chore : [기타]
       Chore : 디렉토리 이름 변경
+
+## Contributors
+
+---
+
+- 이상민 [iDeal]([https://github.com/d9249](https://github.com/d9249))
+- 이선우
+- 임한민
+- 정범식
+- 한상준
