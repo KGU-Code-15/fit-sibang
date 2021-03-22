@@ -22,6 +22,10 @@
    9. Chore : [기타]
       Chore : 디렉토리 이름 변경
 
+## Branch Name Rules
+
+새로운 브랜치 생성시 : develop/[기능 이름]
+
 ## Contributors
 
 - 이상민 [iDeal](https://github.com/d9249)
