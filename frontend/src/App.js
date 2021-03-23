@@ -1,13 +1,14 @@
+import React from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
-import Header from './component/Header';
-import Recommend from './component/Recommend';
-import Rutin from './component/Rutin';
+import Home from './component/Home';
+import Mypage from './component/Mypage';
+
 function App() {
   return (
     <>
-      <Header />
-      <Recommend />
-      <Rutin />
+      <Route path='/' exact={true} component={Home} />
+      <Route path='/mypage' component={Mypage} />
     </>
   );
 }
