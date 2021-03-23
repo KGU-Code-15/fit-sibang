@@ -21,3 +21,19 @@
    8. SET : 변수 값을 변경하는 등의 작은 수정에 주로 사용합니다.
    9. Chore : [기타]
       Chore : 디렉토리 이름 변경
+
+## Branch Name Rules
+
+새로운 브랜치 생성시 : develop/[기능 이름]
+
+## Contributors
+
+- 이상민 [iDeal](https://github.com/d9249)
+- 이선우 [happyssun96](https://github.com/happyssun96)
+- 임한민 [Hminsss](https://github.com/Hminsss)
+- 정범식 [JeongBeomSik](https://github.com/JeongBeomSik)
+- 한상준 [sangzun](https://github.com/sangzun-han)
+
+## Schedule management
+
+[Capstone Design](https://www.notion.so/Capstone-Design-5cf2c2e66ce64994b1e4b06464d2c610)

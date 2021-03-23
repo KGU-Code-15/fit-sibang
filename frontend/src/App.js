@@ -7,8 +7,8 @@ import Mypage from './component/Mypage';
 function App() {
   return (
     <>
-      <Route path='/' exact={true} component={Home} />
-      <Route path='/mypage' component={Mypage} />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/mypage" component={Mypage} />
     </>
   );
 }
