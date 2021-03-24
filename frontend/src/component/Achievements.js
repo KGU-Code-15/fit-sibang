@@ -1,5 +1,4 @@
 import React from 'react';
-import './Mypage.css';
 
 const Achievements = () => {
   return (

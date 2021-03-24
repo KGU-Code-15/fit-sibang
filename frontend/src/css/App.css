@@ -75,7 +75,7 @@ span {
   Rutin
 */
 .wrap {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .rutin {
@@ -86,6 +86,7 @@ span {
 
 .rutin__img {
   width: 414px;
+  height: 268px;
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -3,6 +3,7 @@ import Header from './Header';
 import MypageInfo from './MypageInfo';
 import Achievements from './Achievements';
 import IngExercise from './IngExercise';
+import Menubar from './Menubar';
 
 const Mypage = () => {
   return (
@@ -11,6 +12,7 @@ const Mypage = () => {
       <MypageInfo />
       <Achievements />
       <IngExercise />
+      <Menubar />
     </>
   );
 };

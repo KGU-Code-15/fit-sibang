@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Header from './Header';
 import Recommend from './Recommend';
 import Rutin from './Rutin';
+import Menubar from './Menubar';
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Header />
       <Recommend />
       <Rutin />
+      <Menubar />
     </div>
   );
 };

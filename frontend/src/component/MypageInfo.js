@@ -1,5 +1,4 @@
 import React from 'react';
-import './Mypage.css';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function MypageInfo() {

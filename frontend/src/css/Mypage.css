@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 15px;
 }
 
 .myinfo__flex {
@@ -82,6 +82,7 @@
 
 .exercise__flex {
   width: 414px;
+  height: 215px;
   overflow-x: auto;
   display: flex;
   align-items: center;
