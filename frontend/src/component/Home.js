@@ -1,19 +1,40 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Header from './Header';
-import Recommend from './Recommend';
-import Rutin from './Rutin';
-import Menubar from './Menubar';
+import Youtube from 'react-youtube';
 
-const Home = () => {
+import Menubar from './Menubar';
+import Main from './Main';
+
+import '../css/App.css';
+
+function Home() {
+  const opts = {
+    width: '570',
+    height: '400',
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+
+  function _onReady(e) {
+    e.target.pauseVideo();
+  }
+
   return (
-    <div>
-      <Header />
-      <Recommend />
-      <Rutin />
-      <Menubar />
+    <div className='wrap'>
+      <div>
+        <Menubar />
+      </div>
+      <div>
+        <Main />
+        <Youtube
+          className='youtube'
+          videoId='2g811Eo7K8U'
+          opts={opts}
+          onReady={_onReady}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default Home;

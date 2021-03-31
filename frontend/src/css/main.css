@@ -1,0 +1,87 @@
+.recoFlex {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.recoExer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recoExer .todayExer {
+  font-size: 32px;
+  font-weight: bold;
+  color: rgb(70, 77, 82);
+}
+
+.exergo {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 550px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: rgb(0 0 0 / 2%) -1px 1px 1px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.exerFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 510px;
+  background: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.exer {
+  display: flex;
+  flex-direction: column;
+}
+
+.exer span {
+  text-align: center;
+}
+
+.exer .sport {
+  font-size: 12px;
+}
+.exer .time {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.exer:nth-child(2n-1) {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #eb5374;
+}
+
+.exer:nth-child(2n) {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #5673eb;
+}
+
+.exer .compare {
+  font-size: 11.5px;
+  border-radius: 50px;
+  opacity: 0.8;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0px 6px 0px 8px;
+  font-weight: bold;
+  background: #eff2ff;
+}

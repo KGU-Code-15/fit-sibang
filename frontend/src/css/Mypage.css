@@ -2,101 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  width: 510px;
+  padding: 30px;
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  margin-bottom: 18px;
 }
 
-.myinfo__flex {
+.mypageFlex {
   display: flex;
-}
-
-.myinfo__name {
-  display: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.myinfo {
-  margin-left: 15px;
+.mypageImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 18px;
 }
 
-.myinfo .name {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.myinfo .email {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-/*
- 업적
-*/
-
-.achievements {
-  padding: 5px;
-}
-
-.achievements p {
-  font-size: 20px;
-  margin-left: 10px;
-}
-
-.badge {
-  width: 95%;
-  height: 150px;
-  margin: 0 auto;
-  overflow-y: auto;
-  background-color: #f8f8f8;
-  border-radius: 14px;
-}
-
-.badge .badge__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.badge .badge__grid .badge__img {
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.badge .badge__grid .badge__img img {
+.mypageImg img {
   width: 100%;
   border-radius: 50%;
 }
-
-.badge .badge__grid p {
-  text-align: center;
-}
-
-/*
- 진행중인 운동
-*/
-.ingexercise p {
-  font-size: 20px;
-  margin-left: 10px;
-}
-
-.exercise__flex {
-  width: 414px;
-  height: 215px;
-  overflow-x: auto;
+.mypageInfo {
   display: flex;
-  align-items: center;
-}
-
-.exercise__flex .exercise__wrap {
-}
-
-.exercise__flex .exercise__wrap img {
-  width: 175px;
-  height: 160px;
-  padding: 5px 15px;
-}
-
-.exercise__flex .exercise__wrap p {
-  text-align: center;
+  flex-direction: column;
 }

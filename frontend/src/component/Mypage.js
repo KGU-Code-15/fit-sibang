@@ -1,20 +1,15 @@
 import React from 'react';
-import Header from './Header';
-import MypageInfo from './MypageInfo';
-import Achievements from './Achievements';
-import IngExercise from './IngExercise';
-import Menubar from './Menubar';
 
-const Mypage = () => {
+import Menubar from './Menubar';
+import MypageSection from './MypageSection';
+
+function Mypage() {
   return (
-    <>
-      <Header />
-      <MypageInfo />
-      <Achievements />
-      <IngExercise />
+    <div className='wrap'>
       <Menubar />
-    </>
+      <MypageSection />
+    </div>
   );
-};
+}
 
 export default Mypage;
