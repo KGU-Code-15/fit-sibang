@@ -1,6 +1,7 @@
 import React from 'react';
 
 import '../css/mypage.css';
+
 function Mypage() {
   return (
     <div className='mainLayout'>
