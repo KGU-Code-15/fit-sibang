@@ -30,3 +30,142 @@
   display: flex;
   flex-direction: column;
 }
+
+.chart {
+  width: 100%;
+  padding: 30px;
+}
+
+/*
+
+*/
+
+.userData {
+  width: 1000px;
+}
+
+.report {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userProfile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+  height: 288px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
+  border-radius: 6px;
+}
+
+.userProfile .userImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: 50px;
+  margin-right: 25px;
+}
+
+.userProfile .userImg img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userProfile .userSettingsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.userProfile .userSettingsList button {
+  width: 150px;
+  height: 50px;
+  background-color: #f7f7f7;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-right: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.userFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+  height: 256px;
+}
+
+.exerQuestion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 256px;
+  height: 256px;
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
+  margin-right: 15px;
+  border-radius: 6px;
+}
+
+.exerQuestion button {
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  background: #000;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.exerQuestion span {
+  color: #fff;
+  font-size: 16px;
+}
+.exerQuestion img {
+  width: 256px;
+}
+
+.exerFeedback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 429px;
+  height: 256px;
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
+  border-radius: 6px;
+}
+
+.exerFeedback span {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 25px;
+}
+
+.exerFeedback button {
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
