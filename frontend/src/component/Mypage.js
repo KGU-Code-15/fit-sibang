@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Menubar from './Menubar';
-import Chart from './Chart';
+import Menubar from "./Menubar";
+import Chart from "./Chart";
 
-import '../css/mypage.css';
+import "../css/Mypage.css";
 
 function Mypage() {
   const [chart, setChart] = useState(false);
 
   return (
-    <div className='wrap'>
+    <div className="wrap">
       <Menubar />
-      <div className='report'>
-        <div className='userProfile'>
-          <div className='userFlex'>
-            <div className='userImg'>
-              <img src='img/profile.jpg' alt='profile_img' />
+      <div className="report">
+        <div className="userProfile">
+          <div className="userFlex">
+            <div className="userImg">
+              <img src="img/profile.jpg" alt="profile_img" />
             </div>
-            <div className='userInfo'>
+            <div className="userInfo">
               <span>한상준</span>
               <span>hsjun1996@kyonggi.ac.kr</span>
             </div>
           </div>
-          <div className='userSettingsList'>
+          <div className="userSettingsList">
             <button>프로필 수정</button>
             <button>트레이너 피드백</button>
             <button>내 뱃지</button>
           </div>
         </div>
-        <div className='userData'>
-          <div className='exerQuestion'>
-            <img src='img/qna.jpg' alt='' />
+        <div className="userData">
+          <div className="exerQuestion">
+            <img src="img/qna.jpg" alt="" />
             <button>
               <span>질문하러 가기</span>
             </button>
           </div>
-          <div className='exerFeedback'>
+          <div className="exerFeedback">
             {chart === true ? (
               <Chart />
             ) : (
@@ -51,7 +51,7 @@ function Mypage() {
         onClick={() => {
           setChart(!chart);
         }}
-        style={{ marginLeft: '16px' }}
+        style={{ marginLeft: "16px" }}
       >
         운동 데이터 테스트용 버튼
       </button>
