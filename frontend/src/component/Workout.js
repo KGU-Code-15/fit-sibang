@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import '../css/workout.css';
-function Workout() {
+function Workout({ history }) {
   const date = new Date();
   const [exerlist, setExerlist] = useState(['pushup', 'pushup', 'pushup']);
+  const goBack = () => {
+    history.goBack();
+  };
 
   return (
     <div className='explainWrap'>
       <div className='explainFlex'>
         <div className='explain'>
+          <ArrowBackIcon
+            onClick={goBack}
+            style={{ color: 'white', cursor: 'pointer' }}
+          />
+
           <p>
             {date.getFullYear()}년&nbsp;
             {date.getMonth() + 1}월&nbsp;
