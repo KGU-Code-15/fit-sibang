@@ -52,7 +52,11 @@ const WebcamStreamCapture = () => {
 
   return (
     <>
-      <Webcam audio={false} ref={webcamRef} style={{ display: 'none' }} />
+      <Webcam
+        audio={false}
+        ref={webcamRef}
+        style={{ width: '1px', height: '1px' }}
+      />
       {capturing ? (
         <button className='record' onClick={handleStopCaptureClick}>
           녹화종료
