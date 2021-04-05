@@ -9509,6 +9509,11 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-webcam@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/react-webcam/-/react-webcam-5.2.3.tgz#be1ca38694c31a33220cc8ab9ce341358a03bcbc"
+  integrity sha512-7rBh4Veeumpy45ObkZCsG6zezaamkwK5Iqxc0AFhX2ZzWQZXZ+f61yJ1yIb9Y62U4d7KkfP/xEduBCRzzcN4Dw==
+
 react-youtube@^7.13.1:
   version "7.13.1"
   resolved "https://registry.yarnpkg.com/react-youtube/-/react-youtube-7.13.1.tgz#3b327599a687bf22e071468818522920b36bcb57"
