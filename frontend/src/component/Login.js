@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import {
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import { Link, Redirect } from "react-router-dom";
 import Menubar from "./Menubar";
 import "../css/Login.css";
@@ -30,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   // 로그인 Back-End 부분
   // const dispatch = useDispatch();
+
+  const paperStyle = {
+    padding: 20,
+    height: "70vh",
+    width: 280,
+    margin: "20px auto",
+  };
+  const avatarStyle = { backgroundColor: "#606fe4" };
+  const btnstyle = { margin: "10px 0" };
 
   const classes = useStyles();
   const [Email, setEmail] = useState("");
@@ -60,42 +78,54 @@ const Login = () => {
   };
 */
   return (
-    <div className="wrap">
-      <Menubar />
-      <h2 style={{ textAlign: "center" }}>Login</h2>
-      <div className="login__flex">
-        <form style={{ display: "flex", flexDirection: "column" }}>
-          <div className={classes.root}>
-            <TextField
-              label="이메일"
-              variant="outlined"
-              size="small"
-              type="email"
-              value={Email}
-              onChange={onEmailHandler}
-            />
-            <br />
-            <TextField
-              label="비밀번호"
-              type="password"
-              variant="outlined"
-              size="small"
-              value={Password}
-              onChange={onPasswordHandler}
-            />
-            <br />
-            <Button variant="contained" color="primary">
-              로그인
-            </Button>
-            <Link to="/register">
-              <Button variant="contained" color="secondary">
-                회원가입
-              </Button>
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
+    <>
+      <Grid>
+        <Paper elevation={10} style={paperStyle}>
+          <Grid align="center">
+            <Avatar style={avatarStyle}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <h2>Login</h2>
+          </Grid>
+          <TextField
+            label="이메일"
+            placeholder="Enter Email"
+            fullWidth
+            type="email"
+            value={Email}
+            onChange={onEmailHandler}
+          />
+          <TextField
+            label="비밀번호"
+            placeholder="Enter Password"
+            type="password"
+            fullWidth
+            value={Password}
+            onChange={onPasswordHandler}
+          />
+          <FormControlLabel
+            control={<Checkbox name="checkedB" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            color="primary"
+            variant="contained"
+            style={btnstyle}
+            fullWidth
+          >
+            로그인
+          </Button>
+          <Typography>
+            <Link to="#">Forgot password ?</Link>
+          </Typography>
+          <Typography>
+            {" "}
+            Do you have an account ? <Link to="/register">회원가입</Link>
+          </Typography>
+        </Paper>
+      </Grid>
+    </>
   );
 };
 

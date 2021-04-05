@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import {
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { Link, Redirect } from "react-router-dom";
 import Menubar from "./Menubar";
 import "../css/Register.css";
@@ -27,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   // 로그인 Back-End 부분
   // const dispatch = useDispatch();
+
+  const paperStyle = {
+    padding: 20,
+    height: "70vh",
+    width: 280,
+    margin: "20px auto",
+  };
+  const avatarStyle = { backgroundColor: "#606fe4" };
+  const btnstyle = { margin: "35px 0" };
+
   const classes = useStyles();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -71,55 +91,62 @@ const Register = () => {
   };
 */
   return (
-    <div className="wrap">
-      <Menubar />
-      <h2 style={{ textAlign: "center" }}>Register</h2>
-      <div className="register__flex">
-        <form style={{ display: "flex", flexDirection: "column" }}>
-          <div className={classes.root}>
-            <TextField
-              label="이메일"
-              variant="outlined"
-              size="small"
-              type="email"
-              value={Email}
-              onChange={onEmailHandler}
-            />
-            <br />
-            <TextField
-              label="이름"
-              variant="outlined"
-              size="small"
-              type="name"
-              value={Name}
-              onChange={onNameHandler}
-            />
-            <br />
-            <TextField
-              label="비밀번호"
-              type="password"
-              variant="outlined"
-              size="small"
-              value={Password}
-              onChange={onPasswordHandler}
-            />
-            <br />
-            <TextField
-              label="비밀번호 확인"
-              type="password"
-              variant="outlined"
-              size="small"
-              value={ConfirmPassword}
-              onChange={onConfirmPasswordHandler}
-            />
-            <br />
-            <Button variant="contained" color="secondary">
-              회원가입
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Grid>
+      <Paper elevation={10} style={paperStyle}>
+        <Grid align="center">
+          <Avatar style={avatarStyle}>
+            <AddCircleOutlineIcon />
+          </Avatar>
+          <h2>Register</h2>
+        </Grid>
+        <TextField
+          label="이메일"
+          placeholder="Enter Email"
+          fullWidth
+          required
+          type="email"
+          value={Email}
+          onChange={onEmailHandler}
+        />
+        <TextField
+          label="이름"
+          placeholder="Enter Name"
+          fullWidth
+          required
+          type="name"
+          value={Name}
+          onChange={onNameHandler}
+        />
+        <TextField
+          label="비밀번호"
+          placeholder="Enter Password"
+          type="password"
+          fullWidth
+          required
+          value={Password}
+          onChange={onPasswordHandler}
+        />
+        <TextField
+          label="비밀번호 확인"
+          placeholder="Enter Password Again"
+          type="password"
+          fullWidth
+          required
+          value={ConfirmPassword}
+          onChange={onConfirmPasswordHandler}
+        />
+
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+        >
+          회원가입
+        </Button>
+      </Paper>
+    </Grid>
   );
 };
 
