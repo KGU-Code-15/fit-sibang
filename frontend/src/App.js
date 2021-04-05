@@ -6,6 +6,8 @@ import Mypage from './component/Mypage';
 import Exercise from './component/Exercise';
 import Workout from './component/Workout';
 import Start from './component/Start';
+import Login from './component/Login';
+import Register from './component/Register';
 
 import './css/App.css';
 
@@ -17,6 +19,8 @@ function App() {
       <Route path='/exercise' component={Exercise} />
       <Route path='/workout' component={Workout} />
       <Route path='/start' component={Start} />
+      <Route path='/login' component={Login} />
+      <Route path='/register' component={Register} />
     </div>
   );
 }
