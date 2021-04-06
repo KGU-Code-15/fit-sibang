@@ -1,132 +1,114 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import { Link, Redirect } from "react-router-dom";
-import Menubar from "./Menubar";
-import "../css/Login.css";
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-/* 로그인 Back-End 부분 => 추가 라이브러리를 설치해야 가능
-import Axios from 'axios'
-import { response } from 'express'
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../../../_actions/user_action'
-*/
+import Register from './Register';
+function Copyright() {
+  return (
+    <Typography variant='body2' color='textSecondary' align='center'>
+      {'Copyright © '}
+      <Link color='inherit' href='https://material-ui.com/'>
+        Your Website
+      </Link>
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      /*링크 밑줄 없애기*/
-      textDecoration: "none",
-    },
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: 200,
-    },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
-const Login = () => {
-  // 로그인 Back-End 부분
-  // const dispatch = useDispatch();
-
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
-  };
-  const avatarStyle = { backgroundColor: "#606fe4" };
-  const btnstyle = { margin: "10px 0" };
-
+export default function SignIn() {
   const classes = useStyles();
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
 
-  const onEmailHandler = (event) => {
-    setEmail(event.currentTarget.value);
-  };
-
-  const onPasswordHandler = (event) => {
-    setPassword(event.currentTarget.value);
-  };
-
-  // 로그인 Back-End 부분
-  /*
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-
-    console.log("Email", Email);
-    console.log("Password", Password);
-
-    let body = {
-      email: Email,
-      password: Password,
-    };
-
-    dispatch(loginUser(body))
-  };
-*/
   return (
-    <>
-      <Grid>
-        <Paper elevation={10} style={paperStyle}>
-          <Grid align="center">
-            <Avatar style={avatarStyle}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <h2>Login</h2>
-          </Grid>
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          로그인
+        </Typography>
+        <form className={classes.form} noValidate>
           <TextField
-            label="이메일"
-            placeholder="Enter Email"
+            variant='outlined'
+            margin='normal'
+            required
             fullWidth
-            type="email"
-            value={Email}
-            onChange={onEmailHandler}
+            id='id'
+            label='아이디'
+            name='id'
+            autoComplete='id'
+            autoFocus
           />
           <TextField
-            label="비밀번호"
-            placeholder="Enter Password"
-            type="password"
+            variant='outlined'
+            margin='normal'
+            required
             fullWidth
-            value={Password}
-            onChange={onPasswordHandler}
+            name='password'
+            label='비밀번호'
+            type='password'
+            id='password'
+            autoComplete='current-password'
           />
-          <FormControlLabel
-            control={<Checkbox name="checkedB" color="primary" />}
-            label="Remember me"
-          />
+
           <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            style={btnstyle}
+            type='submit'
             fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
           >
             로그인
           </Button>
-          <Typography>
-            <Link to="#">Forgot password ?</Link>
-          </Typography>
-          <Typography>
-            {" "}
-            Do you have an account ? <Link to="/register">회원가입</Link>
-          </Typography>
-        </Paper>
-      </Grid>
-    </>
+          <Grid container>
+            <Grid item xs>
+              <Link href='./' variant='body2'>
+                홈으로
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='Register' variant='body2'>
+                회원가입
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
   );
-};
-
-export default Login;
+}
