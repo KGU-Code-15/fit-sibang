@@ -9,32 +9,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /*width: 510px;*/
+  width: 600px;
   padding: 30px;
   background: rgb(255, 255, 255);
   border-radius: 16px;
   margin-bottom: 18px;
+  overflow-y: auto;
 }
 .rutin_pageFlex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .rutin_pageInfo {
   display: flex;
   flex-direction: column;
 }
+
+.rutin_pageInfo span {
+  font-size: 26px;
+  font-weight: 400;
+  color: rgb(70, 77, 82);
+  margin-bottom: 20px;
+}
+
 .rutin__img {
-  width: 414px;
+  width: 600px;
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
 .rutin__img .rutin__wrap {
-  width: 170px;
+  width: 255px;
 }
+
 .rutin__img .rutin__wrap p {
-  padding: 0px 15px;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .rutin__img img {

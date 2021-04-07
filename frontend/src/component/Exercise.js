@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Menubar from "./Menubar";
-import ExerciseSection from "./ExerciseSection";
+import Menubar from './Menubar';
+import ExerciseSection from './ExerciseSection';
 
 function Exercise() {
   return (
-    <div className="wrap">
+    <div className='wrap'>
       <Menubar />
       <ExerciseSection />
     </div>

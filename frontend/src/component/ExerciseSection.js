@@ -33,28 +33,10 @@ function ExerciseSection() {
                 <img src="/img/squat.jpg" alt="health__image" />
                 <p>25분 칼로리 버닝! 타바타 클래스</p>
               </div>
-              <div className="rutin__wrap">
-                <img src="/img/squat.jpg" alt="health__image" />
-                <p>25분 칼로리 버닝! 타바타 클래스</p>
-              </div>
-              <div className="rutin__wrap">
-                <img src="/img/squat.jpg" alt="health__image" />
-                <p>25분 칼로리 버닝! 타바타 클래스</p>
-              </div>
-              <div className="rutin__wrap">
-                <img src="/img/squat.jpg" alt="health__image" />
-                <p>25분 칼로리 버닝! 타바타 클래스</p>
-              </div>
-              <div className="rutin__wrap">
-                <img src="/img/squat.jpg" alt="health__image" />
-                <p>25분 칼로리 버닝! 타바타 클래스</p>
-              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="rutin_pageSetting">더보기</div>
     </div>
   )
 }
