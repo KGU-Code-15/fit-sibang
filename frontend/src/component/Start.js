@@ -1,48 +1,48 @@
-import React from 'react';
-import Webcam from 'react-webcam';
-import WebcamStreamCapture from './WebcamStreamCapture';
-import '../css/App.css';
-import '../css/start.css';
+import React from "react";
+import Webcam from "react-webcam";
+import WebcamStreamCapture from "./WebcamStreamCapture";
+import "../css/App.css";
+import "../css/Start.css";
 
 const videoConstraints = {
-  width: '50%',
-  facingMode: 'user',
+  width: "50%",
+  facingMode: "user",
 };
 
 const WebCamComponent = () => (
   <Webcam
-    className='webcam'
+    className="webcam"
     audio={false}
     mirrored={true}
     videoConstraints={videoConstraints}
     style={{
-      objectFit: 'fill',
-      position: 'relative',
+      objectFit: "fill",
+      position: "relative",
     }}
   />
 );
 function Start() {
   return (
-    <div className='startWrap'>
-      <div className='container'>
+    <div className="startWrap">
+      <div className="container">
         <WebCamComponent />
 
-        <div className='output'>
-          <div className='count'>
+        <div className="output">
+          <div className="count">
             <span>2개</span>
           </div>
         </div>
 
-        <div className='exampleView'>
-          <div className='examExer'>
-            <img src='/img/pushup.gif' alt='img' />
+        <div className="exampleView">
+          <div className="examExer">
+            <img src="/img/pushup.gif" alt="img" />
           </div>
 
-          <div className='tts'>
+          <div className="tts">
             <p>tts 내용</p>
-            <div className='button'>
-              <button className='finish'>끝내기</button>
-              <WebcamStreamCapture className='record' />
+            <div className="button">
+              <button className="finish">끝내기</button>
+              <WebcamStreamCapture className="record" />
             </div>
           </div>
         </div>

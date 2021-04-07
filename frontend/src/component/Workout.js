@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import React, { useState } from "react";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import '../css/workout.css';
+import "../css/Workout.css";
 function Workout({ history }) {
   const date = new Date();
-  const [exerlist, setExerlist] = useState(['pushup', 'pushup', 'pushup']);
+  const [exerlist, setExerlist] = useState(["pushup", "pushup", "pushup"]);
   const goBack = () => {
     history.goBack();
   };
 
   return (
-    <div className='explainWrap'>
-      <div className='explainFlex'>
-        <div className='explain'>
+    <div className="explainWrap">
+      <div className="explainFlex">
+        <div className="explain">
           <ArrowBackIcon
             onClick={goBack}
-            style={{ color: 'white', cursor: 'pointer' }}
+            style={{ color: "white", cursor: "pointer" }}
           />
 
           <p>
@@ -30,12 +30,12 @@ function Workout({ history }) {
           <button>운동시작!</button>
         </div>
 
-        <div className='exerlistFlex'>
+        <div className="exerlistFlex">
           {exerlist.map((a, i) => {
             console.log(a);
             return (
-              <div className='exerList' key={i}>
-                <img src={'img/' + a + '.gif'} alt='img' />
+              <div className="exerList" key={i}>
+                <img src={"img/" + a + ".gif"} alt="img" />
               </div>
             );
           })}
