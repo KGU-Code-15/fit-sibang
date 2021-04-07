@@ -13,7 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import Register from './Register';
+/* 로그인 Back-End 부분 => 추가 라이브러리를 설치해야 가능
+import Axios from 'axios'
+import { response } from 'express'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../../_actions/user_action'
+*/
+
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
@@ -47,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+   // 로그인 Back-End 부분
+  /*
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log("Email", Email);
+    console.log("Password", Password);
+    let body = {
+      email: Email,
+      password: Password,
+    };
+    dispatch(loginUser(body))
+  };
+  
   const classes = useStyles();
 
   return (

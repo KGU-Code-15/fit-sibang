@@ -3,8 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -13,7 +12,17 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+// 회원가입 Back-End 부분 => 추가 라이브러리 설치해야 가능
+/*
+import Axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../../_actions/user_action'
+*/
+
 function Copyright() {
+  // 로그인 Back-End 부분
+  // const dispatch = useDispatch();
+
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
@@ -47,6 +56,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  // 회원가입 Back-End 부분
+  /*
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log("Email", Email);
+    console.log("Password", Password);
+    let body = {
+      email: Email,
+      password: Password,
+    };
+    dispatch(loginUser(body)).then((response) => {
+      if (response.payload.loginSuccess) {
+        props.history.push("/");
+      } else {
+        alert("Error");
+      }
+    });
+  };
+*/
+
   const classes = useStyles();
 
   return (

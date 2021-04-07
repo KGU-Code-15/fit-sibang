@@ -40,7 +40,7 @@ function Start() {
           <div className='tts'>
             <p>tts 내용</p>
             <div className='button'>
-              <button class='finish'>끝내기</button>
+              <button className='finish'>끝내기</button>
               <WebcamStreamCapture className='record' />
             </div>
           </div>
