@@ -23,10 +23,14 @@
       Chore : 디렉토리 이름 변경
       
 ## Code Execution method
-git clone https://github.com/KGU-Code-15/fit-sibang.git 
+git clone https://github.com/KGU-Code-15/fit-sibang.git
+
 npm install(directory root)
+
 cd frontend
+
 npm install
+
 npm start
 
 ## Branch Name Rules
