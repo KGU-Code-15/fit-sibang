@@ -8,7 +8,6 @@ import Workout from './component/Workout'
 import Start from './component/Start'
 import Login from './component/Login'
 import Register from './component/Register'
-
 import './css/App.css'
 
 function App() {
