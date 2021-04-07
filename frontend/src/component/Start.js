@@ -37,6 +37,7 @@ function Start() {
           <div className='examExer'>
             <img src='/img/pushup.gif' alt='img' />
           </div>
+
           <div className='tts'>
             <p>tts 내용</p>
             <div className='button'>
