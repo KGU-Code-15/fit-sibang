@@ -1,5 +1,6 @@
-import React from "react";
-import "../css/App.css";
+import axios from 'axios'
+import React from 'react'
+import '../css/App.css'
 
 function Menubar() {
   return (
@@ -27,7 +28,7 @@ function Menubar() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Menubar;
+export default Menubar
