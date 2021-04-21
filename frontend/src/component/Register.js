@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
+import React, { useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
 
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import { useDispatch } from 'react-redux'
-import { registerUser } from '../_action/user_action'
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../_action/user_action';
 
 // 회원가입 Back-End 부분 => 추가 라이브러리 설치해야 가능
 /*
@@ -26,18 +26,18 @@ function Copyright() {
   // const dispatch = useDispatch();
 
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color='inherit' href='https://material-ui.com/'>
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
-  )
+  );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+}));
 
 export default function SignUp(props) {
   // 회원가입 Back-End 부분
@@ -78,113 +78,113 @@ export default function SignUp(props) {
   };
 */
 
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const dispatch = useDispatch()
-  const [userId, setUserId] = useState('')
-  const [password, setPassword] = useState('')
-  const [re_password, setRePassword] = useState('')
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [re_password, setRePassword] = useState('');
 
-  const onUserIdHandler = event => {
-    setUserId(event.currentTarget.value)
-  }
-  const onPasswordHandler = event => {
-    setPassword(event.currentTarget.value)
-  }
-  const onRePasswordHandler = event => {
-    setRePassword(event.currentTarget.value)
-  }
-  const onSubmitHandler = event => {
-    event.preventDefault()
-    if (password != re_password) {
-      return alert('비밀번호를 다시 확인해주세요.')
+  const onUserIdHandler = (event) => {
+    setUserId(event.currentTarget.value);
+  };
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value);
+  };
+  const onRePasswordHandler = (event) => {
+    setRePassword(event.currentTarget.value);
+  };
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (password !== re_password) {
+      return alert('비밀번호를 다시 확인해주세요.');
     }
     let body = {
       userId: userId,
       password: password,
-    }
+    };
 
-    dispatch(registerUser(body)).then(response => {
+    dispatch(registerUser(body)).then((response) => {
       if (response.payload.success) {
-        props.history.push('/login')
+        props.history.push('/login');
       } else {
-        alert('Error')
+        alert('Error');
       }
-    })
-  }
+    });
+  };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Sign up
         </Typography>
         <form className={classes.form} noValidate onSubmit={onSubmitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 required
                 fullWidth
-                id="id"
-                label="아이디"
-                name="id"
-                autoComplete="id"
+                id='id'
+                label='아이디'
+                name='id'
+                autoComplete='id'
                 value={userId}
                 onChange={onUserIdHandler}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 required
                 fullWidth
-                name="password"
-                label="비밀번호"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name='password'
+                label='비밀번호'
+                type='password'
+                id='password'
+                autoComplete='current-password'
                 value={password}
                 onChange={onPasswordHandler}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 required
                 fullWidth
-                name="password"
-                label="비밀번호 확인"
-                type="password"
-                id="re-password"
-                autoComplete="current-password"
+                name='password'
+                label='비밀번호 확인'
+                type='password'
+                id='re-password'
+                autoComplete='current-password'
                 value={re_password}
                 onChange={onRePasswordHandler}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
           >
             회원가입
           </Button>
 
-          <Grid container justify="flex-end">
+          <Grid container justify='flex-end'>
             <Grid item xs>
-              <Link href="Login" variant="body2">
+              <Link href='Login' variant='body2'>
                 로그인
               </Link>
             </Grid>
             <Grid item>
-              <Link href="./" variant="body2">
+              <Link href='./' variant='body2'>
                 홈으로
               </Link>
             </Grid>
@@ -195,5 +195,5 @@ export default function SignUp(props) {
         <Copyright />
       </Box>
     </Container>
-  )
+  );
 }
