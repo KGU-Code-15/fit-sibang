@@ -33,11 +33,29 @@ const { auth } = require('./middleware/auth')
 // route
 // get method
 app.get('/', (req, res) => res.send('Hello World!zz'))
+
 app.get('/user/auth', auth, (req, res) => {
   req.status(200).json({
     _id: req.user._id,
     userName: req.user.userName,
   })
+})
+
+app.get('/user/logout', auth, (req, res) => {
+  User.findOneAndUpdate(
+    {
+      _id: req.user._id,
+    },
+    {
+      token: '',
+    },
+    (err, user) => {
+      if (err) return res.json({ success: false, err })
+      return res.status(200).send({
+        success: true,
+      })
+    }
+  )
 })
 
 //post method
@@ -66,7 +84,6 @@ app.post('/user/login', (req, res) => {
       }
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err)
-        console.log('good')
         res.cookie('x_auth', user.token).status(200).json({
           loginSuccess: true,
           userId: user._id,
