@@ -7,6 +7,10 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+// cookie-parser
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
 // Mongo DB init
 const mongoose = require('mongoose')
 const config = require('./config/key')
@@ -34,7 +38,32 @@ app.post('/register', (req, res) => {
     return res.status(200).json({
       success: true,
     })
-  }) // mongoDB method
+  })
+})
+
+app.post('/login', (req, res) => {
+  User.findOne({ userName: req.body.userName }, (err, user) => {
+    if (!user) {
+      return res.json({ loginSuccess: false, message: '아이디가 없습니다.' })
+    }
+
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if (!isMatch) {
+        return res.json({
+          loginSuccess: false,
+          message: '비밀번호가 틀렸습니다.',
+        })
+      }
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err)
+        console.log('good')
+        res.cookie('x_auth', user.token).status(200).json({
+          loginSuccess: true,
+          userId: user._id,
+        })
+      })
+    })
+  })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

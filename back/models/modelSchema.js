@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt') // 암호화
 const saltRounds = 10
+const jwt = require('jsonwebtoken')
 
 const userSchema = mongoose.Schema({
   userName: {
@@ -12,7 +13,7 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     minlength: 6,
-    maxlength: 10,
+
     required: true,
   },
   address: {
@@ -36,6 +37,9 @@ const userSchema = mongoose.Schema({
     type: Boolean, // true: 남 false : 여
     default: true,
   },
+  token: {
+    type: String,
+  },
   tokenExp: {
     type: Number,
   },
@@ -54,8 +58,29 @@ userSchema.pre('save', function (next) {
         next()
       })
     })
+  } else {
+    next()
   }
 })
+
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+  bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+    if (err) return cb(err)
+    cb(null, isMatch)
+  })
+}
+
+// login시 json webtoken 생성
+userSchema.methods.generateToken = function (cb) {
+  var user = this
+  var token = jwt.sign(user._id.toHexString(), 'LEESM')
+
+  user.token = token
+  user.save(function (err, user) {
+    if (err) return cb(err)
+    cb(null, user)
+  })
+}
 
 const User = mongoose.model('User', userSchema)
 
