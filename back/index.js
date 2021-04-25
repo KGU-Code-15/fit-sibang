@@ -27,10 +27,21 @@ mongoose
 // DB models
 const { User } = require('./models/modelSchema')
 
-// route
-app.get('/', (req, res) => res.send('Hello World!zz'))
+// auth
+const { auth } = require('./middleware/auth')
 
-app.post('/register', (req, res) => {
+// route
+// get method
+app.get('/', (req, res) => res.send('Hello World!zz'))
+app.get('/user/auth', auth, (req, res) => {
+  req.status(200).json({
+    _id: req.user._id,
+    userName: req.user.userName,
+  })
+})
+
+//post method
+app.post('/user/register', (req, res) => {
   const user = new User(req.body) // body-parser를 이용해 request를 json형식으로 받음
   console.log(user)
   user.save((err, userInfo) => {
@@ -40,8 +51,7 @@ app.post('/register', (req, res) => {
     })
   })
 })
-
-app.post('/login', (req, res) => {
+app.post('/user/login', (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     if (!user) {
       return res.json({ loginSuccess: false, message: '아이디가 없습니다.' })
@@ -66,4 +76,4 @@ app.post('/login', (req, res) => {
   })
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/`))
