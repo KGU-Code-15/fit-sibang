@@ -26,7 +26,10 @@ function App() {
       <Route path="/workout" component={Workout} />
       <Route path="/login" component={Auth(Login, false)} />
       <Route path="/register" component={Auth(Register, false)} />
-      <Route path="/TeachableMachine" component={TeachableMachine} />
+      <Route
+        path="/TeachableMachine"
+        component={Auth(TeachableMachine, true)}
+      />
     </div>
   )
 }
