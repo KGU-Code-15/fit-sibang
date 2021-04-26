@@ -1,0 +1,49 @@
+.start {
+  width: 200px;
+  height: 60px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.canvasCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#canvas {
+  position: relative;
+}
+
+.counter {
+  position: relative;
+  bottom: 475px;
+  left: 35px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: black;
+}
+
+.count {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 40px;
+  transform: translate(-11%, -55%);
+}
