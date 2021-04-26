@@ -1,8 +1,9 @@
-import axios from 'axios'
 import React from 'react'
 import '../css/App.css'
 
 function Menubar() {
+  //logout handler
+
   return (
     <div className="sidebox">
       <div className="menuLogo">

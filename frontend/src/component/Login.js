@@ -12,15 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+
+// redux
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../_action/user_action'
-
-/* 로그인 Back-End 부분 => 추가 라이브러리를 설치해야 가능
-import Axios from 'axios'
-import { response } from 'express'
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../../../_actions/user_action'
-*/
 
 function Copyright() {
   return (
@@ -55,27 +50,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function SignIn(props) {
-  //로그인 Back-End 부분
-  /*
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log("Email", Email);
-    console.log("Password", Password);
-    let body = {
-      email: Email,
-      password: Password,
-    };
-    dispatch(loginUser(body))
-  };
-  */
   const classes = useStyles()
 
   const dispatch = useDispatch()
-  const [userId, setUserId] = useState('')
+  const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
-  const onUserIdHandler = event => {
-    setUserId(event.currentTarget.value)
+  const onUserNameHandler = event => {
+    setUserName(event.currentTarget.value)
   }
   const onPasswordHandler = event => {
     setPassword(event.currentTarget.value)
@@ -84,7 +66,7 @@ export default function SignIn(props) {
     event.preventDefault()
 
     let body = {
-      userId: userId,
+      userName: userName,
       password: password,
     }
 
@@ -92,7 +74,7 @@ export default function SignIn(props) {
       if (response.payload.success) {
         props.history.push('/')
       } else {
-        alert('Error')
+        alert(response.payload.message)
       }
     })
   }
@@ -117,8 +99,8 @@ export default function SignIn(props) {
             name="id"
             autoComplete="id"
             autoFocus
-            value={userId}
-            onChange={onUserIdHandler}
+            value={userName}
+            onChange={onUserNameHandler}
           />
           <TextField
             variant="outlined"

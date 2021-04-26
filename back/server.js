@@ -61,7 +61,6 @@ app.get('/user/logout', auth, (req, res) => {
 //post method
 app.post('/user/register', (req, res) => {
   const user = new User(req.body) // body-parser를 이용해 request를 json형식으로 받음
-  console.log(user)
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err })
     return res.status(200).json({
@@ -72,7 +71,7 @@ app.post('/user/register', (req, res) => {
 app.post('/user/login', (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     if (!user) {
-      return res.json({ loginSuccess: false, message: '아이디가 없습니다.' })
+      return res.json({ success: false, message: '아이디가 없습니다.' })
     }
 
     user.comparePassword(req.body.password, (err, isMatch) => {
@@ -85,7 +84,7 @@ app.post('/user/login', (req, res) => {
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err)
         res.cookie('x_auth', user.token).status(200).json({
-          loginSuccess: true,
+          success: true,
           userId: user._id,
         })
       })
