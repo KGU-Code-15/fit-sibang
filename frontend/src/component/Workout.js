@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Route, Link } from 'react-router-dom';
 
 import '../css/Workout.css';
 function Workout({ history }) {
@@ -27,7 +28,9 @@ function Workout({ history }) {
           <p>2. 주의사항 적기</p>
           <p>3. 주의사항 적기</p>
           <p>4. 화면에 신체가 잘 인식되도록 서주세요!</p>
-          <button>운동하기</button>
+          <Link to='TeachableMachine'>
+            <button>운동하기</button>
+          </Link>
         </div>
       </div>
     </div>
