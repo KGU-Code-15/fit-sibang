@@ -25,7 +25,7 @@ function Home(props) {
       if (response.data.success) {
         props.history.push('/login')
       } else {
-        alert('실패 ㅋ')
+        alert('로그인 안했음')
       }
     })
   }
