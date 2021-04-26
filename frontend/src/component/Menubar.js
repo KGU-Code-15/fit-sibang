@@ -39,10 +39,10 @@ function Menubar(props) {
   return (
     <div className="sidebox">
       <div className="menuLogo">
-        <span>핏-</span>
-        <span className="title">시방</span>
+        <Link to="/">
+          <img id="logoImg" src="/img/logo.png" alt="loco" />
+        </Link>
       </div>
-
       <div className="menuFlex">
         <div className="menuListF">
           <Link to="/">
