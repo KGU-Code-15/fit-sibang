@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import { withRouter } from 'react-router-dom'
 
 // redux
 import { useDispatch } from 'react-redux'
@@ -48,8 +49,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2),
   },
 }))
-
-export default function SignIn(props) {
+function SignIn(props) {
   const classes = useStyles()
 
   const dispatch = useDispatch()
@@ -145,3 +145,5 @@ export default function SignIn(props) {
     </Container>
   )
 }
+
+export default withRouter(SignIn)

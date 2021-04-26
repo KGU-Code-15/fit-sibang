@@ -35,9 +35,10 @@ const { auth } = require('./middleware/auth')
 app.get('/', (req, res) => res.send('Hello World!zz'))
 
 app.get('/user/auth', auth, (req, res) => {
-  req.status(200).json({
+  res.status(200).json({
     _id: req.user._id,
     userName: req.user.userName,
+    isAuth: true,
   })
 })
 

@@ -5,6 +5,7 @@ import axios from 'axios'
 import Menubar from './Menubar'
 import Main from './Main'
 import '../css/App.css'
+import { withRouter } from 'react-router-dom'
 
 function Home(props) {
   const opts = {
@@ -48,4 +49,4 @@ function Home(props) {
   )
 }
 
-export default Home
+export default withRouter(Home)

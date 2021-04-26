@@ -1,4 +1,4 @@
-import { LOGIN_USER, REGISTER_USER } from '../_action/types'
+import { LOGIN_USER, REGISTER_USER, AUTH_USER } from '../_action/types'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = {}, action) {
@@ -7,6 +7,8 @@ export default function (state = {}, action) {
       return { ...state, loginSuccess: action.payload }
     case REGISTER_USER:
       return { ...state, registerSuccess: action.payload }
+    case AUTH_USER:
+      return { ...state, userData: action.payload }
     default:
       return state
   }

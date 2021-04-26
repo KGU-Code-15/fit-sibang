@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../_action/user_action'
+import { withRouter } from 'react-router-dom'
 
 // 회원가입 Back-End 부분 => 추가 라이브러리 설치해야 가능
 /*
@@ -57,27 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function SignUp(props) {
-  // 회원가입 Back-End 부분
-  /*
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log("Email", Email);
-    console.log("Password", Password);
-    let body = {
-      email: Email,
-      password: Password,
-    };
-    dispatch(loginUser(body)).then((response) => {
-      if (response.payload.loginSuccess) {
-        props.history.push("/");
-      } else {
-        alert("Error");
-      }
-    });
-  };
-*/
-
+function SignUp(props) {
   const classes = useStyles()
 
   const dispatch = useDispatch()
@@ -197,3 +178,5 @@ export default function SignUp(props) {
     </Container>
   )
 }
+
+export default withRouter(SignUp)
