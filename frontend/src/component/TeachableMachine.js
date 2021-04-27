@@ -8,7 +8,8 @@ function Test() {
   let count = 0;
   let status = 'stand';
   const [start, setStart] = useState(false);
-  const URL = 'https://teachablemachine.withgoogle.com/models/5aT4ENHs1/';
+  const URL = 'https://teachablemachine.withgoogle.com/models/Bz-uPekOm/';
+
   let model, webcam, ctx, labelContainer, maxPredictions;
 
   async function init() {
@@ -45,7 +46,7 @@ function Test() {
   const predict = async () => {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
     const prediction = await model.predict(posenetOutput);
-    console.log(count);
+
     if (prediction[0].probability.toFixed(2) >= 0.85) {
       if (status === 'squat') {
         count++;
@@ -61,12 +62,12 @@ function Test() {
     }
 
     for (let i = 0; i < maxPredictions; i++) {
-      console.log(
-        prediction[i].className + ': ' + prediction[i].probability.toFixed(2),
-      );
-    }
+      const classPrediction =
+        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+      labelContainer.childNodes[i].innerHTML = classPrediction;
 
-    drawPose(pose);
+      drawPose(pose);
+    }
   };
 
   const drawPose = () => {
