@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import * as tmPose from '@teachablemachine/pose';
-import $ from 'jquery';
-import '../css/TeachableMachine.css';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import * as tmPose from "@teachablemachine/pose";
+import $ from "jquery";
+import "../css/TeachableMachine.css";
+import { withRouter } from "react-router-dom";
 
 function Test() {
   let count = 0;
-  let status = 'stand';
+  let status = "stand";
   const [start, setStart] = useState(false);
-  const URL = 'https://teachablemachine.withgoogle.com/models/Bz-uPekOm/';
+  const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/";
 
   let model, webcam, ctx, labelContainer, maxPredictions;
 
   async function init() {
     setStart(!start);
-    const modelURL = URL + 'model.json';
-    const metadataURL = URL + 'metadata.json';
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
 
     model = await tmPose.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
@@ -27,13 +27,13 @@ function Test() {
     await webcam.play();
     window.requestAnimationFrame(loop);
 
-    const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById("canvas");
     canvas.width = size;
     canvas.height = size;
-    ctx = canvas.getContext('2d');
-    labelContainer = document.getElementById('label-container');
+    ctx = canvas.getContext("2d");
+    labelContainer = document.getElementById("label-container");
     for (let i = 0; i < maxPredictions; i++) {
-      labelContainer.appendChild(document.createElement('div'));
+      labelContainer.appendChild(document.createElement("div"));
     }
   }
 
@@ -48,22 +48,25 @@ function Test() {
     const prediction = await model.predict(posenetOutput);
 
     if (prediction[0].probability.toFixed(2) >= 0.85) {
-      if (status === 'squat') {
+      if (status === "squat") {
         count++;
-        $('.count').html(count);
+        $(".count").html(count);
       }
-      status = 'stand';
+      status = "stand";
     } else if (prediction[1].probability.toFixed(2) >= 0.85) {
-      status = 'squat';
+      status = "squat";
     } else if (prediction[2].probability.toFixed(2) >= 0.85) {
-      if (status === 'squat' || status === 'stand') {
+      if (status === "squat" || status === "stand") {
       }
-      status = 'bent';
+      status = "bent";
     }
 
     for (let i = 0; i < maxPredictions; i++) {
       const classPrediction =
-        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+        prediction[i].className +
+        ": " +
+        prediction[i].probability.toFixed(2) * 100 +
+        "%";
       labelContainer.childNodes[i].innerHTML = classPrediction;
 
       drawPose(pose);
@@ -85,21 +88,21 @@ function Test() {
 
   return (
     <>
-      <div className='center'>
+      <div className="center">
         <button
-          className='start'
-          type='button'
+          className="start"
+          type="button"
           onClick={init}
-          style={{ display: start ? 'none' : 'block' }}
+          style={{ display: start ? "none" : "block" }}
         >
-          {start ? 'STOP' : 'START'}
+          {start ? "STOP" : "START"}
         </button>
       </div>
-      <div id='label-container'></div>
-      <div className='canvasCenter'>
-        <canvas id='canvas' />
-        <div className='counter' style={{ display: start ? 'block' : 'none' }}>
-          <div className='count'>{count}</div>
+      <div id="label-container"></div>
+      <div className="canvasCenter">
+        <canvas id="canvas" />
+        <div className="counter" style={{ display: start ? "block" : "none" }}>
+          <div className="count">{count}</div>
         </div>
       </div>
     </>
