@@ -1,6 +1,5 @@
 import React from 'react'
 import Youtube from 'react-youtube'
-import axios from 'axios'
 
 import Menubar from './Menubar'
 import Main from './Main'
