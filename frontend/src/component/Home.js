@@ -1,15 +1,15 @@
-import React from 'react'
-import Youtube from 'react-youtube'
+import React from "react"
+import Youtube from "react-youtube"
 
-import Menubar from './Menubar'
-import Main from './Main'
-import '../css/App.css'
-import { withRouter } from 'react-router-dom'
+import Menubar from "./Menubar"
+import Main from "./Main"
+import "../css/App.css"
+import { withRouter } from "react-router-dom"
 
 function Home() {
   const opts = {
-    width: '570',
-    height: '400',
+    width: "570",
+    height: "400",
     playerVars: {
       autoplay: 0,
     },

@@ -3,7 +3,7 @@ body {
   padding: 0;
   font: inherit;
   background: rgba(245, 245, 245, 0.57);
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 p,
 span {
@@ -93,7 +93,7 @@ a span {
 }
 
 .logout span {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   color: black;
   font-weight: bold;
   font-size: 16px;

@@ -1,38 +1,38 @@
-import React, { useState } from 'react'
-import { Route, Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
-import '../css/App.css'
+import React, { useState } from "react"
+import { Route, Link, withRouter } from "react-router-dom"
+import axios from "axios"
+import "../css/App.css"
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux"
 
 function Menubar(props) {
   const dispatch = useDispatch()
   let auth_login
-  const [text, setText] = useState('로그인')
-  axios.get(`/user/auth`).then(response => {
+  const [text, setText] = useState("로그인")
+  axios.get(`/user/auth`).then((response) => {
     if (response.data.isAuth) {
       auth_login = true // 현 상태 : login
       let textCopy = [...text]
-      textCopy = '로그아웃'
+      textCopy = "로그아웃"
       setText(textCopy)
     } else {
       auth_login = false // 현 상태 : logout
       let textCopy = [...text]
-      textCopy = '로그인'
+      textCopy = "로그인"
       setText(textCopy)
     }
   })
   const onClickHandler = () => {
     if (auth_login) {
-      axios.get(`/user/logout`).then(response => {
+      axios.get(`/user/logout`).then((response) => {
         if (response.data.success) {
-          props.history.push('/login')
+          props.history.push("/login")
         } else {
-          alert('로그인 안했음')
+          alert("로그인 안했음")
         }
       })
     } else {
-      props.history.push('/login')
+      props.history.push("/login")
     }
   }
 

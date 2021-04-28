@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { Route, Link } from "react-router-dom";
+import React, { useState } from "react"
+import ArrowBackIcon from "@material-ui/icons/ArrowBack"
+import { Route, Link } from "react-router-dom"
 
-import "../css/Workout.css";
+import "../css/Workout.css"
 function Workout({ history }) {
-  const date = new Date();
-  const [exerlist, setExerlist] = useState(["pushup", "pushup", "pushup"]);
+  const date = new Date()
+  const [exerlist, setExerlist] = useState(["pushup", "pushup", "pushup"])
   const goBack = () => {
-    history.goBack();
-  };
+    history.goBack()
+  }
 
   return (
     <div className="explainWrap">
@@ -34,7 +34,7 @@ function Workout({ history }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Workout;
+export default Workout

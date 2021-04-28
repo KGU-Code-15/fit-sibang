@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-import Menubar from './Menubar'
-import Chart from './Chart'
+import Menubar from "./Menubar"
+import Chart from "./Chart"
 
-import '../css/Mypage.css'
+import "../css/Mypage.css"
 
 function Mypage() {
   const [chart, setChart] = useState(false)
@@ -51,7 +51,7 @@ function Mypage() {
         onClick={() => {
           setChart(!chart)
         }}
-        style={{ marginLeft: '16px' }}
+        style={{ marginLeft: "16px" }}
       >
         운동 데이터 테스트용 버튼
       </button>

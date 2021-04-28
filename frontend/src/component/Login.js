@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import { withRouter } from 'react-router-dom'
+import React, { useState } from "react"
+import Avatar from "@material-ui/core/Avatar"
+import Button from "@material-ui/core/Button"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import TextField from "@material-ui/core/TextField"
+import Link from "@material-ui/core/Link"
+import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import { withRouter } from "react-router-dom"
 
 // redux
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../_action/user_action'
+import { useDispatch } from "react-redux"
+import { loginUser } from "../_action/user_action"
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>
@@ -28,19 +28,19 @@ function Copyright() {
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -51,16 +51,16 @@ function SignIn(props) {
   const classes = useStyles()
 
   const dispatch = useDispatch()
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
 
-  const onUserNameHandler = event => {
+  const onUserNameHandler = (event) => {
     setUserName(event.currentTarget.value)
   }
-  const onPasswordHandler = event => {
+  const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
-  const onSubmitHandler = event => {
+  const onSubmitHandler = (event) => {
     event.preventDefault()
 
     let body = {
@@ -68,9 +68,9 @@ function SignIn(props) {
       password: password,
     }
 
-    dispatch(loginUser(body)).then(response => {
+    dispatch(loginUser(body)).then((response) => {
       if (response.payload.success) {
-        props.history.push('/')
+        props.history.push("/")
       } else {
         alert(response.payload.message)
       }

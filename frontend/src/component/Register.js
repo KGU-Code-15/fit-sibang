@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
+import React, { useState } from "react"
+import Avatar from "@material-ui/core/Avatar"
+import Button from "@material-ui/core/Button"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import TextField from "@material-ui/core/TextField"
 
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import { useDispatch } from 'react-redux'
-import { registerUser } from '../_action/user_action'
-import { withRouter } from 'react-router-dom'
+import Link from "@material-ui/core/Link"
+import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import { useDispatch } from "react-redux"
+import { registerUser } from "../_action/user_action"
+import { withRouter } from "react-router-dom"
 
 // 회원가입 Back-End 부분 => 추가 라이브러리 설치해야 가능
 /*
@@ -28,29 +28,29 @@ function Copyright() {
 
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -62,34 +62,34 @@ function SignUp(props) {
   const classes = useStyles()
 
   const dispatch = useDispatch()
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
-  const [re_password, setRePassword] = useState('')
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
+  const [re_password, setRePassword] = useState("")
 
-  const onUserNameHandler = event => {
+  const onUserNameHandler = (event) => {
     setUserName(event.currentTarget.value)
   }
-  const onPasswordHandler = event => {
+  const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
-  const onRePasswordHandler = event => {
+  const onRePasswordHandler = (event) => {
     setRePassword(event.currentTarget.value)
   }
-  const onSubmitHandler = event => {
+  const onSubmitHandler = (event) => {
     event.preventDefault()
     if (password !== re_password) {
-      return alert('비밀번호를 다시 확인해주세요.')
+      return alert("비밀번호를 다시 확인해주세요.")
     }
     let body = {
       userName: userName,
       password: password,
     }
 
-    dispatch(registerUser(body)).then(response => {
+    dispatch(registerUser(body)).then((response) => {
       if (response.payload.success) {
-        props.history.push('/login')
+        props.history.push("/login")
       } else {
-        alert('Error')
+        alert("Error")
       }
     })
   }

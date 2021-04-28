@@ -1,4 +1,4 @@
-const { User } = require('../models/modelSchema')
+const { User } = require("../models/modelSchema")
 
 // auth확인을 위한 middleware
 let auth = (req, res, next) => {
