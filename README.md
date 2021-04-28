@@ -36,7 +36,7 @@ npm start
 
 ## Branch Name Rules
 
-새로운 브랜치 생성시 : develop/[기능 이름]
+새로운 브랜치 생성시 : [기능 이름] / [깃헙아이디]
 
 ## Contributors
 
