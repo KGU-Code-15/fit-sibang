@@ -2,8 +2,12 @@ import React, { useState } from "react"
 import { Route, Link, withRouter } from "react-router-dom"
 import axios from "axios"
 import "../css/App.css"
-
+import "../css/Menubar.css"
+import * as HiIcons from "react-icons/hi"
+import * as BiIcons from "react-icons/bi"
+import { IconContext } from "react-icons"
 import { useDispatch } from "react-redux"
+import { SidebarData } from "./SidebarData"
 
 function Menubar(props) {
   const dispatch = useDispatch()
@@ -36,42 +40,38 @@ function Menubar(props) {
     }
   }
 
+  const [sidebar, setSidebar] = useState(false)
+
+  const showSidebar = () => setSidebar(!sidebar)
   return (
-    <div className="sidebox">
-      <div className="menuLogo">
-        <Link to="/">
-          <img id="logoImg" src="/img/logo.png" alt="loco" />
-        </Link>
-      </div>
-      <div className="menuFlex">
-        <div className="menuListF">
-          <Link to="/">
-            <span>홈</span>
+    <>
+      <IconContext.Provider value={{ color: "#0066cc" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
+            <HiIcons.HiOutlineMenuAlt2 onClick={showSidebar} />
           </Link>
         </div>
-        <div className="menuList">
-          <span>챌린지</span>
-        </div>
-        <div className="menuList">
-          <Link to="/exercise">
-            <span>운동</span>
-          </Link>
-        </div>
-        <div className="menuList">
-          <span>상품</span>
-        </div>
-        <div className="menuList">
-          <Link to="mypage">
-            <span>마이페이지</span>
-          </Link>
-        </div>
-        <div className="menuListL">
-          <button className="logout" onClick={onClickHandler}>
-            <span>{text}</span>
-          </button>
-        </div>
-      </div>
-    </div>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" className="menu-bars">
+                <BiIcons.BiLogInCircle />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
   )
 }
 
