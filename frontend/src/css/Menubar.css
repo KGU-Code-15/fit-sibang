@@ -1,3 +1,20 @@
+.image {
+  width: 100px;
+  height: 100px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  margin-left: 2rem;
+  margin-top: 13rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .image {
+    margin-top: 8rem;
+  }
+}
+
 .navbar {
   background-color: none;
   height: 80px;
@@ -49,6 +66,20 @@
   display: flex;
   align-items: center;
   padding: 0 16px;
+  border-radius: 4px;
+}
+
+.text {
+  font-weight: bold;
+  text-decoration: none;
+  color: #0066cc;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 16px 16px;
+  padding-left: 31px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-radius: 4px;
 }
 

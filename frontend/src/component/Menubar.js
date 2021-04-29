@@ -5,6 +5,7 @@ import "../css/App.css"
 import "../css/Menubar.css"
 import * as HiIcons from "react-icons/hi"
 import * as BiIcons from "react-icons/bi"
+import * as fiIcons from "react-icons/fi"
 import { IconContext } from "react-icons"
 import { useDispatch } from "react-redux"
 import { SidebarData } from "./SidebarData"
@@ -12,17 +13,18 @@ import { SidebarData } from "./SidebarData"
 function Menubar(props) {
   const dispatch = useDispatch()
   let auth_login
-  const [text, setText] = useState("로그인")
+  const [text, setText] = useState("Login")
   axios.get(`/user/auth`).then((response) => {
     if (response.data.isAuth) {
       auth_login = true // 현 상태 : login
       let textCopy = [...text]
-      textCopy = "로그아웃"
+      textCopy = "Logout"
+
       setText(textCopy)
     } else {
       auth_login = false // 현 상태 : logout
       let textCopy = [...text]
-      textCopy = "로그인"
+      textCopy = "Login"
       setText(textCopy)
     }
   })
@@ -32,7 +34,7 @@ function Menubar(props) {
         if (response.data.success) {
           props.history.push("/login")
         } else {
-          alert("로그인 안했음")
+          alert("Login 안했음")
         }
       })
     } else {
@@ -68,6 +70,11 @@ function Menubar(props) {
                 </li>
               )
             })}
+            <li class="text" onClick={onClickHandler}>
+              <fiIcons.FiLogIn />
+              <span>{text}</span>
+            </li>
+            <img class="image" src="/img/menulogn.png" />
           </ul>
         </nav>
       </IconContext.Provider>

@@ -13,6 +13,12 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
+    title: "My page",
+    path: "/mypage",
+    icon: <IoIcons.IoPersonCircleSharp />,
+    cName: "nav-text",
+  },
+  {
     title: "Challenge",
     path: "/",
     icon: <GiIcons.GiAchievement />,
@@ -28,12 +34,6 @@ export const SidebarData = [
     title: "Products",
     path: "/",
     icon: <GrIcons.GrProductHunt />,
-    cName: "nav-text",
-  },
-  {
-    title: "My page",
-    path: "/mypage",
-    icon: <IoIcons.IoPersonCircleSharp />,
     cName: "nav-text",
   },
   {
