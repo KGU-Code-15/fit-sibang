@@ -30,16 +30,21 @@ function Main() {
       </div>
 
       <div className="exerFlex">
+        <div>
+          <span>나의 하루 운동 양</span>
+        </div>
         {auth_login === true ? <ExerciseData /> : null}
       </div>
 
       <div className="exerFlex">
-        <span className="todayReco">오늘의 추천운동</span>
+        <span className="todayReco">오늘의 추천 운동</span>
         <span className="todayExer">스쿼트</span>
       </div>
 
-      <div className="exerFlex">
-        <Link to="workout">Guide</Link>
+      <div className="eeeeFlex">
+        <span>
+          <Link to="workout">핏-시방 이용 가이드</Link>
+        </span>
       </div>
     </div>
   )
