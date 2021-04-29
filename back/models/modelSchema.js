@@ -3,6 +3,11 @@ const bcrypt = require("bcrypt") // 암호화
 const saltRounds = 10
 const jwt = require("jsonwebtoken")
 
+//time
+const moment = require("moment")
+var date = moment().format("YYYY-MM-DD HH:mm:ss")
+
+//user schema
 const userSchema = mongoose.Schema({
   userName: {
     type: String,
@@ -28,10 +33,12 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0.0,
   },
-  weight: {
-    type: Number,
-    default: 0.0,
-  },
+  weight: [
+    {
+      weight_: Number,
+      date: String,
+    },
+  ],
   gender: {
     type: Boolean, // true: 남 false : 여
     default: true,
@@ -42,6 +49,7 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
+  badge: [{ badgeName: String }],
 })
 
 // save함수의 전처리
@@ -92,6 +100,12 @@ userSchema.statics.findByToken = function (token, cb) {
       cb(null, user)
     })
   })
+}
+
+// Add Daily Weight
+userSchema.methods.updateWeight = function (err, info) {
+  this.weight.push({ weight_: info.weight, date: date })
+  this.save()
 }
 
 const User = mongoose.model("User", userSchema)

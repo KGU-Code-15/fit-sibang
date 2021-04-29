@@ -14,6 +14,7 @@ app.use(cookieParser())
 // Mongo DB init
 const mongoose = require("mongoose")
 const config = require("./config/key")
+const db = mongoose.connection
 mongoose
   .connect(config.mongoURI, {
     useNewUrlParser: true,
@@ -22,7 +23,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log("몽고DB 연결됨 ..."))
-  .catch((err) => console.log(err))
+  .catch(err => console.log(err))
 
 // DB models
 const { User } = require("./models/modelSchema")
@@ -89,6 +90,22 @@ app.post("/user/login", (req, res) => {
           userId: user._id,
         })
       })
+    })
+  })
+})
+
+app.post("/user/addWeight", (req, res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(404).json({
+      success: false,
+      message: "don't have object",
+    })
+  }
+  User.findOne({ userName: req.body.userName }, (err, user) => {
+    user.updateWeight(req.body)
+
+    return res.status(200).json({
+      success: true,
     })
   })
 })
