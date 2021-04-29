@@ -37,7 +37,6 @@
 }
 
 /*
-
 */
 
 .userData {
@@ -226,4 +225,51 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.modal {
+  width: 350px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  outline: none;
+  background-color: #d9d9d9;
+}
+
+.centerFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.weightWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.centerFlex input {
+  width: 150px;
+  height: 50px;
+  font-size: 35px;
+  text-align: center;
+}
+
+.weightValue {
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+}
+
+.weightUpdate {
+  background-color: #007bff;
+  border-color: #007bff;
 }

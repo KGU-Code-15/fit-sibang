@@ -3,7 +3,10 @@ import React, { useState } from "react"
 import Menubar from "./Menubar"
 import Chart from "./Chart"
 import AddIcon from "@material-ui/icons/Add"
+import CloseIcon from "@material-ui/icons/Close"
 import Modal from "react-modal"
+import { Button } from "@material-ui/core"
+import { Input } from "@material-ui/core"
 
 import "../css/Mypage.css"
 
@@ -11,6 +14,7 @@ function Mypage() {
   const [chart, setChart] = useState(false)
   const [showmodal, setshowModal] = useState(false)
   console.log(showmodal)
+
   return (
     <div className="wrap">
       <Menubar />
@@ -35,17 +39,28 @@ function Mypage() {
                   />
 
                   {showmodal === true ? (
-                    <Modal isOpen={showmodal}>
-                      <button
+                    <Modal isOpen={showmodal} className="modal">
+                      <CloseIcon
+                        style={{ padding: "15px", cursor: "pointer" }}
                         onClick={() => {
                           setshowModal(false)
                         }}
-                      >
-                        Close Modal
-                      </button>
+                      />
+
                       <div className="centerFlex">
-                        <div className="weightValue">몸무게 : </div>
-                        <input type="text" />
+                        <div className="weightWrap">
+                          <div className="weightValue">몸무게 : </div>
+                          <Input /> Kg
+                        </div>
+                        <div>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {}}
+                          >
+                            수정하기
+                          </Button>
+                        </div>
                       </div>
                     </Modal>
                   ) : null}
