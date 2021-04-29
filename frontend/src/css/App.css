@@ -6,7 +6,8 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 p,
-span {
+span,
+input {
   margin: 0;
   padding: 0;
 }

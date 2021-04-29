@@ -57,7 +57,7 @@
   width: 700px;
   height: 288px;
   background-color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
   border-radius: 6px;
 }
@@ -78,6 +78,55 @@
 .userInfo {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 75px;
+}
+
+.userInfo .beforeWeight {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #eb5374;
+  border-radius: 50px;
+  align-items: center;
+  padding: 5px 15px;
+  background: #eff2ff;
+}
+
+.userInfo .afterWeight {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #000;
+  border-radius: 50px;
+  align-items: center;
+  padding: 5px 15px;
+  background: #f7f7f7;
+}
+
+.userInfo .weightFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.userInfo .changeWeight {
+  display: flex;
+  align-items: center;
+}
+
+.changeWeight .decreasePer {
+  color: #0051c7;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.changeWeight .increasePer {
+  color: #eb5374;
+  letter-spacing: 1px;
 }
 
 .userProfile .userSettingsList {
@@ -108,7 +157,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 700px;
+  width: 650px;
   height: 256px;
 }
 
@@ -125,34 +174,17 @@
   border-radius: 6px;
 }
 
-.exerQuestion button {
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
-  background: #000;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-
-.exerQuestion span {
-  color: #fff;
-  font-size: 16px;
-}
-.exerQuestion img {
-  width: 256px;
-}
-
 .exerFeedback {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 429px;
-  height: 256px;
+  width: 580px;
+  height: 300px;
   background-color: #fff;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
   border-radius: 6px;
+  margin-right: 20px;
 }
 
 .exerFeedback span {
@@ -168,4 +200,30 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+.userdataFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.userdataFlex .BMI,
+.weight,
+.kcal {
+  width: 100px;
+  height: 60px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px;
+  text-align: center;
+}
+
+.userdataFlex .buttonFlex {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

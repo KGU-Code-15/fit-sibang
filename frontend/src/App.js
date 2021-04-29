@@ -8,6 +8,7 @@ import Workout from "./component/Workout"
 import Login from "./component/Login"
 import Register from "./component/Register"
 import TeachableMachine from "./component/TeachableMachine"
+
 import "./css/App.css"
 
 //hoc

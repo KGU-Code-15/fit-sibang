@@ -2,12 +2,15 @@ import React, { useState } from "react"
 
 import Menubar from "./Menubar"
 import Chart from "./Chart"
+import AddIcon from "@material-ui/icons/Add"
+import Modal from "react-modal"
 
 import "../css/Mypage.css"
 
 function Mypage() {
   const [chart, setChart] = useState(false)
-
+  const [showmodal, setshowModal] = useState(false)
+  console.log(showmodal)
   return (
     <div className="wrap">
       <Menubar />
@@ -19,42 +22,87 @@ function Mypage() {
             </div>
             <div className="userInfo">
               <span>한상준</span>
-              <span>hsjun1996@kyonggi.ac.kr</span>
+              <div className="weightFlex">
+                {/* <span className="beforeWeight">64kg </span> */}
+                <span className="afterWeight">78kg</span>
+                <div className="changeWeight">
+                  <span>0.00%</span>
+                  <AddIcon
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setshowModal(true)
+                    }}
+                  />
+
+                  {showmodal === true ? (
+                    <Modal isOpen={showmodal}>
+                      <button
+                        onClick={() => {
+                          setshowModal(false)
+                        }}
+                      >
+                        Close Modal
+                      </button>
+                      <div className="centerFlex">
+                        <div className="weightValue">몸무게 : </div>
+                        <input type="text" />
+                      </div>
+                    </Modal>
+                  ) : null}
+                  {/* <span className="decreasePer"> -8.39%</span> */}
+                  {/* <span className="increasePer"> +8.39%</span> */}
+                </div>
+              </div>
             </div>
           </div>
           <div className="userSettingsList">
-            <button>프로필 수정</button>
             <button>트레이너 피드백</button>
             <button>내 뱃지</button>
           </div>
         </div>
-        <div className="userData">
-          <div className="exerQuestion">
-            <img src="img/qna.jpg" alt="" />
-            <button>
-              <span>질문하러 가기</span>
-            </button>
-          </div>
-          <div className="exerFeedback">
-            {chart === true ? (
-              <Chart />
-            ) : (
-              <>
-                <span>운동 데이터가 아직 없습니다</span>
-                <button>운동하러 가기</button>
-              </>
-            )}
+        <div>
+          <div className="userdataFlex">
+            <div className="userData">
+              <div className="exerFeedback">
+                {chart === true ? (
+                  <Chart />
+                ) : (
+                  <>
+                    <span>운동 데이터가 아직 없습니다</span>
+                    <button className="btnExercise">운동하러 가기</button>
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="buttonFlex">
+              <button
+                className="BMI"
+                onClick={() => {
+                  setChart(!chart)
+                }}
+              >
+                BMI
+              </button>
+              <button
+                className="weight"
+                onClick={() => {
+                  setChart(!chart)
+                }}
+              >
+                몸무게
+              </button>
+              <button
+                className="kcal"
+                onClick={() => {
+                  setChart(!chart)
+                }}
+              >
+                kcal
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <button
-        onClick={() => {
-          setChart(!chart)
-        }}
-        style={{ marginLeft: "16px" }}
-      >
-        운동 데이터 테스트용 버튼
-      </button>
     </div>
   )
 }
