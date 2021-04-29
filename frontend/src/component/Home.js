@@ -1,7 +1,7 @@
 import React from "react"
 import Youtube from "react-youtube"
+import Footer from "./Footer"
 
-import Menubar from "./Menubar"
 import Main from "./Main"
 import "../css/App.css"
 import { withRouter } from "react-router-dom"
@@ -22,9 +22,6 @@ function Home() {
   return (
     <div className="wrap">
       <div>
-        <Menubar />
-      </div>
-      <div>
         <Main />
         <Youtube
           className="youtube"
@@ -32,6 +29,7 @@ function Home() {
           opts={opts}
           onReady={_onReady}
         />
+        <Footer />
       </div>
     </div>
   )
