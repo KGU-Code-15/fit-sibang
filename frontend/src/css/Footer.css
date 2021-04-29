@@ -1,0 +1,17 @@
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: bold;
+  font-size: medium;
+  margin-bottom: 2rem;
+}
+
+.copyright {
+  margin-top: 1rem;
+}
+
+.icons a {
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
