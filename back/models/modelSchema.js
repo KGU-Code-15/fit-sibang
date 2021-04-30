@@ -104,7 +104,20 @@ userSchema.statics.findByToken = function (token, cb) {
 
 // Add Daily Weight
 userSchema.methods.updateWeight = function (err, info) {
+  if (err) {
+    console.log(err)
+  }
   this.weight.push({ weight_: info.weight, date: date })
+  this.save()
+}
+
+userSchema.methods.updateUser = function (err, info) {
+  if (err) {
+    console.log(err)
+  }
+  this.address = info.address
+  this.age = info.age
+  this.height = info.height
   this.save()
 }
 

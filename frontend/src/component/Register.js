@@ -14,13 +14,19 @@ import Container from "@material-ui/core/Container"
 import { useDispatch } from "react-redux"
 import { registerUser } from "../_action/user_action"
 import { withRouter } from "react-router-dom"
+import Select from "@material-ui/core/Select"
+import MenuItem from "@material-ui/core/MenuItem"
+import FormControl from "@material-ui/core/FormControl"
+import InputLabel from "@material-ui/core/InputLabel"
+import clsx from "clsx"
+import Radio from "@material-ui/core/Radio"
+import RadioGroup from "@material-ui/core/RadioGroup"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import FormLabel from "@material-ui/core/FormLabel"
 
-// 회원가입 Back-End 부분 => 추가 라이브러리 설치해야 가능
-/*
-import Axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../../../_actions/user_action'
-*/
+//timezone
+const moment = require("moment")
+var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 function Copyright() {
   // 로그인 Back-End 부분
@@ -38,7 +44,7 @@ function Copyright() {
   )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -56,6 +62,57 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 396,
+  },
+  Select: {
+    fontSize: 10,
+  },
+  root: {
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  icon: {
+    borderRadius: "50%",
+    width: 16,
+    height: 16,
+    boxShadow:
+      "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
+    backgroundColor: "#f5f8fa",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
+    "$root.Mui-focusVisible &": {
+      outline: "2px auto rgba(19,124,189,.6)",
+      outlineOffset: 2,
+    },
+    "input:hover ~ &": {
+      backgroundColor: "#ebf1f5",
+    },
+    "input:disabled ~ &": {
+      boxShadow: "none",
+      background: "rgba(206,217,224,.5)",
+    },
+  },
+  checkedIcon: {
+    backgroundColor: "#137cbd",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+    "&:before": {
+      display: "block",
+      width: 16,
+      height: 16,
+      backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+      content: '""',
+    },
+    "input:hover ~ &": {
+      backgroundColor: "#106ba3",
+    },
+  },
 }))
 
 function SignUp(props) {
@@ -65,31 +122,93 @@ function SignUp(props) {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
   const [re_password, setRePassword] = useState("")
+  const [height, setHeight] = useState("")
+  const [weight, setWeight] = useState("")
+  const [address, setAddress] = useState("")
+  const [gender, setGender] = useState("")
 
-  const onUserNameHandler = (event) => {
+  const onGenderHandler = event => {
+    setGender(event.target.value)
+  }
+  const onAddressHandler = event => {
+    setAddress(event.target.value)
+  }
+
+  const onHeightHandler = event => {
+    setHeight(event.currentTarget.value)
+  }
+  const onWeightHandler = event => {
+    setWeight(event.currentTarget.value)
+  }
+
+  const onUserNameHandler = event => {
     setUserName(event.currentTarget.value)
   }
-  const onPasswordHandler = (event) => {
+  const onPasswordHandler = event => {
     setPassword(event.currentTarget.value)
   }
-  const onRePasswordHandler = (event) => {
+  const onRePasswordHandler = event => {
     setRePassword(event.currentTarget.value)
   }
-  const onSubmitHandler = (event) => {
+  function StyledRadio(props) {
+    const classes = useStyles()
+
+    return (
+      <Radio
+        className={classes.root}
+        disableRipple
+        color="default"
+        checkedIcon={
+          <span className={clsx(classes.icon, classes.checkedIcon)} />
+        }
+        icon={<span className={classes.icon} />}
+        {...props}
+      />
+    )
+  }
+  const onSubmitHandler = event => {
     event.preventDefault()
     if (password !== re_password) {
       return alert("비밀번호를 다시 확인해주세요.")
     }
+
+    if (isNaN(Number(height))) {
+      return alert("잘못된 키값입니다.")
+    } else if (height < 0) {
+      return alert("잘못된 키값입니다.")
+    }
+    if (isNaN(Number(weight))) {
+      return alert("잘못된 몸무게값입니다.")
+    } else if (weight < 0) {
+      return alert("잘못된 몸무게값입니다.")
+    }
+    if (address === "") {
+      return alert("거주지를 선택해주세요.")
+    }
+    if (gender === "") {
+      return alert("성별을 선택해주세요.")
+    }
+    var gd
+    if (gender === "남성") {
+      gd = true
+    } else {
+      gd = false
+    }
+
     let body = {
       userName: userName,
       password: password,
+      height: height,
+      weight: { weight_: weight, date: today },
+      address: address,
+      gender: gd,
     }
 
-    dispatch(registerUser(body)).then((response) => {
+    dispatch(registerUser(body)).then(response => {
       if (response.payload.success) {
         props.history.push("/login")
       } else {
-        alert("Error")
+        alert("이미 존재하는 아이디입니다.")
       }
     })
   }
@@ -147,7 +266,91 @@ function SignUp(props) {
                 onChange={onRePasswordHandler}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="height"
+                label="키"
+                id="height"
+                value={height}
+                onChange={onHeightHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="weight"
+                label="몸무게"
+                id="weight"
+                value={weight}
+                onChange={onWeightHandler}
+              />
+            </Grid>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              item
+              xs
+            >
+              <InputLabel id="demo-simple-select-outlined-label">
+                거주지
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={address}
+                onChange={onAddressHandler}
+                label="Age"
+                required
+                autowidth
+              >
+                <MenuItem disabled value="">
+                  <em>시/도 선택</em>
+                </MenuItem>
+                <MenuItem value={"서울특별시"}>서울특별시</MenuItem>
+                <MenuItem value={"인천광역시"}>인천광역시</MenuItem>
+                <MenuItem value={"대전광역시"}>대전광역시</MenuItem>
+                <MenuItem value={"광주광역시"}>광주광역시</MenuItem>
+                <MenuItem value={"대구광역시"}>대구광역시</MenuItem>
+                <MenuItem value={"울산광역시"}>울산광역시</MenuItem>
+                <MenuItem value={"부산광역시"}>부산광역시</MenuItem>
+                <MenuItem value={"경기도"}>경기도</MenuItem>
+                <MenuItem value={"강원도"}>강원도</MenuItem>
+                <MenuItem value={"충청북도"}>충청북도</MenuItem>
+                <MenuItem value={"충청남도"}>충청남도</MenuItem>
+                <MenuItem value={"전라북도"}>전라북도</MenuItem>
+                <MenuItem value={"전라남도"}>전라남도</MenuItem>
+                <MenuItem value={"경상북도"}>경상북도</MenuItem>
+                <MenuItem value={"경상남도"}>경상남도</MenuItem>
+                <MenuItem value={"경상남도"}>경상남도</MenuItem>
+                <MenuItem value={"제주도"}>제주도</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl component="fieldset">
+              <RadioGroup
+                value={gender}
+                aria-label="gender"
+                name="customized-radios"
+                onChange={onGenderHandler}
+              >
+                <FormControlLabel
+                  value="남성"
+                  control={<StyledRadio />}
+                  label="남성"
+                />
+                <FormControlLabel
+                  value="여성"
+                  control={<StyledRadio />}
+                  label="여성"
+                />
+              </RadioGroup>
+            </FormControl>
           </Grid>
+
           <Button
             type="submit"
             fullWidth

@@ -106,6 +106,24 @@ app.post("/user/addWeight", (req, res) => {
 
     return res.status(200).json({
       success: true,
+      message: "success add weight",
+    })
+  })
+})
+
+app.post("/user/updateUser", (req, res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(404).json({
+      success: false,
+      mesage: "don't have object",
+      message: "success user information update",
+    })
+  }
+  user.findOne({ userName: req.body.userName }, (err, user) => {
+    user.updateUser(req.body)
+
+    return res.status(200).json({
+      success: true,
     })
   })
 })
