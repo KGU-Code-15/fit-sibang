@@ -37,33 +37,30 @@ function Mypage() {
                       setweightModal(true)
                     }}
                   />
+                  <Modal isOpen={weightmodal} className="modal">
+                    <CloseIcon
+                      style={{ padding: "15px", cursor: "pointer" }}
+                      onClick={() => {
+                        setweightModal(false)
+                      }}
+                    />
 
-                  {weightmodal === true ? (
-                    <Modal isOpen={weightmodal} className="modal">
-                      <CloseIcon
-                        style={{ padding: "15px", cursor: "pointer" }}
-                        onClick={() => {
-                          setweightModal(false)
-                        }}
-                      />
-
-                      <div className="centerFlex">
-                        <div className="weightWrap">
-                          <div className="weightValue">몸무게 : </div>
-                          <Input /> Kg
-                        </div>
-                        <div>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => {}}
-                          >
-                            수정하기
-                          </Button>
-                        </div>
+                    <div className="centerFlex">
+                      <div className="weightWrap">
+                        <div className="weightValue">몸무게 : </div>
+                        <Input /> Kg
                       </div>
-                    </Modal>
-                  ) : null}
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {}}
+                        >
+                          수정하기
+                        </Button>
+                      </div>
+                    </div>
+                  </Modal>
                   {/* <span className="decreasePer"> -8.39%</span> */}
                   {/* <span className="increasePer"> +8.39%</span> */}
                 </div>
@@ -79,34 +76,33 @@ function Mypage() {
             >
               내 뱃지
             </button>
-            {badgemodal === true ? (
-              <Modal className="badgeModal" isOpen={badgemodal}>
-                <CloseIcon
-                  style={{ padding: "15px", cursor: "pointer" }}
-                  onClick={() => {
-                    setbadgeModal(false)
-                  }}
-                />
-                <div className="badgeGrid">
-                  <div className="imgWidth">
-                    <img src="/img/icon-sample.png" alt="badge" />
-                    <span>말벅지</span>
-                  </div>
-                  <div className="imgWidth">
-                    <img src="/img/icon-sample.png" alt="badge" />
-                    <span>말벅지</span>
-                  </div>
-                  <div className="imgWidth">
-                    <img src="/img/icon-sample.png" alt="badge" />
-                    <span>말벅지</span>
-                  </div>
-                  <div className="imgWidth">
-                    <img src="/img/icon-sample.png" alt="badge" />
-                    <span>말벅지</span>
-                  </div>
+
+            <Modal className="badgeModal" isOpen={badgemodal}>
+              <CloseIcon
+                style={{ padding: "15px", cursor: "pointer" }}
+                onClick={() => {
+                  setbadgeModal(false)
+                }}
+              />
+              <div className="badgeGrid">
+                <div className="imgWidth">
+                  <img src="/img/icon-sample.png" alt="badge" />
+                  <span>말벅지</span>
                 </div>
-              </Modal>
-            ) : null}
+                <div className="imgWidth">
+                  <img src="/img/icon-sample.png" alt="badge" />
+                  <span>말벅지</span>
+                </div>
+                <div className="imgWidth">
+                  <img src="/img/icon-sample.png" alt="badge" />
+                  <span>말벅지</span>
+                </div>
+                <div className="imgWidth">
+                  <img src="/img/icon-sample.png" alt="badge" />
+                  <span>말벅지</span>
+                </div>
+              </div>
+            </Modal>
           </div>
         </div>
         <div>
