@@ -273,3 +273,37 @@
   background-color: #007bff;
   border-color: #007bff;
 }
+
+.badgeModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  outline: none;
+  background-color: #d9d9d9;
+  overflow-y: auto;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.imgWidth {
+  width: 120px;
+  height: 120px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.imgWidth img {
+  width: 100%;
+  border-radius: 30%;
+  margin-bottom: 5px;
+}

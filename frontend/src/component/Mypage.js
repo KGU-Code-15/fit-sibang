@@ -12,8 +12,8 @@ import "../css/Mypage.css"
 
 function Mypage() {
   const [chart, setChart] = useState(false)
-  const [showmodal, setshowModal] = useState(false)
-  console.log(showmodal)
+  const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
+  const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
 
   return (
     <div className="wrap">
@@ -34,16 +34,16 @@ function Mypage() {
                   <AddIcon
                     style={{ cursor: "pointer" }}
                     onClick={() => {
-                      setshowModal(true)
+                      setweightModal(true)
                     }}
                   />
 
-                  {showmodal === true ? (
-                    <Modal isOpen={showmodal} className="modal">
+                  {weightmodal === true ? (
+                    <Modal isOpen={weightmodal} className="modal">
                       <CloseIcon
                         style={{ padding: "15px", cursor: "pointer" }}
                         onClick={() => {
-                          setshowModal(false)
+                          setweightModal(false)
                         }}
                       />
 
@@ -72,7 +72,41 @@ function Mypage() {
           </div>
           <div className="userSettingsList">
             <button>트레이너 피드백</button>
-            <button>내 뱃지</button>
+            <button
+              onClick={() => {
+                setbadgeModal(true)
+              }}
+            >
+              내 뱃지
+            </button>
+            {badgemodal === true ? (
+              <Modal className="badgeModal" isOpen={badgemodal}>
+                <CloseIcon
+                  style={{ padding: "15px", cursor: "pointer" }}
+                  onClick={() => {
+                    setbadgeModal(false)
+                  }}
+                />
+                <div className="badgeGrid">
+                  <div className="imgWidth">
+                    <img src="/img/icon-sample.png" alt="badge" />
+                    <span>말벅지</span>
+                  </div>
+                  <div className="imgWidth">
+                    <img src="/img/icon-sample.png" alt="badge" />
+                    <span>말벅지</span>
+                  </div>
+                  <div className="imgWidth">
+                    <img src="/img/icon-sample.png" alt="badge" />
+                    <span>말벅지</span>
+                  </div>
+                  <div className="imgWidth">
+                    <img src="/img/icon-sample.png" alt="badge" />
+                    <span>말벅지</span>
+                  </div>
+                </div>
+              </Modal>
+            ) : null}
           </div>
         </div>
         <div>
