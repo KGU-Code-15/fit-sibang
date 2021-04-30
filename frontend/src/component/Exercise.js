@@ -1,12 +1,12 @@
 import React from "react"
 
-import Menubar from "./Menubar"
 import ExerciseSection from "./ExerciseSection"
+import TopHeader from "./TopHeader"
 
 function Exercise() {
   return (
     <div className="wrap">
-      <Menubar />
+      <TopHeader />
       <ExerciseSection />
     </div>
   )

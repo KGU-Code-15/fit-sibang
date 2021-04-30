@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import axios from "axios"
 import { Route, Link, withRouter } from "react-router-dom"
 import ExerciseData from "./ExerciseData"
-import Menubar from "./Menubar"
+import TopHeader from "./TopHeader"
 
 import "../css/App.css"
 import "../css/Main.css"
@@ -24,10 +24,7 @@ function Main() {
 
   return (
     <div>
-      <div class="mainheader">
-        <Menubar />
-        <img class="image2" src="/img/main.png" />
-      </div>
+      <TopHeader />
 
       <div className="exerFlex">
         <div>
