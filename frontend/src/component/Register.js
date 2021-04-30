@@ -171,7 +171,12 @@ function SignUp(props) {
     if (password !== re_password) {
       return alert("비밀번호를 다시 확인해주세요.")
     }
-
+    if (height === "") {
+      return alert("키를 입력해주세요")
+    }
+    if (weight === "") {
+      return alert("몸무게를 입력해주세요")
+    }
     if (isNaN(Number(height))) {
       return alert("잘못된 키값입니다.")
     } else if (height < 0) {
@@ -290,12 +295,7 @@ function SignUp(props) {
                 onChange={onWeightHandler}
               />
             </Grid>
-            <FormControl
-              variant="outlined"
-              className={classes.formControl}
-              item
-              xs
-            >
+            <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">
                 거주지
               </InputLabel>
@@ -305,8 +305,6 @@ function SignUp(props) {
                 value={address}
                 onChange={onAddressHandler}
                 label="Age"
-                required
-                autowidth
               >
                 <MenuItem disabled value="">
                   <em>시/도 선택</em>
