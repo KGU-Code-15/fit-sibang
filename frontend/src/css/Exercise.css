@@ -49,6 +49,7 @@
   padding: 5px 15px;
   font-size: 15px;
   font-weight: bold;
+  text-align: center;
 }
 
 .rutin__img img {
@@ -64,4 +65,30 @@
 
 p {
   color: black;
+}
+
+@media only screen and (max-width: 768px) {
+  .rutin_page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    padding: 30px;
+  }
+
+  .rutin_pageInfo span {
+    font-size: 21px;
+    font-weight: 400;
+    color: rgb(70, 77, 82);
+    margin-bottom: 20px;
+  }
+
+  .rutin__img {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .rutin__img img {
+    width: 300px;
+    width: 95%;
+  }
 }
