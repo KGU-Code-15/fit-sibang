@@ -37,11 +37,9 @@
 }
 
 /*
-
 */
 
 .userData {
-  width: 1000px;
 }
 
 .report {
@@ -57,7 +55,7 @@
   width: 700px;
   height: 288px;
   background-color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
   border-radius: 6px;
 }
@@ -78,6 +76,56 @@
 .userInfo {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 75px;
+  align-items: center;
+}
+
+.userInfo .beforeWeight {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #eb5374;
+  border-radius: 50px;
+  align-items: center;
+  padding: 5px 15px;
+  background: #eff2ff;
+}
+
+.userInfo .afterWeight {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin-bottom: 4px;
+  color: #000;
+  border-radius: 50px;
+  align-items: center;
+  padding: 5px 15px;
+  background: #f7f7f7;
+}
+
+.userInfo .weightFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.userInfo .changeWeight {
+  display: flex;
+  align-items: center;
+}
+
+.changeWeight .decreasePer {
+  color: #0051c7;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.changeWeight .increasePer {
+  color: #eb5374;
+  letter-spacing: 1px;
 }
 
 .userProfile .userSettingsList {
@@ -108,7 +156,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 700px;
+  width: 650px;
   height: 256px;
 }
 
@@ -125,34 +173,17 @@
   border-radius: 6px;
 }
 
-.exerQuestion button {
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
-  background: #000;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-
-.exerQuestion span {
-  color: #fff;
-  font-size: 16px;
-}
-.exerQuestion img {
-  width: 256px;
-}
-
 .exerFeedback {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 429px;
-  height: 256px;
+  width: 580px;
+  height: 300px;
   background-color: #fff;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
   border-radius: 6px;
+  margin-right: 20px;
 }
 
 .exerFeedback span {
@@ -168,4 +199,192 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+.userdataFlex {
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.userdataFlex .BMI,
+.weight,
+.kcal {
+  width: 100px;
+  height: 60px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px;
+  text-align: center;
+}
+
+.userdataFlex .buttonFlex {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal {
+  width: 350px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  outline: none;
+  background-color: #d9d9d9;
+}
+
+.centerFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.weightWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.centerFlex input {
+  width: 150px;
+  height: 50px;
+  font-size: 35px;
+  text-align: center;
+}
+
+.weightValue {
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+}
+
+.weightUpdate {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.badgeModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  outline: none;
+  background-color: #d9d9d9;
+  overflow-y: auto;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.imgWidth {
+  width: 120px;
+  height: 120px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.imgWidth img {
+  width: 100%;
+  border-radius: 30%;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebox {
+    display: none;
+  }
+  .userProfile {
+    width: 80%;
+  }
+  .userdataFlex {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  .report {
+    align-items: center;
+  }
+  .userData {
+    width: 100%;
+    margin-right: 0;
+  }
+  .exerFeedback {
+    width: 560px;
+    margin-right: 0;
+  }
+  .userdataFlex .buttonFlex {
+    flex-direction: row;
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    height: 0px;
+  }
+  .userdataFlex .BMI,
+  .weight,
+  .kcal {
+    width: 60px;
+    height: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    background-color: #e2e7fb;
+    border: 3px solid #5673ea;
+    border-radius: 0;
+    margin-right: 3px;
+    font-size: 10px;
+    box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .userProfile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .userProfile .userSettingsList {
+    flex-direction: row;
+    width: 70%;
+  }
+  .userProfile .userSettingsList button {
+    margin: 0;
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .report {
+    width: 90%;
+  }
+  .userInfo {
+    width: 100%;
+    margin: 0;
+    height: 0;
+  }
+
+  .userProfile .userImg {
+    margin: 0;
+  }
 }
