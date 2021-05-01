@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import Menubar from "./Menubar"
+import TopHeader from "./TopHeader"
 import Chart from "./Chart"
 import AddIcon from "@material-ui/icons/Add"
 import CloseIcon from "@material-ui/icons/Close"
@@ -14,10 +14,13 @@ function Mypage() {
   const [chart, setChart] = useState(false)
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
+  const modalbackground = {
+    backgroundColor: "rgba(74,74,74,0.75)",
+  }
 
   return (
     <div className="wrap">
-      <Menubar />
+      <TopHeader />
       <div className="report">
         <div className="userProfile">
           <div className="userFlex">
@@ -37,15 +40,26 @@ function Mypage() {
                       setweightModal(true)
                     }}
                   />
-                  <Modal isOpen={weightmodal} className="modal">
+                  <Modal
+                    isOpen={weightmodal}
+                    onRequestClose={() => {
+                      setweightModal(false)
+                    }}
+                    className="modal"
+                  >
                     <CloseIcon
                       style={{ padding: "15px", cursor: "pointer" }}
                       onClick={() => {
                         setweightModal(false)
                       }}
                     />
-
+                    {badgemodal === "true" ? <div></div> : null}
                     <div className="centerFlex">
+                      <div className="day">
+                        <Input /> 년
+                        <Input /> 월
+                        <Input /> 일
+                      </div>
                       <div className="weightWrap">
                         <div className="weightValue">몸무게 : </div>
                         <Input /> Kg
@@ -77,7 +91,13 @@ function Mypage() {
               내 뱃지
             </button>
 
-            <Modal className="badgeModal" isOpen={badgemodal}>
+            <Modal
+              className="badgeModal"
+              isOpen={badgemodal}
+              onRequestClose={() => {
+                setbadgeModal(false)
+              }}
+            >
               <CloseIcon
                 style={{ padding: "15px", cursor: "pointer" }}
                 onClick={() => {
@@ -134,7 +154,7 @@ function Mypage() {
                   setChart(!chart)
                 }}
               >
-                몸무게
+                weight
               </button>
               <button
                 className="kcal"
