@@ -171,6 +171,9 @@ function SignUp(props) {
     if (password !== re_password) {
       return alert("비밀번호를 다시 확인해주세요.")
     }
+    if (password.length < 6) {
+      return alert("비밀번호는 6자리 이상으로 정해주세요.")
+    }
     if (height === "") {
       return alert("키를 입력해주세요")
     }
