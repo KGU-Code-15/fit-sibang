@@ -30,8 +30,9 @@ a {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
 }
-
 .title {
   color: #606fe4;
 }
@@ -106,4 +107,5 @@ a {
 
 .mainheader {
   display: flex;
+  width: 570px;
 }

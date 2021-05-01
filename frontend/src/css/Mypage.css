@@ -46,14 +46,15 @@
   width: 700px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .userProfile {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 700px;
-  height: 288px;
+  width: 570px;
+  height: 250px;
   background-color: #fff;
   margin-bottom: 50px;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
@@ -156,7 +157,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 650px;
+  width: 570px;
   height: 256px;
 }
 
@@ -179,11 +180,10 @@
   align-items: center;
   flex-direction: column;
   width: 580px;
-  height: 300px;
+  height: 250px;
   background-color: #fff;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px 2px;
   border-radius: 6px;
-  margin-right: 20px;
 }
 
 .exerFeedback span {
@@ -206,26 +206,30 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
 }
 
 .userdataFlex .BMI,
 .weight,
 .kcal {
-  width: 100px;
-  height: 60px;
+  width: 47px;
+  height: 18px;
   outline: none;
   border: none;
   cursor: pointer;
-  border-radius: 7px;
-  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px;
+
   text-align: center;
+  background-color: #e2e7fb;
+  border: 3px solid #5673ea;
+  margin-right: 5px;
+  font-size: 9px;
 }
 
 .userdataFlex .buttonFlex {
-  height: 300px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: absolute;
+  top: 7px;
+  left: 68%;
 }
 
 .modal {
@@ -236,7 +240,7 @@
   transform: translate(-50%, -50%);
   position: absolute;
   outline: none;
-  background-color: #d9d9d9;
+  background-color: #fff;
 }
 
 .centerFlex {
@@ -258,15 +262,24 @@
   margin-bottom: 30px;
 }
 .centerFlex input {
-  width: 150px;
-  height: 50px;
+  width: 50px;
+  height: 30px;
   font-size: 35px;
   text-align: center;
 }
 
+.centerFlex .day {
+  display: flex;
+  align-items: center;
+}
+
+.centerFlex .day input {
+  font-size: 20px;
+  text-align: center;
+}
 .weightValue {
   width: 100px;
-  height: 30px;
+  height: 20px;
   font-size: 20px;
 }
 
@@ -283,7 +296,7 @@
   width: 500px;
   height: 500px;
   outline: none;
-  background-color: #d9d9d9;
+  background-color: #fff;
   overflow-y: auto;
 }
 
@@ -309,82 +322,6 @@
   margin-bottom: 5px;
 }
 
-@media screen and (max-width: 1024px) {
-  .sidebox {
-    display: none;
-  }
-  .userProfile {
-    width: 80%;
-  }
-  .userdataFlex {
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-  }
-  .report {
-    align-items: center;
-  }
-  .userData {
-    width: 100%;
-    margin-right: 0;
-  }
-  .exerFeedback {
-    width: 560px;
-    margin-right: 0;
-  }
-  .userdataFlex .buttonFlex {
-    flex-direction: row;
-    position: absolute;
-    top: -15px;
-    left: 30px;
-    height: 0px;
-  }
-  .userdataFlex .BMI,
-  .weight,
-  .kcal {
-    width: 60px;
-    height: 20px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    background-color: #e2e7fb;
-    border: 3px solid #5673ea;
-    border-radius: 0;
-    margin-right: 3px;
-    font-size: 10px;
-    box-shadow: none;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .userProfile {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .userProfile .userSettingsList {
-    flex-direction: row;
-    width: 70%;
-  }
-  .userProfile .userSettingsList button {
-    margin: 0;
-    margin-right: 15px;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .report {
-    width: 90%;
-  }
-  .userInfo {
-    width: 100%;
-    margin: 0;
-    height: 0;
-  }
-
-  .userProfile .userImg {
-    margin: 0;
-  }
+.ReactModal__Overlay {
+  background-color: rgba(74, 74, 74, 0.7) !important;
 }

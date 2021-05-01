@@ -40,8 +40,8 @@ function Chart() {
   return (
     <Line
       data={data}
-      width={570}
-      height={300}
+      width={440}
+      height={200}
       options={{ maintainAspectRatio: true }}
     />
   )
