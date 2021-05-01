@@ -5,11 +5,18 @@
   padding: 5px 15px;
 }
 */
+
+.exer_wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .rutin_page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 600px;
+  width: 525px;
   padding: 30px;
   background: rgb(255, 255, 255);
   border-radius: 16px;
@@ -35,14 +42,14 @@
 }
 
 .rutin__img {
-  width: 600px;
+  width: 565px;
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
 .rutin__img .rutin__wrap {
-  width: 255px;
+  width: 210px;
 }
 
 .rutin__img .rutin__wrap p {
@@ -72,21 +79,17 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 525px;
     padding: 30px;
   }
-
+  /*
   .rutin_pageInfo span {
     font-size: 21px;
     font-weight: 400;
     color: rgb(70, 77, 82);
     margin-bottom: 20px;
   }
-
-  .rutin__img {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
+*/
   .rutin__img img {
     width: 300px;
     width: 95%;
