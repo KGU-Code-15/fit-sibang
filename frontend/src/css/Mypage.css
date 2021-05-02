@@ -67,6 +67,9 @@
   border-radius: 50%;
   margin-left: 50px;
   margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
 }
 
 .userProfile .userImg img {
@@ -80,6 +83,7 @@
   justify-content: space-around;
   height: 75px;
   align-items: center;
+  width: 150px;
 }
 
 .userInfo .beforeWeight {
@@ -130,6 +134,7 @@
 }
 
 .userProfile .userSettingsList {
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -149,13 +154,14 @@
 }
 
 .userFlex {
+  width: 325px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .userData {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 570px;
   height: 256px;
@@ -202,7 +208,7 @@
 }
 
 .userdataFlex {
-  width: 700px;
+  width: 570px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -228,8 +234,9 @@
 .userdataFlex .buttonFlex {
   display: flex;
   position: absolute;
-  top: 7px;
-  left: 68%;
+  top: 0;
+  left: 50%;
+  transform: translate(50%, 5px);
 }
 
 .modal {
@@ -324,4 +331,69 @@
 
 .ReactModal__Overlay {
   background-color: rgba(74, 74, 74, 0.7) !important;
+}
+
+@media all and (max-width: 700px) {
+  .mainheader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 6rem;
+  }
+  .report {
+    width: 97.5%;
+  }
+  .userFlex {
+    width: 97.5%;
+    justify-content: center;
+  }
+  .userProfile {
+    width: 80%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .userProfile .userImg {
+    margin-left: 0;
+  }
+  .userProfile .userSettingsList {
+    flex-direction: row;
+    width: 75%;
+  }
+  .userProfile .userSettingsList button {
+    margin: 0;
+    margin-left: 10px;
+  }
+  .exerFeedback {
+    width: 80%;
+  }
+  .userdataFlex {
+    width: 100%;
+  }
+  .userdataFlex .buttonFlex {
+    top: inherit;
+    left: inherit;
+    bottom: 10px;
+    transform: translate(0, 0);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .userInfo .weightFlex {
+    flex-direction: column;
+    margin-top: 13px;
+  }
+  .userProfile .userSettingsList button {
+    font-size: 10px;
+  }
+  .image2 {
+    padding-left: 1rem;
+  }
+  .userProfile .userImg {
+    margin: 0;
+    margin-left: 10px;
+  }
+  .badgeModal {
+    width: 300px;
+    height: 300px;
+  }
 }
