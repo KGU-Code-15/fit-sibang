@@ -34,7 +34,7 @@ function Main() {
 
       <div className="eeeeFlex">
         <span className="">오늘의 추천 운동</span>
-        <span className="">스쿼트</span>
+        <span className="exercise">스쿼트</span>
       </div>
 
       <div className="eeeeFlex">

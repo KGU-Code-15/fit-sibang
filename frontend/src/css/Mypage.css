@@ -338,7 +338,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    /* padding-left: 6rem; */
+    padding-left: 6rem;
   }
   .report {
     width: 97.5%;
@@ -400,6 +400,6 @@
 
 @media screen and (max-width: 320px) {
   .mainheader {
-    padding-left: 0;
+    padding-left: 8rem;
   }
 }

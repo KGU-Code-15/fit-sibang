@@ -13,16 +13,24 @@
   .image {
     margin-top: 8rem;
   }
+  .navbar {
+    padding-right: 6rem;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .navbar {
+    padding-right: 6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}
+
+@media screen and (max-width: 320px) {
 }
 
 .navbar {
-  /* text-align: center; */
-  background-color: none;
-  /* height: 80px; */
-  /* display: flex; */
-  /* float: center; */
-  /* justify-content: start; */
-  /* align-items: center; */
   padding-right: 15rem;
 }
 
