@@ -4,7 +4,7 @@ import { Route, Link, withRouter } from "react-router-dom"
 import ExerciseData from "./ExerciseData"
 import TopHeader from "./TopHeader"
 
-import "../css/App.css"
+// import "../css/App.css"
 import "../css/Main.css"
 
 function Main() {
@@ -23,19 +23,18 @@ function Main() {
   })
 
   return (
-    <div>
+    <div className="">
       <TopHeader />
-
-      <div className="exerFlex">
+      <div className="eeeeFlex">
         <div>
           <span>나의 하루 운동 양</span>
         </div>
-        {auth_login === true ? <ExerciseData /> : null}
+        <span>{auth_login === true ? <ExerciseData /> : <p>Login</p>}</span>
       </div>
 
-      <div className="exerFlex">
-        <span className="todayReco">오늘의 추천 운동</span>
-        <span className="todayExer">스쿼트</span>
+      <div className="eeeeFlex">
+        <span className="">오늘의 추천 운동</span>
+        <span className="">스쿼트</span>
       </div>
 
       <div className="eeeeFlex">

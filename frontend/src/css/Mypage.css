@@ -338,7 +338,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding-left: 6rem;
+    /* padding-left: 6rem; */
   }
   .report {
     width: 97.5%;

@@ -16,16 +16,20 @@
 }
 
 .navbar {
+  /* text-align: center; */
   background-color: none;
-  height: 80px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  /* height: 80px; */
+  /* display: flex; */
+  /* float: center; */
+  /* justify-content: start; */
+  /* align-items: center; */
+  padding-right: 15rem;
 }
 
 .menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
+  margin-top: 1.2rem;
+  /* margin-left: 1rem; */
+  font-size: 2.5rem;
   background: none;
 }
 
