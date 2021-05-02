@@ -161,7 +161,7 @@
 }
 .userData {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 570px;
   height: 256px;
@@ -208,7 +208,7 @@
 }
 
 .userdataFlex {
-  width: 700px;
+  width: 570px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -234,8 +234,9 @@
 .userdataFlex .buttonFlex {
   display: flex;
   position: absolute;
-  top: 7px;
-  left: 68%;
+  top: 0;
+  left: 50%;
+  transform: translate(50%, 5px);
 }
 
 .modal {
@@ -334,9 +335,10 @@
 
 @media all and (max-width: 700px) {
   .mainheader {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
+    padding-left: 6rem;
   }
   .report {
     width: 97.5%;
@@ -361,6 +363,18 @@
     margin: 0;
     margin-left: 10px;
   }
+  .exerFeedback {
+    width: 80%;
+  }
+  .userdataFlex {
+    width: 100%;
+  }
+  .userdataFlex .buttonFlex {
+    top: inherit;
+    left: inherit;
+    bottom: 10px;
+    transform: translate(0, 0);
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -374,11 +388,12 @@
   .image2 {
     padding-left: 1rem;
   }
-}
-
-@media screen and (max-width: 480px) {
   .userProfile .userImg {
     margin: 0;
     margin-left: 10px;
+  }
+  .badgeModal {
+    width: 300px;
+    height: 300px;
   }
 }

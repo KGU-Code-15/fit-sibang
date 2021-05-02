@@ -125,7 +125,14 @@ function Mypage() {
             </Modal>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <div className="userdataFlex">
             <div className="userData">
               <div className="exerFeedback">
