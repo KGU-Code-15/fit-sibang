@@ -21,7 +21,7 @@
   background: rgb(255, 255, 255);
   border-radius: 16px;
   margin-bottom: 18px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .rutin_pageFlex {
   display: flex;
@@ -43,7 +43,7 @@
 
 .rutin__img {
   width: 565px;
-  overflow-y: auto;
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
