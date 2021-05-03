@@ -1,5 +1,11 @@
 import axios from 'axios'
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, MYPAGE_USER } from './types'
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  MYPAGE_USER,
+  ADD_WEIGHT,
+} from './types'
 
 export function loginUser(dataToSubmit) {
   const request = axios
@@ -33,6 +39,16 @@ export function myPage() {
   const request = axios.get('/user/mypage').then((response) => response.data)
   return {
     type: MYPAGE_USER,
+    payload: request,
+  }
+}
+
+export function addWeightFunc(dataToSubmit) {
+  const request = axios
+    .post('/user/addWeight', dataToSubmit)
+    .then((response) => response.data)
+  return {
+    type: ADD_WEIGHT,
     payload: request,
   }
 }

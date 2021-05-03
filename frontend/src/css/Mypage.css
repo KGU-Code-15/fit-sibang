@@ -272,7 +272,6 @@
 .centerFlex input {
   width: 50px;
   height: 30px;
-  font-size: 35px;
   text-align: center;
 }
 
@@ -282,7 +281,6 @@
 }
 
 .centerFlex .day input {
-  font-size: 20px;
   text-align: center;
 }
 .weightValue {

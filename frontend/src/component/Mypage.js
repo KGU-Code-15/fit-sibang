@@ -6,14 +6,42 @@ import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
 import Modal from 'react-modal'
 import { Button } from '@material-ui/core'
-import { Input } from '@material-ui/core'
 import { myPage } from '../_action/user_action'
-
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import { withRouter } from 'react-router-dom'
 // redux
 import { useDispatch } from 'react-redux'
 import '../css/Mypage.css'
+import { addWeightFunc } from '../_action/user_action'
+//timez
+const moment = require('moment')
+var today = moment().format('YYYY-MM-DDTHH:mm:ss')
+function getFormatDate(date) {
+  var year = date.getFullYear()
+  var month = 1 + date.getMonth()
+  month = month >= 10 ? month : '0' + month
+  var day = date.getDate()
+  day = day >= 10 ? day : '0' + day
+  var hours = date.getHours()
+  var minutes = date.getMinutes()
+  minutes = minutes >= 10 ? minutes : '0' + minutes
+  var seconds = date.getSeconds()
+  seconds = seconds >= 10 ? seconds : '0' + seconds
 
-function Mypage() {
+  return (
+    year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+  )
+}
+
+function Mypage(props) {
   const [chart, setChart] = useState(false)
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
@@ -70,6 +98,35 @@ function Mypage() {
       setWeightChange(weightChange_)
     }
   })
+  // add weight modal
+  const [selectedDate, setSelectedDate] = React.useState(new Date(today))
+  const [addWeight, setAddWeight] = useState('')
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date)
+  }
+
+  const handleAddWeight = (event) => {
+    setAddWeight(event.currentTarget.value)
+  }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    var selectedDate_ = getFormatDate(selectedDate)
+    let body = {
+      userName: userName,
+      weight: addWeight,
+      date: selectedDate_,
+    }
+    dispatch(addWeightFunc(body)).then((response) => {
+      if (response.payload.success) {
+        alert('성공적으로 등록되었습니다.')
+        props.history.push('/mypage')
+      } else {
+        alert(response.payload.message)
+      }
+    })
+  }
 
   return (
     <div className="wrap">
@@ -78,7 +135,7 @@ function Mypage() {
         <div className="userProfile">
           <div className="userFlex">
             <div className="userImg">
-              <img src="img/profile.jpg" alt="profile_img" />
+              <img src="img/profile.gif" alt="profile_img" />
             </div>
             <div className="userInfo">
               <span>{userName}</span>
@@ -109,21 +166,44 @@ function Mypage() {
                     {badgemodal === 'true' ? <div></div> : null}
                     <div className="centerFlex">
                       <div className="day">
-                        <Input /> 년
-                        <Input /> 월
-                        <Input /> 일
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                          <Grid container justify="space-around">
+                            <KeyboardDatePicker
+                              margin="normal"
+                              id="date-picker-dialog"
+                              label="날짜"
+                              format="yyyy-MM-dd"
+                              value={selectedDate}
+                              onChange={handleDateChange}
+                              KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                              }}
+                            />
+                          </Grid>
+                        </MuiPickersUtilsProvider>
                       </div>
                       <div className="weightWrap">
-                        <div className="weightValue">몸무게 : </div>
-                        <Input /> Kg
+                        <TextField
+                          label="몸무게"
+                          id="standard-start-adornment"
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                Kg
+                              </InputAdornment>
+                            ),
+                          }}
+                          value={addWeight}
+                          onChange={handleAddWeight}
+                        />
                       </div>
                       <div>
                         <Button
                           variant="contained"
                           color="primary"
-                          onClick={() => {}}
+                          onClick={onSubmitHandler}
                         >
-                          수정하기
+                          추 가
                         </Button>
                       </div>
                     </div>
@@ -159,20 +239,16 @@ function Mypage() {
               />
               <div className="badgeGrid">
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Gold.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Silver.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
-                </div>
-                <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Bronze.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
               </div>
             </Modal>
@@ -232,4 +308,4 @@ function Mypage() {
   )
 }
 
-export default Mypage
+export default withRouter(Mypage)
