@@ -248,6 +248,7 @@
   position: absolute;
   outline: none;
   background-color: #fff;
+  text-align: initial;
 }
 
 .centerFlex {
@@ -305,6 +306,7 @@
   outline: none;
   background-color: #fff;
   overflow-y: auto;
+  text-align: initial;
 }
 
 .badgeGrid {

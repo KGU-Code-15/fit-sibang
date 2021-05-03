@@ -1,19 +1,28 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
 import $ from "jquery"
 import "../css/TeachableMachine.css"
 import { withRouter } from "react-router-dom"
 
 function Test() {
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      init()
+    }, 1000)
+    console.log("안녕")
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
+
   let count = 0
   let status = "stand"
-  const [start, setStart] = useState(false)
+
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
 
   let model, webcam, ctx, labelContainer, maxPredictions
 
   async function init() {
-    setStart(!start)
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
 
@@ -62,13 +71,12 @@ function Test() {
     }
 
     for (let i = 0; i < maxPredictions; i++) {
-      const classPrediction =
-        prediction[i].className +
-        ": " +
-        prediction[i].probability.toFixed(2) * 100 +
-        "%"
-      labelContainer.childNodes[i].innerHTML = classPrediction
-
+      // const classPrediction =
+      //   prediction[i].className +
+      //   ": " +
+      //   prediction[i].probability.toFixed(2) * 100 +
+      //   "%"
+      // labelContainer.childNodes[i].innerHTML = classPrediction
       drawPose(pose)
     }
   }
@@ -88,22 +96,16 @@ function Test() {
 
   return (
     <>
-      <div className="center">
-        <button
-          className="start"
-          type="button"
-          onClick={init}
-          style={{ display: start ? "none" : "block" }}
-        >
-          {start ? "STOP" : "START"}
-        </button>
-      </div>
+      <div className="center"></div>
       <div id="label-container"></div>
       <div className="canvasCenter">
         <canvas id="canvas" />
-        <div className="counter" style={{ display: start ? "block" : "none" }}>
+        <div className="counter">
           <div className="count">{count}</div>
         </div>
+      </div>
+      <div>
+        <img src="/img/squat.gif" alt="" />
       </div>
     </>
   )
