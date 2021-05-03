@@ -135,7 +135,7 @@ function Mypage(props) {
         <div className="userProfile">
           <div className="userFlex">
             <div className="userImg">
-              <img src="img/profile.jpg" alt="profile_img" />
+              <img src="img/profile.gif" alt="profile_img" />
             </div>
             <div className="userInfo">
               <span>{userName}</span>
@@ -239,20 +239,16 @@ function Mypage(props) {
               />
               <div className="badgeGrid">
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Gold.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Silver.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
-                </div>
-                <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Bronze.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
               </div>
             </Modal>
