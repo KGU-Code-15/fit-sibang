@@ -25,45 +25,50 @@ function Mypage() {
   const [weightChange, setWeightChange] = useState('')
   const [changeColor, setChangeColor] = useState('')
   const dispatch = useDispatch()
+
   dispatch(myPage()).then((response) => {
     // userName
-    var userName_ = [...userName]
-    userName_ = response.payload.userName
-    setUserName(userName_)
-
-    //weight now
-    var weight_ = [...weight]
-    weight_ = String(
-      response.payload.weight[response.payload.weight.length - 1].weight_
-    )
-    setWeight(weight_)
-
-    // weight change
-    var weightChange_ = [...weightChange]
-    var changeColor_ = [...changeColor]
-    var pre = response.payload.weight[0].weight_
-    var curt =
-      response.payload.weight[response.payload.weight.length - 1].weight_
-    var result
-    var op
-    if (pre > curt) {
-      result = pre - curt
-      op = '-'
-      result = result.toFixed(2)
-      changeColor_ = 'decreasePer'
-    } else if (pre < curt) {
-      result = curt - pre
-      op = '+'
-      result = result.toFixed(2)
-      changeColor_ = 'increasePer'
+    if (response.payload.isAuth === false) {
     } else {
-      result = '0.00'
-      op = ''
-      changeColor_ = ''
+      var userName_ = [...userName]
+      userName_ = response.payload.userName
+      setUserName(userName_)
+
+      //weight now
+      var weight_ = [...weight]
+      weight_ = String(
+        response.payload.weight[response.payload.weight.length - 1].weight_
+      )
+      setWeight(weight_)
+
+      // weight change
+
+      var weightChange_ = [...weightChange]
+      var changeColor_ = [...changeColor]
+      var pre = response.payload.weight[0].weight_
+      var curt =
+        response.payload.weight[response.payload.weight.length - 1].weight_
+      var result
+      var op
+      if (pre > curt) {
+        result = pre - curt
+        op = '-'
+        result = result.toFixed(2)
+        changeColor_ = 'decreasePer'
+      } else if (pre < curt) {
+        result = curt - pre
+        op = '+'
+        result = result.toFixed(2)
+        changeColor_ = 'increasePer'
+      } else {
+        result = '0.00'
+        op = ''
+        changeColor_ = ''
+      }
+      weightChange_ = op + String(result)
+      setChangeColor(changeColor_)
+      setWeightChange(weightChange_)
     }
-    weightChange_ = op + String(result)
-    setChangeColor(changeColor_)
-    setWeightChange(weightChange_)
   })
 
   return (
