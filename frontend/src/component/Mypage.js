@@ -184,7 +184,6 @@ function Mypage() {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            zIndex: '-1',
           }}
         >
           <div className="userdataFlex">
