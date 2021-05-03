@@ -203,7 +203,7 @@ function Mypage(props) {
                           color="primary"
                           onClick={onSubmitHandler}
                         >
-                          수정하기
+                          추 가
                         </Button>
                       </div>
                     </div>
