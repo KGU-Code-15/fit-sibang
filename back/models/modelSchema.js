@@ -107,7 +107,7 @@ userSchema.methods.updateWeight = function (info, err) {
   if (err) {
     return err
   }
-  this.weight.push({ weight_: info.weight, date: date })
+  this.weight.push({ weight_: info.weight, date: info.date })
   this.save()
 }
 
