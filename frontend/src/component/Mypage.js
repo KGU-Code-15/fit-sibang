@@ -1,22 +1,70 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 
-import TopHeader from "./TopHeader"
-import Chart from "./Chart"
-import AddIcon from "@material-ui/icons/Add"
-import CloseIcon from "@material-ui/icons/Close"
-import Modal from "react-modal"
-import { Button } from "@material-ui/core"
-import { Input } from "@material-ui/core"
+import TopHeader from './TopHeader'
+import Chart from './Chart'
+import AddIcon from '@material-ui/icons/Add'
+import CloseIcon from '@material-ui/icons/Close'
+import Modal from 'react-modal'
+import { Button } from '@material-ui/core'
+import { Input } from '@material-ui/core'
+import { myPage } from '../_action/user_action'
 
-import "../css/Mypage.css"
+// redux
+import { useDispatch } from 'react-redux'
+import '../css/Mypage.css'
 
 function Mypage() {
   const [chart, setChart] = useState(false)
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
   const modalbackground = {
-    backgroundColor: "rgba(74,74,74,0.75)",
+    backgroundColor: 'rgba(74,74,74,0.75)',
   }
+  const [userName, setUserName] = useState('')
+  const [weight, setWeight] = useState('')
+  const [weightChange, setWeightChange] = useState('')
+  const [changeColor, setChangeColor] = useState('')
+  const dispatch = useDispatch()
+  dispatch(myPage()).then((response) => {
+    // userName
+    var userName_ = [...userName]
+    userName_ = response.payload.userName
+    setUserName(userName_)
+
+    //weight now
+    var weight_ = [...weight]
+    weight_ = String(
+      response.payload.weight[response.payload.weight.length - 1].weight_
+    )
+    setWeight(weight_)
+
+    // weight change
+    var weightChange_ = [...weightChange]
+    var changeColor_ = [...changeColor]
+    var pre = response.payload.weight[0].weight_
+    var curt =
+      response.payload.weight[response.payload.weight.length - 1].weight_
+    var result
+    var op
+    if (pre > curt) {
+      result = pre - curt
+      op = '-'
+      result = result.toFixed(2)
+      changeColor_ = 'decreasePer'
+    } else if (pre < curt) {
+      result = curt - pre
+      op = '+'
+      result = result.toFixed(2)
+      changeColor_ = 'increasePer'
+    } else {
+      result = '0.00'
+      op = ''
+      changeColor_ = ''
+    }
+    weightChange_ = op + String(result)
+    setChangeColor(changeColor_)
+    setWeightChange(weightChange_)
+  })
 
   return (
     <div className="wrap">
@@ -28,14 +76,14 @@ function Mypage() {
               <img src="img/profile.jpg" alt="profile_img" />
             </div>
             <div className="userInfo">
-              <span>한상준</span>
+              <span>{userName}</span>
               <div className="weightFlex">
                 {/* <span className="beforeWeight">64kg </span> */}
-                <span className="afterWeight">78kg</span>
+                <span className="afterWeight">{weight}kg</span>
                 <div className="changeWeight">
-                  <span>0.00%</span>
+                  <span className={changeColor}>{weightChange}</span>
                   <AddIcon
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                     onClick={() => {
                       setweightModal(true)
                     }}
@@ -48,12 +96,12 @@ function Mypage() {
                     className="modal"
                   >
                     <CloseIcon
-                      style={{ padding: "15px", cursor: "pointer" }}
+                      style={{ padding: '15px', cursor: 'pointer' }}
                       onClick={() => {
                         setweightModal(false)
                       }}
                     />
-                    {badgemodal === "true" ? <div></div> : null}
+                    {badgemodal === 'true' ? <div></div> : null}
                     <div className="centerFlex">
                       <div className="day">
                         <Input /> 년
@@ -99,7 +147,7 @@ function Mypage() {
               }}
             >
               <CloseIcon
-                style={{ padding: "15px", cursor: "pointer" }}
+                style={{ padding: '15px', cursor: 'pointer' }}
                 onClick={() => {
                   setbadgeModal(false)
                 }}
@@ -127,11 +175,11 @@ function Mypage() {
         </div>
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            zIndex: "-1",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            zIndex: '-1',
           }}
         >
           <div className="userdataFlex">
