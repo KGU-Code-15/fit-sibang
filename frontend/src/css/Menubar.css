@@ -13,19 +13,31 @@
   .image {
     margin-top: 8rem;
   }
+  .navbar {
+    padding-right: 6rem;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .navbar {
+    padding-right: 6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}
+
+@media screen and (max-width: 320px) {
 }
 
 .navbar {
-  background-color: none;
-  height: 80px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  padding-right: 15rem;
 }
 
 .menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
+  margin-top: 1.2rem;
+  /* margin-left: 1rem; */
+  font-size: 2.5rem;
   background: none;
 }
 
@@ -54,6 +66,7 @@
   padding: 8px 0px 8px 16px;
   list-style: none;
   height: 60px;
+  width: 170px;
 }
 
 .nav-text a {
@@ -76,11 +89,17 @@
   font-size: 18px;
   display: flex;
   align-items: center;
-  padding: 16px 16px;
-  padding-left: 31px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  height: 60px;
+  padding: 0px 16px;
+  width: 170px;
+  /* padding-left: 31px; */
+  /* padding-top: 20px; */
+  /* padding-bottom: 20px; */
   border-radius: 4px;
+}
+
+.text :hover {
+  background-color: #40a0ff;
 }
 
 .nav-text a:hover {

@@ -5,7 +5,7 @@ import "../css/Main.css"
 
 function ExerciseData() {
   return (
-    <>
+    <div>
       <div className="exer">
         <span className="sport">요가</span>
         <span className="time">03:50</span>
@@ -23,10 +23,10 @@ function ExerciseData() {
       </div>
       <div className="exer">
         <span className="sport">스쿼트</span>
-        <span className="time">6:50</span>
+        <span className="time">06:50</span>
         <span className="compare">02</span>
       </div>
-    </>
+    </div>
   )
 }
 

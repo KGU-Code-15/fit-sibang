@@ -20,7 +20,7 @@ function Home() {
   }
 
   return (
-    <div className="wrap">
+    <div className="">
       <div>
         <Main />
         <Youtube

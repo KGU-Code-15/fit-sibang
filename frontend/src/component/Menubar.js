@@ -70,11 +70,16 @@ function Menubar(props) {
                 </li>
               )
             })}
-            <li class="text" onClick={onClickHandler}>
-              <fiIcons.FiLogIn />
-              <span>{text}</span>
-            </li>
-            <img class="image" src="/img/menulogn.png" />
+            <div className="text">
+              <li className="text" onClick={onClickHandler}>
+                <div className="">
+                  <fiIcons.FiLogIn />
+                  <span>{text}</span>
+                </div>
+              </li>
+            </div>
+
+            <img className="image" src="/img/menulogn.png" />
           </ul>
         </nav>
       </IconContext.Provider>

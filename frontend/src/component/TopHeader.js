@@ -6,9 +6,9 @@ import "../css/Main.css"
 
 export default function TopHeader() {
   return (
-    <div class="mainheader">
+    <div className="mainheader">
       <Menubar />
-      <img class="image2" src="/img/main.png" />
+      <img className="image2" src="/img/main.png" />
     </div>
   )
 }

@@ -1,7 +1,11 @@
 .image2 {
   height: 70px;
-  float: right;
-  padding-left: 8rem;
+  /* float: center; */
+  padding-top: 0.7rem;
+}
+
+.exercise {
+  padding-left: 10rem;
 }
 
 .recoFlex {
@@ -45,36 +49,62 @@
   align-items: center;
   width: 510px;
   background: rgb(255, 255, 255);
-  padding: 30px;
+  padding: 0px auto;
   border-radius: 16px;
   margin-bottom: 18px;
   font-weight: bold;
 }
 
+@media only screen and (max-width: 768px) {
+  .exerFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 510px;
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    font-weight: bold;
+  }
+}
+
 .eeeeFlex {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   width: 510px;
   background: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 16px;
-  margin-bottom: 18px;
+  /* margin-bottom: 18px; */
   font-weight: bold;
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
+  /* display: table-cell; */
+  margin: 10px auto;
+  /* vertical-align: middle; */
 }
 
 .exer {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* text-align: center; */
+  /* margin-bottom: 1rem; */
+  width: 50%;
+  /* display: flex; */
+  float: right;
 }
 
 .exer span {
-  text-align: center;
+  /* text-align: center; */
+}
+
+.text2 span {
+  margin-bottom: 10px;
 }
 
 .exer .sport {
-  font-size: 12px;
+  font-size: 16px;
 }
 .exer .time {
   font-size: 16px;
@@ -105,4 +135,30 @@
   padding: 0px 6px 0px 8px;
   font-weight: bold;
   background: #eff2ff;
+}
+.main {
+  /* max-width: 100%; */
+  /* margin: 0px auto; */
+  /* display: flex; */
+  /* display: flex;
+  height: 100vh;
+  justify-content: center; /*가로에서 가운데에 요소(자식요소)를 배치하겠다*/
+  /* align-items: center; 세로에서 가운데에 요소를 배치하겠다 */
+  /* border: solid 1px gray; */
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  .main {
+    max-width: 100%;
+    padding-bottom: 0px;
+  }
+}
+
+.Wrapper {
+  text-align: center;
+}
+
+.Child {
+  display: inline-block;
+  vertical-align: middle;
 }
