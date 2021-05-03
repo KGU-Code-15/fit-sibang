@@ -40,10 +40,10 @@ function Test() {
     canvas.width = size
     canvas.height = size
     ctx = canvas.getContext("2d")
-    labelContainer = document.getElementById("label-container")
-    for (let i = 0; i < maxPredictions; i++) {
-      labelContainer.appendChild(document.createElement("div"))
-    }
+    // labelContainer = document.getElementById("canvsCenter")
+    // for (let i = 0; i < maxPredictions; i++) {
+    //   labelContainer.appendChild(document.createElement("div"))
+    // }
   }
 
   const loop = async (timestamp) => {
@@ -95,19 +95,25 @@ function Test() {
   }
 
   return (
-    <>
-      <div className="center"></div>
-      <div id="label-container"></div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <div className="exerImg">
+        <img src="/img/squat1.gif" alt="" />
+      </div>
       <div className="canvasCenter">
         <canvas id="canvas" />
-        <div className="counter">
-          <div className="count">{count}</div>
+        <div className="count">
+          <span>{count}</span>
         </div>
       </div>
-      <div>
-        <img src="/img/squat.gif" alt="" />
-      </div>
-    </>
+    </div>
   )
 }
 
