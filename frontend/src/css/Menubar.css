@@ -14,13 +14,11 @@
     margin-top: 8rem;
   }
   .navbar {
-    padding-right: 6rem;
   }
 }
 
 @media all and (max-width: 700px) {
   .navbar {
-    padding-right: 6rem;
   }
 }
 
@@ -31,7 +29,6 @@
 }
 
 .navbar {
-  padding-right: 15rem;
 }
 
 .menu-bars {

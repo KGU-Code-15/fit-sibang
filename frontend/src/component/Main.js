@@ -23,7 +23,14 @@ function Main() {
   })
 
   return (
-    <div className="">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <TopHeader />
       <div className="eeeeFlex">
         <div>
