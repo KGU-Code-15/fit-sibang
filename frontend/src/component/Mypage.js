@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-import TopHeader from './TopHeader'
-import Chart from './Chart'
-import AddIcon from '@material-ui/icons/Add'
-import CloseIcon from '@material-ui/icons/Close'
-import Modal from 'react-modal'
-import { Button } from '@material-ui/core'
-import { Input } from '@material-ui/core'
-import { myPage } from '../_action/user_action'
+import TopHeader from "./TopHeader"
+import Chart from "./Chart"
+import AddIcon from "@material-ui/icons/Add"
+import CloseIcon from "@material-ui/icons/Close"
+import Modal from "react-modal"
+import { Button } from "@material-ui/core"
+import { Input } from "@material-ui/core"
+import { myPage } from "../_action/user_action"
 
 // redux
-import { useDispatch } from 'react-redux'
-import '../css/Mypage.css'
+import { useDispatch } from "react-redux"
+import "../css/Mypage.css"
 
 function Mypage() {
   const [chart, setChart] = useState(false)
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
   const modalbackground = {
-    backgroundColor: 'rgba(74,74,74,0.75)',
+    backgroundColor: "rgba(74,74,74,0.75)",
   }
-  const [userName, setUserName] = useState('')
-  const [weight, setWeight] = useState('')
-  const [weightChange, setWeightChange] = useState('')
-  const [changeColor, setChangeColor] = useState('')
+  const [userName, setUserName] = useState("")
+  const [weight, setWeight] = useState("")
+  const [weightChange, setWeightChange] = useState("")
+  const [changeColor, setChangeColor] = useState("")
   const dispatch = useDispatch()
 
   dispatch(myPage()).then((response) => {
@@ -52,18 +52,18 @@ function Mypage() {
       var op
       if (pre > curt) {
         result = pre - curt
-        op = '-'
+        op = "-"
         result = result.toFixed(2)
-        changeColor_ = 'decreasePer'
+        changeColor_ = "decreasePer"
       } else if (pre < curt) {
         result = curt - pre
-        op = '+'
+        op = "+"
         result = result.toFixed(2)
-        changeColor_ = 'increasePer'
+        changeColor_ = "increasePer"
       } else {
-        result = '0.00'
-        op = ''
-        changeColor_ = ''
+        result = "0.00"
+        op = ""
+        changeColor_ = ""
       }
       weightChange_ = op + String(result)
       setChangeColor(changeColor_)
@@ -78,7 +78,7 @@ function Mypage() {
         <div className="userProfile">
           <div className="userFlex">
             <div className="userImg">
-              <img src="img/profile.jpg" alt="profile_img" />
+              <img src="img/profile.gif" alt="profile_img" />
             </div>
             <div className="userInfo">
               <span>{userName}</span>
@@ -88,7 +88,7 @@ function Mypage() {
                 <div className="changeWeight">
                   <span className={changeColor}>{weightChange}</span>
                   <AddIcon
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     onClick={() => {
                       setweightModal(true)
                     }}
@@ -101,12 +101,12 @@ function Mypage() {
                     className="modal"
                   >
                     <CloseIcon
-                      style={{ padding: '15px', cursor: 'pointer' }}
+                      style={{ padding: "15px", cursor: "pointer" }}
                       onClick={() => {
                         setweightModal(false)
                       }}
                     />
-                    {badgemodal === 'true' ? <div></div> : null}
+                    {badgemodal === "true" ? <div></div> : null}
                     <div className="centerFlex">
                       <div className="day">
                         <Input /> 년
@@ -152,27 +152,23 @@ function Mypage() {
               }}
             >
               <CloseIcon
-                style={{ padding: '15px', cursor: 'pointer' }}
+                style={{ padding: "15px", cursor: "pointer" }}
                 onClick={() => {
                   setbadgeModal(false)
                 }}
               />
               <div className="badgeGrid">
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Gold.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Silver.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
                 <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
-                </div>
-                <div className="imgWidth">
-                  <img src="/img/icon-sample.png" alt="badge" />
-                  <span>말벅지</span>
+                  <img src="/img/Bronze.png" alt="badge" />
+                  {/* <span>말벅지</span> */}
                 </div>
               </div>
             </Modal>
@@ -180,10 +176,10 @@ function Mypage() {
         </div>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
           }}
         >
           <div className="userdataFlex">
