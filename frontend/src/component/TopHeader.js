@@ -9,6 +9,7 @@ export default function TopHeader() {
     <div className="mainheader">
       <Menubar />
       <img className="image2" src="/img/main.png" />
+      <div></div>
     </div>
   )
 }

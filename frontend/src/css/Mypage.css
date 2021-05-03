@@ -338,7 +338,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding-left: 6rem;
+    justify-content: space-around;
   }
   .report {
     width: 97.5%;
@@ -385,9 +385,7 @@
   .userProfile .userSettingsList button {
     font-size: 10px;
   }
-  .image2 {
-    padding-left: 1rem;
-  }
+
   .userProfile .userImg {
     margin: 0;
     margin-left: 10px;
