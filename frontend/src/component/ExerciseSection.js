@@ -14,7 +14,7 @@ function ExerciseSection() {
                 {/* <p>플랭크</p> */}
               </div>
               <div className="rutin__wrap">
-                <Link to="/TeachableMachine">
+                <Link to="/Workout">
                   <img src="/img/squat.gif" alt="health__image" />
                   {/* <p>25분 칼로리 버닝! 타바타 클래스</p> */}
                 </Link>
