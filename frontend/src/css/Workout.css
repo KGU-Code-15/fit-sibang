@@ -67,3 +67,18 @@
   width: 100%;
   margin-bottom: -5px;
 }
+
+@media screen and (max-width: 700px) {
+  .explainWrap .explainFlex {
+    width: 97.5%;
+  }
+  .explainWrap .explain p {
+    font-size: 16px;
+    margin-left: auto;
+  }
+
+  .explainWrap .explain button {
+    margin-left: auto;
+    margin-top: -8px;
+  }
+}
