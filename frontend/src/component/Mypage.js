@@ -113,6 +113,9 @@ function Mypage(props) {
   const onSubmitHandler = (event) => {
     event.preventDefault()
     var selectedDate_ = getFormatDate(selectedDate)
+    if (isNaN(addWeight)) {
+      return alert('잘못된 몸무게 형식입니다.')
+    }
     let body = {
       userName: userName,
       weight: addWeight,
