@@ -26,13 +26,13 @@
 
 git clone https://github.com/KGU-Code-15/fit-sibang.git
 
-npm install(directory root)
-
-cd frontend
-
+```
+cd back
 npm install
-
+cd ../frontend
+npm install
 npm start
+```
 
 ## Branch Name Rules
 
