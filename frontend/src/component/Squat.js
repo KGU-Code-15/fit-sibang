@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
 import $ from "jquery"
-import "../css/TeachableMachine.css"
+import "../css/Squat.css"
 import { withRouter } from "react-router-dom"
 
 function Test() {
@@ -65,11 +65,8 @@ function Test() {
     } else if (prediction[1].probability.toFixed(2) >= 0.85) {
       status = "squat"
     } else if (prediction[2].probability.toFixed(2) >= 0.85) {
-      if (status === "squat" || status === "stand") {
-      }
       status = "bent"
     }
-
     for (let i = 0; i < maxPredictions; i++) {
       // const classPrediction =
       //   prediction[i].className +
@@ -77,7 +74,7 @@ function Test() {
       //   prediction[i].probability.toFixed(2) * 100 +
       //   "%"
       // labelContainer.childNodes[i].innerHTML = classPrediction
-      drawPose(pose)
+      drawPose()
     }
   }
 

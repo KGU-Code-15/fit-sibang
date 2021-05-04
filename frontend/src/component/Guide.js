@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { Route, Link } from "react-router-dom"
 
-import "../css/Workout.css"
+import "../css/Guide.css"
 function Workout({ history }) {
   const date = new Date()
   const [exerlist, setExerlist] = useState(["pushup", "pushup", "pushup"])

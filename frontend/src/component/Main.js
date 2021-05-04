@@ -46,7 +46,7 @@ function Main() {
 
       <div className="eeeeFlex">
         <span>
-          <Link to="workout">핏-시방 이용 가이드</Link>
+          <Link to="Guide">핏-시방 이용 가이드</Link>
         </span>
       </div>
     </div>

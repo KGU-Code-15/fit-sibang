@@ -4,10 +4,10 @@ import { Route } from "react-router-dom"
 import Home from "./component/Home"
 import Mypage from "./component/Mypage"
 import Exercise from "./component/Exercise"
-import Workout from "./component/Workout"
+import Guide from "./component/Guide"
 import Login from "./component/Login"
 import Register from "./component/Register"
-import TeachableMachine from "./component/TeachableMachine"
+import Squat from "./component/Squat"
 
 import "./css/App.css"
 
@@ -24,13 +24,10 @@ function App() {
       <Route path="/" exact="true" component={Home} />
       <Route path="/mypage" component={Auth(Mypage, true)} />
       <Route path="/exercise" component={Exercise} />
-      <Route path="/workout" component={Workout} />
+      <Route path="/Guide" component={Guide} />
       <Route path="/login" component={Auth(Login, false)} />
       <Route path="/register" component={Auth(Register, false)} />
-      <Route
-        path="/TeachableMachine"
-        component={Auth(TeachableMachine, true)}
-      />
+      <Route path="/Squat" component={Auth(Squat, true)} />
     </div>
   )
 }
