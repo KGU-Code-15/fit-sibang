@@ -68,33 +68,19 @@
 }
 
 .eeeeFlex {
-  /* justify-content: space-between; */
   align-items: center;
   width: 510px;
   background: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 16px;
-  /* margin-bottom: 18px; */
   font-weight: bold;
-  /* display: inline-block; */
   text-align: center;
-  /* display: table-cell; */
   margin: 10px auto;
-  /* vertical-align: middle; */
 }
 
 .exer {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* text-align: center; */
-  /* margin-bottom: 1rem; */
   width: 50%;
-  /* display: flex; */
   float: right;
-}
-
-.exer span {
-  /* text-align: center; */
 }
 
 .text2 span {
@@ -135,28 +121,54 @@
   background: #eff2ff;
 }
 .main {
-  /* max-width: 100%; */
-  /* margin: 0px auto; */
-  /* display: flex; */
-  /* display: flex;
-  height: 100vh;
-  justify-content: center; /*가로에서 가운데에 요소(자식요소)를 배치하겠다*/
-  /* align-items: center; 세로에서 가운데에 요소를 배치하겠다 */
-  /* border: solid 1px gray; */
   text-align: center;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) and (min-width: 481px) {
   .main {
-    max-width: 100%;
+    max-width: 80%;
     padding-bottom: 0px;
+  }
+  .eeeeFlex {
+    align-items: center;
+    width: 65%;
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto;
+  }
+  .exer {
+    width: 50%;
+    float: right;
+  }
+  .exercise {
+    padding-left: 5rem;
   }
 }
 
-.Wrapper {
-  text-align: center;
-}
-
-.Child {
-  display: inline-block;
-  vertical-align: middle;
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+  .main {
+    max-width: 80%;
+    padding-bottom: 0px;
+  }
+  .eeeeFlex {
+    align-items: center;
+    width: 80%;
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto;
+  }
+  .exer {
+    width: 80%;
+    float: center;
+    /* align-items: center; */
+    padding-right: 2rem;
+  }
+  .exercise {
+    padding-left: 3rem;
+  }
 }
