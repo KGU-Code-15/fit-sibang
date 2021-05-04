@@ -17,10 +17,6 @@ a {
   text-decoration: none;
 }
 
-/* a span {
-  color: black;
-} */
-
 #logoImg {
   width: 300px;
   height: 150px;
@@ -116,19 +112,27 @@ a {
   margin-top: 50px;
 }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 768px) and (min-width: 481px) {
   .mainheader {
     display: flex;
     text-align: center;
-    width: 100%;
+    width: 540px;
     align-items: center;
-
-    justify-content: center;
+    justify-content: space-between;
+  }
+  .youtube {
+    width: 75%;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) and (min-width: 320px) {
+  .youtube {
+    width: 95%;
+  }
 }
 
 @media screen and (max-width: 320px) {
+  .youtube {
+    width: 95%;
+  }
 }
