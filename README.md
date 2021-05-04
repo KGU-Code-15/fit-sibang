@@ -24,9 +24,8 @@
 
 ## Code Execution method
 
-git clone https://github.com/KGU-Code-15/fit-sibang.git
-
 ```
+git clone https://github.com/KGU-Code-15/fit-sibang.git
 cd back
 npm install
 cd ../frontend
