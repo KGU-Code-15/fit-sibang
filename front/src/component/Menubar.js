@@ -41,10 +41,9 @@ function Menubar(props) {
       props.history.push("/login")
     }
   }
-
   const [sidebar, setSidebar] = useState(false)
-
   const showSidebar = () => setSidebar(!sidebar)
+
   return (
     <>
       <IconContext.Provider value={{ color: "#0066cc" }}>
@@ -79,8 +78,6 @@ function Menubar(props) {
                 </div>
               </li>
             </div>
-
-            <img className="image" src="/img/menulogn.png" />
           </ul>
         </nav>
       </IconContext.Provider>

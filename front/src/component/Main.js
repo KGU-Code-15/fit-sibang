@@ -4,7 +4,6 @@ import { Route, Link, withRouter } from "react-router-dom"
 import ExerciseData from "./ExerciseData"
 import TopHeader from "./TopHeader"
 
-// import "../css/App.css"
 import "../css/Main.css"
 
 function Main() {
@@ -36,7 +35,15 @@ function Main() {
         <div>
           <span>나의 하루 운동 양</span>
         </div>
-        <span>{auth_login === true ? <ExerciseData /> : <p>Login</p>}</span>
+        <span>
+          {auth_login === true ? (
+            <ExerciseData />
+          ) : (
+            <p>
+              <Link to="login">Login</Link>
+            </p>
+          )}
+        </span>
       </div>
 
       <div className="eeeeFlex">
@@ -46,7 +53,14 @@ function Main() {
 
       <div className="eeeeFlex">
         <span>
+          핏-시방이 처음인 당신을 위한 &emsp;
           <Link to="Guide">핏-시방 이용 가이드</Link>
+          <br />
+          <br />
+        </span>
+        <span>
+          운동이 어색한 당신을 위한 &emsp;
+          <Link to="ExerciseGuide">운동 가이드</Link>
         </span>
       </div>
     </div>
