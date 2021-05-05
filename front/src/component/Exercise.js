@@ -5,7 +5,14 @@ import TopHeader from "./TopHeader"
 
 function Exercise() {
   return (
-    <div className="wrap">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <TopHeader />
       <ExerciseSection />
     </div>

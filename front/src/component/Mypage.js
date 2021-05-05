@@ -1,43 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-import TopHeader from './TopHeader'
-import Chart from './Chart'
-import AddIcon from '@material-ui/icons/Add'
-import CloseIcon from '@material-ui/icons/Close'
-import Modal from 'react-modal'
-import { Button } from '@material-ui/core'
-import { myPage } from '../_action/user_action'
-import 'date-fns'
-import Grid from '@material-ui/core/Grid'
-import DateFnsUtils from '@date-io/date-fns'
+import TopHeader from "./TopHeader"
+import Chart from "./Chart"
+import AddIcon from "@material-ui/icons/Add"
+import CloseIcon from "@material-ui/icons/Close"
+import Modal from "react-modal"
+import { Button } from "@material-ui/core"
+import { myPage } from "../_action/user_action"
+import "date-fns"
+import Grid from "@material-ui/core/Grid"
+import DateFnsUtils from "@date-io/date-fns"
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-} from '@material-ui/pickers'
-import TextField from '@material-ui/core/TextField'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import { withRouter } from 'react-router-dom'
+} from "@material-ui/pickers"
+import TextField from "@material-ui/core/TextField"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import { withRouter } from "react-router-dom"
 // redux
-import { useDispatch } from 'react-redux'
-import '../css/Mypage.css'
-import { addWeightFunc } from '../_action/user_action'
+import { useDispatch } from "react-redux"
+import "../css/Mypage.css"
+import { addWeightFunc } from "../_action/user_action"
 //timez
-const moment = require('moment')
-var today = moment().format('YYYY-MM-DDTHH:mm:ss')
+const moment = require("moment")
+var today = moment().format("YYYY-MM-DDTHH:mm:ss")
 function getFormatDate(date) {
   var year = date.getFullYear()
   var month = 1 + date.getMonth()
-  month = month >= 10 ? month : '0' + month
+  month = month >= 10 ? month : "0" + month
   var day = date.getDate()
-  day = day >= 10 ? day : '0' + day
+  day = day >= 10 ? day : "0" + day
   var hours = date.getHours()
   var minutes = date.getMinutes()
-  minutes = minutes >= 10 ? minutes : '0' + minutes
+  minutes = minutes >= 10 ? minutes : "0" + minutes
   var seconds = date.getSeconds()
-  seconds = seconds >= 10 ? seconds : '0' + seconds
+  seconds = seconds >= 10 ? seconds : "0" + seconds
 
   return (
-    year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds
   )
 }
 
@@ -46,12 +46,12 @@ function Mypage(props) {
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
   const modalbackground = {
-    backgroundColor: 'rgba(74,74,74,0.75)',
+    backgroundColor: "rgba(74,74,74,0.75)",
   }
-  const [userName, setUserName] = useState('')
-  const [weight, setWeight] = useState('')
-  const [weightChange, setWeightChange] = useState('')
-  const [changeColor, setChangeColor] = useState('')
+  const [userName, setUserName] = useState("")
+  const [weight, setWeight] = useState("")
+  const [weightChange, setWeightChange] = useState("")
+  const [changeColor, setChangeColor] = useState("")
   const dispatch = useDispatch()
 
   dispatch(myPage()).then((response) => {
@@ -80,18 +80,18 @@ function Mypage(props) {
       var op
       if (pre > curt) {
         result = pre - curt
-        op = '-'
+        op = "-"
         result = result.toFixed(2)
-        changeColor_ = 'decreasePer'
+        changeColor_ = "decreasePer"
       } else if (pre < curt) {
         result = curt - pre
-        op = '+'
+        op = "+"
         result = result.toFixed(2)
-        changeColor_ = 'increasePer'
+        changeColor_ = "increasePer"
       } else {
-        result = '0.00'
-        op = ''
-        changeColor_ = ''
+        result = "0.00"
+        op = ""
+        changeColor_ = ""
       }
       weightChange_ = op + String(result)
       setChangeColor(changeColor_)
@@ -100,7 +100,7 @@ function Mypage(props) {
   })
   // add weight modal
   const [selectedDate, setSelectedDate] = React.useState(new Date(today))
-  const [addWeight, setAddWeight] = useState('')
+  const [addWeight, setAddWeight] = useState("")
 
   const handleDateChange = (date) => {
     setSelectedDate(date)
@@ -114,7 +114,7 @@ function Mypage(props) {
     event.preventDefault()
     var selectedDate_ = getFormatDate(selectedDate)
     if (isNaN(addWeight)) {
-      return alert('잘못된 몸무게 형식입니다.')
+      return alert("잘못된 몸무게 형식입니다.")
     }
     let body = {
       userName: userName,
@@ -123,8 +123,8 @@ function Mypage(props) {
     }
     dispatch(addWeightFunc(body)).then((response) => {
       if (response.payload.success) {
-        alert('성공적으로 등록되었습니다.')
-        props.history.push('/mypage')
+        alert("성공적으로 등록되었습니다.")
+        props.history.push("/mypage")
       } else {
         alert(response.payload.message)
       }
@@ -132,7 +132,14 @@ function Mypage(props) {
   }
 
   return (
-    <div className="wrap">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <TopHeader />
       <div className="report">
         <div className="userProfile">
@@ -148,7 +155,7 @@ function Mypage(props) {
                 <div className="changeWeight">
                   <span className={changeColor}>{weightChange}</span>
                   <AddIcon
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     onClick={() => {
                       setweightModal(true)
                     }}
@@ -161,12 +168,12 @@ function Mypage(props) {
                     className="modal"
                   >
                     <CloseIcon
-                      style={{ padding: '15px', cursor: 'pointer' }}
+                      style={{ padding: "15px", cursor: "pointer" }}
                       onClick={() => {
                         setweightModal(false)
                       }}
                     />
-                    {badgemodal === 'true' ? <div></div> : null}
+                    {badgemodal === "true" ? <div></div> : null}
                     <div className="centerFlex">
                       <div className="day">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -179,7 +186,7 @@ function Mypage(props) {
                               value={selectedDate}
                               onChange={handleDateChange}
                               KeyboardButtonProps={{
-                                'aria-label': 'change date',
+                                "aria-label": "change date",
                               }}
                             />
                           </Grid>
@@ -235,7 +242,7 @@ function Mypage(props) {
               }}
             >
               <CloseIcon
-                style={{ padding: '15px', cursor: 'pointer' }}
+                style={{ padding: "15px", cursor: "pointer" }}
                 onClick={() => {
                   setbadgeModal(false)
                 }}
@@ -259,10 +266,10 @@ function Mypage(props) {
         </div>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
           }}
         >
           <div className="userdataFlex">

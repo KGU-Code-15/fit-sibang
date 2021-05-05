@@ -11,12 +11,10 @@ function ExerciseSection() {
             <div className="rutin__img">
               <div className="rutin__wrap">
                 <img src="/img/plank.gif" alt="health__image" />
-                {/* <p>플랭크</p> */}
               </div>
               <div className="rutin__wrap">
                 <Link to="/Squat">
                   <img src="/img/squat.gif" alt="health__image" />
-                  {/* <p>25분 칼로리 버닝! 타바타 클래스</p> */}
                 </Link>
               </div>
               <div className="rutin__wrap">
