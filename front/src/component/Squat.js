@@ -1,17 +1,31 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
 import $ from "jquery"
 import "../css/Squat.css"
 import { withRouter } from "react-router-dom"
 
+import Loader from "./Loader"
+
 function Test() {
+  const [cam, setCam] = useState(false)
+
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
-    }, 1000)
-    console.log("안녕")
+      console.log("안")
+    }, 1)
     return () => {
       clearTimeout(timer)
+    }
+  }, [])
+
+  useEffect(() => {
+    let time = setTimeout(() => {
+      setCam(!cam)
+      console.log("하이")
+    }, 10000)
+    return () => {
+      clearTimeout(time)
     }
   }, [])
 
@@ -92,25 +106,22 @@ function Test() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <div className="exerImg">
-        <img src="/img/squat1.gif" alt="" />
-      </div>
-      <div className="canvasCenter">
-        <canvas id="canvas" />
-        <div className="count">
-          <span>{count}</span>
+    <>
+      <div className={cam ? "display" : "displayNone"}>
+        <div className="exerImg">
+          <img src="/img/squat1.gif" alt="" />
+        </div>
+        <div className="canvasCenter">
+          <canvas id="canvas" />
+          <div className="count">
+            <span>{count}</span>
+          </div>
         </div>
       </div>
-    </div>
+      <div className={cam ? "LoaderNone" : "Loader"}>
+        <Loader />
+      </div>
+    </>
   )
 }
 
