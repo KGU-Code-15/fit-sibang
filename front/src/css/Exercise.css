@@ -1,11 +1,3 @@
-/*
-.rutin {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 15px;
-}
-*/
-
 .exer_wrap {
   display: flex;
   justify-content: center;
@@ -75,23 +67,36 @@ p {
 }
 
 @media only screen and (max-width: 768px) {
+  .mainheader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
   .rutin_page {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 525px;
+    width: 83%;
     padding: 30px;
+    margin: 10px auto;
   }
-  /*
-  .rutin_pageInfo span {
-    font-size: 21px;
-    font-weight: 400;
-    color: rgb(70, 77, 82);
-    margin-bottom: 20px;
-  }
-*/
+
   .rutin__img img {
     width: 300px;
     width: 95%;
+  }
+}
+
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+  .mainLayout {
+    max-width: 510px;
+    margin-bottom: 18px;
+  }
+  .rutin__img {
+    width: 86%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
