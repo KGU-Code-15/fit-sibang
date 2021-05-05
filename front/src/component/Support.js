@@ -1,10 +1,9 @@
 import React from "react"
-
-import ExerciseSection from "./ExerciseSection"
+import "../css/Support.css"
 import TopHeader from "./TopHeader"
 import Footer from "./Footer"
 
-function Exercise() {
+export default function Support() {
   return (
     <div
       style={{
@@ -15,10 +14,8 @@ function Exercise() {
       }}
     >
       <TopHeader />
-      <ExerciseSection />
+      <div>Board</div>
       <Footer />
     </div>
   )
 }
-
-export default Exercise

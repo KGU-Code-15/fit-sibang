@@ -20,7 +20,7 @@ export const SidebarData = [
   },
   {
     title: "Challenge",
-    path: "/",
+    path: "/challenge",
     icon: <GiIcons.GiAchievement />,
     cName: "nav-text",
   },
@@ -32,7 +32,7 @@ export const SidebarData = [
   },
   {
     title: "Products",
-    path: "/",
+    path: "/products",
     icon: <GrIcons.GrProductHunt />,
     cName: "nav-text",
   },
