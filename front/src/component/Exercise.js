@@ -2,6 +2,7 @@ import React from "react"
 
 import ExerciseSection from "./ExerciseSection"
 import TopHeader from "./TopHeader"
+import Footer from "./Footer"
 
 function Exercise() {
   return (
@@ -15,6 +16,7 @@ function Exercise() {
     >
       <TopHeader />
       <ExerciseSection />
+      <Footer />
     </div>
   )
 }

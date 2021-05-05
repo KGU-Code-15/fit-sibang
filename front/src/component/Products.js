@@ -3,6 +3,7 @@ import "../css/Products.css"
 import TopHeader from "./TopHeader"
 import { Route, Link, withRouter } from "react-router-dom"
 import { ProductData } from "./ProductData"
+import Footer from "./Footer"
 
 export default function Products(props) {
   return (
@@ -43,6 +44,7 @@ export default function Products(props) {
           </div>
         )
       })}
+      <Footer />
     </div>
   )
 }

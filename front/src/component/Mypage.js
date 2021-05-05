@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 import TopHeader from "./TopHeader"
+import Footer from "./Footer"
 import Chart from "./Chart"
 import AddIcon from "@material-ui/icons/Add"
 import CloseIcon from "@material-ui/icons/Close"
@@ -314,6 +315,7 @@ function Mypage(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

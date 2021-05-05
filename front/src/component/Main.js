@@ -59,8 +59,8 @@ function Main() {
           <br />
         </span>
         <span>
-          운동이 어색한 당신을 위한 &emsp;
-          <Link to="ExerciseGuide">운동 가이드</Link>
+          운동이 처음인 당신을 위한 &emsp;
+          <Link to="ExerciseGuide">동기 부여 영상</Link>
         </span>
       </div>
     </div>

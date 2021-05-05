@@ -1,6 +1,7 @@
 import React from "react"
 import "../css/Challenge.css"
 import TopHeader from "./TopHeader"
+import Footer from "./Footer"
 
 export default function Challenge() {
   return (
@@ -23,6 +24,7 @@ export default function Challenge() {
         <div className="ChallText">Fit-sibang과 함께하는 네번째 Challenge</div>
         <img className="ChallImg" src="./Challengeimg/Squat.jpg" />
       </div>
+      <Footer />
     </div>
   )
 }
