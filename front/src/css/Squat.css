@@ -1,40 +1,63 @@
+canvas {
+  width: 100%;
+  height: 100vh;
+}
 .exerImg {
-  width: 250px;
-  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30%;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .exerImg img {
   width: 100%;
+  height: 70%;
 }
 
 .canvasCenter {
+  width: 70%;
+  height: 100vh;
   position: relative;
 }
 
 .count {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 30px;
-  left: 50px;
   width: 100px;
   height: 100px;
+  background: red;
   border-radius: 50%;
-  background: black;
+  position: absolute;
+  top: 2%;
+  right: 5%;
 }
 
 .count span {
-  font-size: 36px;
-  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+.tts {
+  width: 100%;
+  height: 30%;
+  background: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.tts span {
+  font-size: 25px;
+}
 .display {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 
 .displayNone {

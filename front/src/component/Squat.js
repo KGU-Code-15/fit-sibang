@@ -12,7 +12,6 @@ function Test() {
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
-      console.log("안")
     }, 1)
     return () => {
       clearTimeout(timer)
@@ -22,7 +21,6 @@ function Test() {
   useEffect(() => {
     let time = setTimeout(() => {
       setCam(!cam)
-      console.log("하이")
     }, 10000)
     return () => {
       clearTimeout(time)
@@ -110,6 +108,9 @@ function Test() {
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
+          <div className="tts">
+            <span>tts자막</span>
+          </div>
         </div>
         <div className="canvasCenter">
           <canvas id="canvas" />
