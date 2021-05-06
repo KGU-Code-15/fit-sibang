@@ -26,3 +26,6 @@ yarn-error.log*
 
 # db
 database.js
+
+#log
+debug.log
