@@ -1,6 +1,6 @@
-import React from 'react'
-import '../css/Exercise.css'
-import { Link } from 'react-router-dom'
+import React from "react"
+import "../css/Exercise.css"
+import { Route, Link, withRouter } from "react-router-dom"
 
 function ExerciseSection() {
   return (

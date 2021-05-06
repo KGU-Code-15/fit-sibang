@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import * as tmPose from '@teachablemachine/pose'
-import $ from 'jquery'
-import '../css/Squat.css'
-import { withRouter } from 'react-router-dom'
+import React, { useState, useEffect } from "react"
+import * as tmPose from "@teachablemachine/pose"
+import $ from "jquery"
+import "../css/Squat.css"
+import { withRouter } from "react-router-dom"
 
-import Loader from './Loader'
+import Loader from "./Loader"
 
 function Test() {
   const [cam, setCam] = useState(false)
   const scale = 0.5
-  const strokeColor = 'black'
+  const strokeColor = "black"
   let count = 0
-  let status = 'stand'
+  let status = "stand"
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
@@ -30,12 +30,12 @@ function Test() {
     }
   }, [])
 
-  const URL = 'https://teachablemachine.withgoogle.com/models/Bz-uPekOm/'
+  const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, labelContainer, maxPredictions
 
   async function init() {
-    const modelURL = URL + 'model.json'
-    const metadataURL = URL + 'metadata.json'
+    const modelURL = URL + "model.json"
+    const metadataURL = URL + "metadata.json"
 
     // load the model and metadata
     // Refer to tmPose.loadFromFiles() in the API to support files from a file picker
@@ -50,11 +50,11 @@ function Test() {
     window.requestAnimationFrame(loop)
 
     // append/get elements to the DOM
-    const canvas = document.getElementById('canvas')
+    const canvas = document.getElementById("canvas")
     canvas.width = 200
     canvas.height = 200
-    ctx = canvas.getContext('2d')
-    labelContainer = document.getElementById('label-container')
+    ctx = canvas.getContext("2d")
+    labelContainer = document.getElementById("label-container")
     // for (let i = 0; i < maxPredictions; i++) {
     //   // and class labels
     //   labelContainer.appendChild(document.createElement("div"))
@@ -77,7 +77,7 @@ function Test() {
         minPartConfidence,
         ctx,
         scale,
-        strokeColor
+        strokeColor,
       )
 
       tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx, strokeColor)
@@ -89,15 +89,15 @@ function Test() {
     const prediction = await model.predict(posenetOutput)
 
     if (prediction[0].probability.toFixed(2) >= 0.85) {
-      if (status === 'squat') {
+      if (status === "squat") {
         count++
-        $('.count').html(count)
+        $(".count").html(count)
       }
-      status = 'stand'
+      status = "stand"
     } else if (prediction[1].probability.toFixed(2) >= 0.85) {
-      status = 'squat'
+      status = "squat"
     } else if (prediction[2].probability.toFixed(2) >= 0.85) {
-      status = 'bent'
+      status = "bent"
     }
     for (let i = 0; i < maxPredictions; i++) {
       // const classPrediction =
@@ -112,7 +112,7 @@ function Test() {
 
   return (
     <>
-      <div className={cam ? 'display' : 'displayNone'}>
+      <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
@@ -129,7 +129,7 @@ function Test() {
           </div>
         </div>
       </div>
-      <div className={cam ? 'LoaderNone' : 'Loader'}>
+      <div className={cam ? "LoaderNone" : "Loader"}>
         <Loader />
       </div>
     </>
