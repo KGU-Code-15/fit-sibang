@@ -30,6 +30,7 @@ function Test() {
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, labelContainer, maxPredictions
+  let strokeColor = "red"
 
   async function init() {
     const modelURL = URL + "model.json"
@@ -71,6 +72,7 @@ function Test() {
     if (pose) {
       const minPartConfidence = 0.5
       tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
+
       tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
     }
   }
@@ -98,16 +100,6 @@ function Test() {
       //   "%"
       // labelContainer.childNodes[i].innerHTML = classPrediction
       drawPose(pose)
-    }
-  }
-
-  function drawPose(pose) {
-    ctx.drawImage(webcam.canvas, 0, 0)
-    // draw the keypoints and skeleton
-    if (pose) {
-      const minPartConfidence = 0.5
-      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
-      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
     }
   }
 
