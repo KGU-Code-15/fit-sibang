@@ -23,7 +23,7 @@ canvas {
   position: relative;
 }
 
-.count {
+.counter {
   width: 100px;
   height: 100px;
   background: #3e98c7;
@@ -33,7 +33,7 @@ canvas {
   right: 5%;
 }
 
-.count span {
+.count {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -62,6 +62,9 @@ canvas {
   overflow: hidden;
 }
 
+.hiddenImg {
+  display: none;
+}
 .displayNone {
   display: none;
 }
@@ -75,4 +78,19 @@ canvas {
 
 .LoaderNone {
   display: none;
+}
+
+@media screen and (max-width: 540px) {
+  .exerImg {
+    display: none;
+  }
+  .canvasCenter {
+    width: 100%;
+  }
+  .hiddenImg {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

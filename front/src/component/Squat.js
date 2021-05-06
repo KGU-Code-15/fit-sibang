@@ -8,6 +8,8 @@ import Loader from "./Loader"
 
 function Test() {
   const [cam, setCam] = useState(false)
+  const scale = 0.5
+  const strokeColor = "black"
   let count = 0
   let status = "stand"
   useEffect(() => {
@@ -30,7 +32,6 @@ function Test() {
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, labelContainer, maxPredictions
-  let strokeColor = "red"
 
   async function init() {
     const modelURL = URL + "model.json"
@@ -71,9 +72,15 @@ function Test() {
     // draw the keypoints and skeleton
     if (pose) {
       const minPartConfidence = 0.5
-      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
+      tmPose.drawKeypoints(
+        pose.keypoints,
+        minPartConfidence,
+        ctx,
+        scale,
+        strokeColor,
+      )
 
-      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx, strokeColor)
     }
   }
 
@@ -114,8 +121,11 @@ function Test() {
         </div>
         <div className="canvasCenter">
           <canvas id="canvas" />
-          <div className="count">
-            <span>{count}</span>
+          <div className="counter">
+            <span className="count">{count}</span>
+          </div>
+          <div className="hiddenImg">
+            <img src="/img/squat1.gif" alt="" />
           </div>
         </div>
       </div>

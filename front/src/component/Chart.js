@@ -3,15 +3,7 @@ import { Line } from "react-chartjs-2"
 
 function Chart() {
   const data = {
-    labels: [
-      "월요일",
-      "화요일",
-      "수요일",
-      "목요일",
-      "금요일",
-      "토요일",
-      "일요일",
-    ],
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
 
     datasets: [
       {
