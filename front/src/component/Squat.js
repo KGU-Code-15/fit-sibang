@@ -8,7 +8,8 @@ import Loader from "./Loader"
 
 function Test() {
   const [cam, setCam] = useState(false)
-
+  let count = 0
+  let status = "stand"
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
@@ -27,44 +28,54 @@ function Test() {
     }
   }, [])
 
-  let count = 0
-  let status = "stand"
-
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
-
   let model, webcam, ctx, labelContainer, maxPredictions
 
   async function init() {
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
 
+    // load the model and metadata
+    // Refer to tmPose.loadFromFiles() in the API to support files from a file picker
     model = await tmPose.load(modelURL, metadataURL)
     maxPredictions = model.getTotalClasses()
 
-    const size = 500
-    const flip = true
-    webcam = new tmPose.Webcam(size, size, flip)
-    await webcam.setup()
-    await webcam.play()
+    // Convenience function to setup a webcam
+    const flip = true // whether to flip the webcam
+    webcam = new tmPose.Webcam(200, 200, flip) // width, height, flip
+    await webcam.setup() // request access to the webcam
+    webcam.play()
     window.requestAnimationFrame(loop)
 
+    // append/get elements to the DOM
     const canvas = document.getElementById("canvas")
-    canvas.width = size
-    canvas.height = size
+    canvas.width = 200
+    canvas.height = 200
     ctx = canvas.getContext("2d")
-    // labelContainer = document.getElementById("canvsCenter")
+    labelContainer = document.getElementById("label-container")
     // for (let i = 0; i < maxPredictions; i++) {
+    //   // and class labels
     //   labelContainer.appendChild(document.createElement("div"))
     // }
   }
 
-  const loop = async (timestamp) => {
+  async function loop(timestamp) {
     webcam.update() // update the webcam frame
     await predict()
     window.requestAnimationFrame(loop)
   }
 
-  const predict = async () => {
+  function drawPose(pose) {
+    ctx.drawImage(webcam.canvas, 0, 0)
+    // draw the keypoints and skeleton
+    if (pose) {
+      const minPartConfidence = 0.5
+      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
+    }
+  }
+
+  async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
 
@@ -86,20 +97,17 @@ function Test() {
       //   prediction[i].probability.toFixed(2) * 100 +
       //   "%"
       // labelContainer.childNodes[i].innerHTML = classPrediction
-      drawPose()
+      drawPose(pose)
     }
   }
 
-  const drawPose = () => {
-    const { pose, posenetOutput } = model.estimatePose(webcam.canvas)
-    if (webcam.canvas) {
-      ctx.drawImage(webcam.canvas, 0, 0)
-
-      if (pose) {
-        const minPartConfidence = 0.5
-        tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
-        tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
-      }
+  function drawPose(pose) {
+    ctx.drawImage(webcam.canvas, 0, 0)
+    // draw the keypoints and skeleton
+    if (pose) {
+      const minPartConfidence = 0.5
+      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
     }
   }
 

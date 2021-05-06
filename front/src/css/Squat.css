@@ -2,6 +2,7 @@ canvas {
   width: 100%;
   height: 100vh;
 }
+
 .exerImg {
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@ canvas {
 .count {
   width: 100px;
   height: 100px;
-  background: red;
+  background: #3e98c7;
   border-radius: 50%;
   position: absolute;
   top: 2%;
@@ -39,6 +40,7 @@ canvas {
   transform: translate(-50%, -50%);
   margin: 0;
 }
+
 .tts {
   width: 100%;
   height: 30%;
