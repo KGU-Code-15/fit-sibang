@@ -13,9 +13,7 @@ function getBMI(height, weight) {
 }
 
 function Chart(body, type, height) {
-  const moment = require('moment')
   var colors = 'rgba(86,115,234,1)'
-  var today = moment().format('MM/DD')
   //labelArray
   var labelArray = []
   var dataArray = []
@@ -24,9 +22,9 @@ function Chart(body, type, height) {
   body.sort(function (a, b) {
     return a.date < b.date ? -1 : a.date > b.date ? 1 : 0
   })
-
+  var i = 1
   if (type === 'kg') {
-    for (var i = 1; i <= body.length; i++) {
+    for (i = 1; i <= body.length; i++) {
       datefunc = new Date(body[body.length - i].date)
       labelArray.unshift(getFormatDate(datefunc))
       if (body.length > 1 && labelArray[0] === labelArray[1]) {
@@ -37,7 +35,7 @@ function Chart(body, type, height) {
     colors = 'rgba(86,115,234,1)'
   } else if (type === 'bmi') {
     var cmtom = height / 100
-    for (var i = 1; i <= body.length; i++) {
+    for (i = 1; i <= body.length; i++) {
       datefunc = new Date(body[body.length - i].date)
       labelArray.unshift(getFormatDate(datefunc))
       if (body.length > 1 && labelArray[0] === labelArray[1]) {

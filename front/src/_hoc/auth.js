@@ -1,8 +1,7 @@
-import axios from "axios"
-import { useEffect } from "react"
-import React from "react"
-import { useDispatch } from "react-redux"
-import { authUser } from "../_action/user_action"
+import { useEffect } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { authUser } from '../_action/user_action'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (SpecificComponent, option) {
@@ -18,13 +17,13 @@ export default function (SpecificComponent, option) {
         if (!response.payload.isAuth) {
           //option이 true 이면 로그인 페이지로 (mypage)
           if (option) {
-            props.history.push("/login")
+            props.history.push('/login')
           }
           //로그인 상태일떄
         } else {
           //option 이 false이면 메인페이지로 (login, register)
           if (!option) {
-            props.history.push("/")
+            props.history.push('/')
           }
         }
       })
