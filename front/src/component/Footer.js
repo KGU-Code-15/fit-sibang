@@ -1,13 +1,13 @@
-import React from "react"
-import "../css/Footer.css"
-import * as FaIcons from "react-icons/fa"
-import * as SiIcons from "react-icons/si"
-import * as GrIcons from "react-icons/gr"
+import React from 'react'
+import '../css/Footer.css'
+import * as FaIcons from 'react-icons/fa'
+import * as SiIcons from 'react-icons/si'
+import * as GrIcons from 'react-icons/gr'
 
 function footer() {
   return (
-    <div class="footer">
-      <div class="icons">
+    <div className="footer">
+      <div className="icons">
         <a href="https://github.com/KGU-Code-15/fit-sibang">
           <FaIcons.FaGithubSquare />
         </a>
@@ -21,7 +21,7 @@ function footer() {
           <GrIcons.GrInstagram />
         </a>
       </div>
-      <div class="copyright">
+      <div className="copyright">
         <span>Copyright 2021. Code-15. all rights reserved.</span>
       </div>
     </div>

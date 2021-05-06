@@ -46,9 +46,6 @@ function Mypage(props) {
   const [chart, setChart] = useState('')
   const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
   const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
-  const modalbackground = {
-    backgroundColor: 'rgba(74,74,74,0.75)',
-  }
   const [userName, setUserName] = useState('')
   const [weight, setWeight] = useState('')
   const [weightChange, setWeightChange] = useState('')

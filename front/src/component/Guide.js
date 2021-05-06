@@ -1,11 +1,10 @@
-import React, { useState } from "react"
-import ArrowBackIcon from "@material-ui/icons/ArrowBack"
-import { Route, Link } from "react-router-dom"
+import React from 'react'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { Link } from 'react-router-dom'
 
-import "../css/Guide.css"
+import '../css/Guide.css'
 function Workout({ history }) {
   const date = new Date()
-  const [exerlist, setExerlist] = useState(["pushup", "pushup", "pushup"])
   const goBack = () => {
     history.goBack()
   }
@@ -16,7 +15,7 @@ function Workout({ history }) {
         <div className="explain">
           <ArrowBackIcon
             onClick={goBack}
-            style={{ color: "white", cursor: "pointer" }}
+            style={{ color: 'white', cursor: 'pointer' }}
           />
 
           <p>
