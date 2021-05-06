@@ -1,58 +1,90 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
 import $ from "jquery"
 import "../css/Squat.css"
 import { withRouter } from "react-router-dom"
 
+import Loader from "./Loader"
+
 function Test() {
+  const [cam, setCam] = useState(false)
+  const scale = 0.5
+  const strokeColor = "black"
+  let count = 0
+  let status = "stand"
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
-    }, 1000)
-    console.log("안녕")
+    }, 1)
     return () => {
       clearTimeout(timer)
     }
   }, [])
 
-  let count = 0
-  let status = "stand"
+  useEffect(() => {
+    let time = setTimeout(() => {
+      setCam(!cam)
+    }, 10000)
+    return () => {
+      clearTimeout(time)
+    }
+  }, [])
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
-
   let model, webcam, ctx, labelContainer, maxPredictions
 
   async function init() {
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
 
+    // load the model and metadata
+    // Refer to tmPose.loadFromFiles() in the API to support files from a file picker
     model = await tmPose.load(modelURL, metadataURL)
     maxPredictions = model.getTotalClasses()
 
-    const size = 500
-    const flip = true
-    webcam = new tmPose.Webcam(size, size, flip)
-    await webcam.setup()
-    await webcam.play()
+    // Convenience function to setup a webcam
+    const flip = true // whether to flip the webcam
+    webcam = new tmPose.Webcam(200, 200, flip) // width, height, flip
+    await webcam.setup() // request access to the webcam
+    webcam.play()
     window.requestAnimationFrame(loop)
 
+    // append/get elements to the DOM
     const canvas = document.getElementById("canvas")
-    canvas.width = size
-    canvas.height = size
+    canvas.width = 200
+    canvas.height = 200
     ctx = canvas.getContext("2d")
-    // labelContainer = document.getElementById("canvsCenter")
+    labelContainer = document.getElementById("label-container")
     // for (let i = 0; i < maxPredictions; i++) {
+    //   // and class labels
     //   labelContainer.appendChild(document.createElement("div"))
     // }
   }
 
-  const loop = async (timestamp) => {
+  async function loop(timestamp) {
     webcam.update() // update the webcam frame
     await predict()
     window.requestAnimationFrame(loop)
   }
 
-  const predict = async () => {
+  function drawPose(pose) {
+    ctx.drawImage(webcam.canvas, 0, 0)
+    // draw the keypoints and skeleton
+    if (pose) {
+      const minPartConfidence = 0.5
+      tmPose.drawKeypoints(
+        pose.keypoints,
+        minPartConfidence,
+        ctx,
+        scale,
+        strokeColor,
+      )
+
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx, strokeColor)
+    }
+  }
+
+  async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
 
@@ -74,43 +106,33 @@ function Test() {
       //   prediction[i].probability.toFixed(2) * 100 +
       //   "%"
       // labelContainer.childNodes[i].innerHTML = classPrediction
-      drawPose()
-    }
-  }
-
-  const drawPose = () => {
-    const { pose, posenetOutput } = model.estimatePose(webcam.canvas)
-    if (webcam.canvas) {
-      ctx.drawImage(webcam.canvas, 0, 0)
-
-      if (pose) {
-        const minPartConfidence = 0.5
-        tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx)
-        tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
-      }
+      drawPose(pose)
     }
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <div className="exerImg">
-        <img src="/img/squat1.gif" alt="" />
-      </div>
-      <div className="canvasCenter">
-        <canvas id="canvas" />
-        <div className="count">
-          <span>{count}</span>
+    <>
+      <div className={cam ? "display" : "displayNone"}>
+        <div className="exerImg">
+          <img src="/img/squat1.gif" alt="" />
+          <div className="tts">
+            <span>tts자막</span>
+          </div>
+        </div>
+        <div className="canvasCenter">
+          <canvas id="canvas" />
+          <div className="counter">
+            <span className="count">{count}</span>
+          </div>
+          <div className="hiddenImg">
+            <img src="/img/squat1.gif" alt="" />
+          </div>
         </div>
       </div>
-    </div>
+      <div className={cam ? "LoaderNone" : "Loader"}>
+        <Loader />
+      </div>
+    </>
   )
 }
 
