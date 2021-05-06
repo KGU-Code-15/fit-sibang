@@ -83,8 +83,13 @@ p {
   }
 
   .rutin__img img {
-    width: 300px;
     width: 95%;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .rutin__img {
+    width: 420px;
   }
 }
 
