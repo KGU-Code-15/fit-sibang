@@ -5,8 +5,16 @@ import "../css/Squat.css"
 import { withRouter } from "react-router-dom"
 
 import Loader from "./Loader"
+import ProgressBar from "./ProgressBar"
 
 function Test() {
+  const state = {
+    size: 250,
+    progress: 40,
+    strokeWidth: 15,
+    circleOneStroke: "#d9edfe",
+    circleTwoStroke: "7ea9e1",
+  }
   const [cam, setCam] = useState(false)
   const scale = 0.5
   const strokeColor = "black"
@@ -122,7 +130,8 @@ function Test() {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            <span className="count">{count}</span>
+            {/* <span className="count">{count}</span> */}
+            <ProgressBar {...state} />
           </div>
           <div className="hiddenImg">
             <img src="/img/transparentsSquat.gif" alt="" />
