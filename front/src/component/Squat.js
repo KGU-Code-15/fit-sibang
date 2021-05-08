@@ -7,19 +7,19 @@ import { withRouter } from "react-router-dom"
 import Loader from "./Loader"
 import ProgressBar from "./ProgressBar"
 
-function Test() {
+function Test(props) {
+  const [cam, setCam] = useState(false) // 캠 상태
+  let count = 0
+  const scale = 0.5 // 스켈레톤 점 크기
   const state = {
     size: 250,
-    progress: 40,
+    progress: count,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
-    circleTwoStroke: "7ea9e1",
+    circleTwoStroke: "#7ea9e1",
   }
-  const [cam, setCam] = useState(false)
-  const scale = 0.5
-  const strokeColor = "black"
-  let count = 0
   let status = "stand"
+
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
@@ -80,15 +80,9 @@ function Test() {
     // draw the keypoints and skeleton
     if (pose) {
       const minPartConfidence = 0.5
-      tmPose.drawKeypoints(
-        pose.keypoints,
-        minPartConfidence,
-        ctx,
-        scale,
-        strokeColor,
-      )
+      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx, scale)
 
-      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx, strokeColor)
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
     }
   }
 
@@ -99,21 +93,27 @@ function Test() {
     if (prediction[0].probability.toFixed(2) >= 0.85) {
       if (status === "squat") {
         count++
-        $(".count").html(count)
       }
       status = "stand"
     } else if (prediction[1].probability.toFixed(2) >= 0.85) {
       status = "squat"
-    } else if (prediction[2].probability.toFixed(2) >= 0.85) {
-      status = "bent"
+    } else if (prediction[2].probability.toFixed(2) >= 1.0) {
+      status = "Bad posture"
+      // count++
+      // $(".count").html(count)
+    } else if (prediction[3].probability.toFixed(2) >= 1.0) {
+      status = "none"
+      count++
+      $(".count").html(count)
+      console.log(count)
     }
     for (let i = 0; i < maxPredictions; i++) {
-      // const classPrediction =
+      // console.log(
       //   prediction[i].className +
-      //   ": " +
-      //   prediction[i].probability.toFixed(2) * 100 +
-      //   "%"
-      // labelContainer.childNodes[i].innerHTML = classPrediction
+      //     ": " +
+      //     prediction[i].probability.toFixed(2) * 100 +
+      //     "%",
+      // )
       drawPose(pose)
     }
   }
@@ -130,8 +130,8 @@ function Test() {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            {/* <span className="count">{count}</span> */}
-            <ProgressBar {...state} />
+            <span className="count">{count}</span>
+            <ProgressBar {...state} count={count} />
           </div>
           <div className="hiddenImg">
             <img src="/img/transparentsSquat.gif" alt="" />

@@ -17,12 +17,13 @@ const ProgressBar = (props) => {
   const circumference = 2 * Math.PI * radius
 
   useEffect(() => {
-    const progressOffset = ((100 - progress) / 100) * circumference
+    const progressOffset = ((20 - props.count) / 20) * circumference
     setOffset(progressOffset)
-  }, [setOffset, progress, circumference, offset])
+    console.log("useEffect")
+  }, [setOffset, props.count, circumference, offset])
 
   return (
-    <div>
+    <div style={{ position: "absolute", right: "500px" }}>
       <svg className="circularChart" width={size} height={size}>
         <circle
           className="circularBg"
@@ -41,9 +42,10 @@ const ProgressBar = (props) => {
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
+          transform={`rotate(-90, ${center}, ${center})`}
         ></circle>
         <text x={center} y={center} className="percentage">
-          {progress}
+          {props.count}
         </text>
       </svg>
     </div>
