@@ -123,12 +123,6 @@ function Test(props) {
             <span>tts자막</span>
           </div>
         </div>
-        <input
-          type="text"
-          onClick={() => {
-            setCount(count + 1)
-          }}
-        />
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
