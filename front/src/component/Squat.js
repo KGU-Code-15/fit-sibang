@@ -20,6 +20,7 @@ function Test(props) {
     circleOneStroke: "#d9edfe",
     circleTwoStroke: "#7ea9e1",
   }
+
   let status = "stand"
 
   useEffect(() => {
@@ -83,7 +84,6 @@ function Test(props) {
     if (pose) {
       const minPartConfidence = 0.5
       tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx, scale)
-
       tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx)
     }
   }
@@ -96,6 +96,7 @@ function Test(props) {
       if (status === "squat") {
         setCount(count++)
       }
+
       status = "stand"
     } else if (prediction[1].probability.toFixed(2) >= 0.95) {
       status = "squat"
@@ -122,6 +123,12 @@ function Test(props) {
             <span>tts자막</span>
           </div>
         </div>
+        <input
+          type="text"
+          onClick={() => {
+            setCount(count + 1)
+          }}
+        />
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
