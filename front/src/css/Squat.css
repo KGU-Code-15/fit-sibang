@@ -23,16 +23,6 @@ canvas {
   position: relative;
 }
 
-.counter {
-  width: 100px;
-  height: 100px;
-  background: #3e98c7;
-  border-radius: 50%;
-  position: absolute;
-  top: 2%;
-  right: 5%;
-}
-
 .count {
   position: absolute;
   top: 50%;
@@ -91,8 +81,8 @@ canvas {
     display: block;
     width: 150px;
     position: absolute;
-    top: 15%;
-    right: 5%;
+    top: 2%;
+    left: 5%;
   }
   .hiddenImg img {
     width: 100%;

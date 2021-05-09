@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import "../css/ProgressBar.css"
 
 const ProgressBar = (props) => {
@@ -23,7 +23,7 @@ const ProgressBar = (props) => {
   }, [setOffset, props.count, circumference, offset])
 
   return (
-    <div style={{ position: "absolute", right: "500px" }}>
+    <div style={{ position: "absolute", top: "2%", right: "5%" }}>
       <svg className="circularChart" width={size} height={size}>
         <circle
           className="circularBg"

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
-import $ from "jquery"
 import "../css/Squat.css"
 import { withRouter } from "react-router-dom"
 
 import Loader from "./Loader"
 import ProgressBar from "./ProgressBar"
 
+let copyCount = 0
+
 function Test(props) {
+  let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
-  let count = 0
+
   const scale = 0.5 // 스켈레톤 점 크기
   const state = {
-    size: 250,
+    size: 150,
     progress: count,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
@@ -39,8 +41,8 @@ function Test(props) {
   }, [])
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
-  let model, webcam, ctx, labelContainer, maxPredictions
-
+  let model, webcam, ctx, maxPredictions
+  // let labelContainer
   async function init() {
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
@@ -62,7 +64,7 @@ function Test(props) {
     canvas.width = 200
     canvas.height = 200
     ctx = canvas.getContext("2d")
-    labelContainer = document.getElementById("label-container")
+    // labelContainer = document.getElementById("label-container")
     // for (let i = 0; i < maxPredictions; i++) {
     //   // and class labels
     //   labelContainer.appendChild(document.createElement("div"))
@@ -90,22 +92,15 @@ function Test(props) {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
 
-    if (prediction[0].probability.toFixed(2) >= 0.85) {
+    if (prediction[0].probability.toFixed(2) >= 1.0) {
       if (status === "squat") {
-        count++
+        setCount(count++)
       }
       status = "stand"
-    } else if (prediction[1].probability.toFixed(2) >= 0.85) {
+    } else if (prediction[1].probability.toFixed(2) >= 0.95) {
       status = "squat"
-    } else if (prediction[2].probability.toFixed(2) >= 1.0) {
-      status = "Bad posture"
-      // count++
-      // $(".count").html(count)
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
       status = "none"
-      count++
-      $(".count").html(count)
-      console.log(count)
     }
     for (let i = 0; i < maxPredictions; i++) {
       // console.log(
@@ -130,7 +125,6 @@ function Test(props) {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            <span className="count">{count}</span>
             <ProgressBar {...state} count={count} />
           </div>
           <div className="hiddenImg">
