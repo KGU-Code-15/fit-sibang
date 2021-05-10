@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import * as tmPose from '@teachablemachine/pose'
-import '../css/Squat.css'
-import { withRouter } from 'react-router-dom'
-import Loader from './Loader'
-import ProgressBar from './ProgressBar'
+import React, { useState, useEffect } from "react"
+import * as tmPose from "@teachablemachine/pose"
+import "../css/Squat.css"
+import { withRouter } from "react-router-dom"
+import Loader from "./Loader"
+import ProgressBar from "./ProgressBar"
 
-let copyCount = 0
+let copyCount = 20
 
 function Test(props) {
   let [count, setCount] = useState(copyCount)
@@ -16,11 +16,11 @@ function Test(props) {
     size: 150,
     progress: count,
     strokeWidth: 15,
-    circleOneStroke: '#d9edfe',
-    circleTwoStroke: '#7ea9e1',
+    circleOneStroke: "#d9edfe",
+    circleTwoStroke: "#7ea9e1",
   }
 
-  let status = 'stand'
+  let status = "stand"
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -40,12 +40,12 @@ function Test(props) {
     }
   }, [])
 
-  const URL = 'https://teachablemachine.withgoogle.com/models/Bz-uPekOm/'
+  const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, maxPredictions
   // let labelContainer
   async function init() {
-    const modelURL = URL + 'model.json'
-    const metadataURL = URL + 'metadata.json'
+    const modelURL = URL + "model.json"
+    const metadataURL = URL + "metadata.json"
 
     // load the model and metadata
     // Refer to tmPose.loadFromFiles() in the API to support files from a file picker
@@ -60,10 +60,10 @@ function Test(props) {
     window.requestAnimationFrame(loop)
 
     // append/get elements to the DOM
-    const canvas = document.getElementById('canvas')
+    const canvas = document.getElementById("canvas")
     canvas.width = 200
     canvas.height = 200
-    ctx = canvas.getContext('2d')
+    ctx = canvas.getContext("2d")
     // labelContainer = document.getElementById("label-container")
     // for (let i = 0; i < maxPredictions; i++) {
     //   // and class labels
@@ -92,15 +92,15 @@ function Test(props) {
     const prediction = await model.predict(posenetOutput)
 
     if (prediction[0].probability.toFixed(2) >= 1.0) {
-      if (status === 'squat') {
+      if (status === "squat") {
         setCount(count++)
       }
 
-      status = 'stand'
+      status = "stand"
     } else if (prediction[1].probability.toFixed(2) >= 0.95) {
-      status = 'squat'
+      status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
-      status = 'none'
+      status = "none"
     }
     for (let i = 0; i < maxPredictions; i++) {
       // console.log(
@@ -115,7 +115,7 @@ function Test(props) {
 
   return (
     <>
-      <div className={cam ? 'display' : 'displayNone'}>
+      <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
@@ -132,7 +132,7 @@ function Test(props) {
           </div>
         </div>
       </div>
-      <div className={cam ? 'LoaderNone' : 'Loader'}>
+      <div className={cam ? "LoaderNone" : "Loader"}>
         <Loader />
       </div>
     </>
