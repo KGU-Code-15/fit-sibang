@@ -52,6 +52,39 @@ const userSchema = mongoose.Schema({
   badge: [{ badgeName: String }],
 })
 
+// exercise
+const exerciseSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  kcal: {
+    type: Number,
+    required: true,
+  },
+})
+
+//exercise record
+const recordSchema = mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  exercise: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Exercise',
+  },
+  when: {
+    type: String,
+  },
+  numberOrTime: {
+    type: String,
+  },
+  useKcal: {
+    type: Number,
+  },
+})
+
 // save함수의 전처리
 userSchema.pre('save', function (next) {
   var user = this
@@ -122,5 +155,7 @@ userSchema.methods.updateUser = function (err, info) {
 }
 
 const User = mongoose.model('User', userSchema)
+const Exercise = mongoose.model('Exercise', exerciseSchema)
+const Record = mongoose.model('Record', recordSchema)
 
-module.exports = { User }
+module.exports = { User, Exercise, Record }

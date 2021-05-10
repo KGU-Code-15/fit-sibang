@@ -26,7 +26,7 @@ mongoose
   .catch((err) => console.log(err))
 
 // DB models
-const { User } = require('./models/modelSchema')
+const { User, Exercise } = require('./models/modelSchema')
 
 // auth
 const { auth } = require('./middleware/auth')
@@ -133,6 +133,17 @@ app.post('/user/updateUser', (req, res) => {
   user.findOne({ userName: req.body.userName }, (err, user) => {
     user.updateUser(req.body)
 
+    return res.status(200).json({
+      success: true,
+    })
+  })
+})
+
+app.post('/exercise/add', (req, res) => {
+  const exercise = new Exercise(req.body)
+
+  exercise.save((err, exerciseInfo) => {
+    if (err) return res.json({ success: false, err })
     return res.status(200).json({
       success: true,
     })
