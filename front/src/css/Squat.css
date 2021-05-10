@@ -43,6 +43,44 @@ canvas {
 .tts span {
   font-size: 25px;
 }
+
+button {
+  width: 150px;
+  height: 50px;
+  background-color: #f7f7f7;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-right: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal {
+  width: 350px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  outline: none;
+  background-color: #fff;
+  text-align: initial;
+}
+
+.center {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .display {
   display: flex;
   align-items: center;

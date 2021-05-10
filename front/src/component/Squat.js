@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
 import "../css/Squat.css"
-import { withRouter } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import Loader from "./Loader"
 import ProgressBar from "./ProgressBar"
+import Modal from "react-modal"
+import CloseIcon from "@material-ui/icons/Close"
+import HomeIcon from "@material-ui/icons/Home"
 
 let copyCount = 20
 
 function Test(props) {
   let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
+  const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
+  const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
+  const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
 
   const scale = 0.5 // 스켈레톤 점 크기
   const state = {
@@ -120,6 +126,35 @@ function Test(props) {
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
             <span>tts자막</span>
+            <button
+              onClick={() => {
+                setcounterModal(!counterModal)
+              }}
+            >
+              운동 종료
+            </button>
+            <Modal
+              isOpen={counterModal}
+              onRequestClose={() => {
+                setcounterModal(false)
+              }}
+              className="modal"
+            >
+              <CloseIcon
+                style={{ padding: "15px", cursor: "pointer" }}
+                onClick={() => {
+                  setcounterModal(false)
+                }}
+              />
+              <div className="center">
+                {count === 100 ? <div>{badgeModal}</div> : null}
+                <h2>수고하셨습니다!</h2>
+                <p>스쿼트를 총 {count}개 실시했습니다.</p>
+                <Link to="/">
+                  <HomeIcon style={{ color: "black" }} />
+                </Link>
+              </div>
+            </Modal>
           </div>
         </div>
         <div className="canvasCenter">
