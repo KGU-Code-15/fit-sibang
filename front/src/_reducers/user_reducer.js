@@ -4,7 +4,7 @@ import {
   AUTH_USER,
   MYPAGE_USER,
   ADD_WEIGHT,
-} from '../_action/types'
+} from "../_action/types"
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = {}, action) {

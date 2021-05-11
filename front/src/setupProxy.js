@@ -7,4 +7,12 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   )
+
+  app.use(
+    "/exercise",
+    createProxyMiddleware({
+      target: "http://localhost:5000/",
+      changeOrigin: true,
+    })
+  )
 }

@@ -5,8 +5,14 @@ import { Link, withRouter } from "react-router-dom"
 import Loader from "./Loader"
 import ProgressBar from "./ProgressBar"
 import Modal from "react-modal"
-import CloseIcon from "@material-ui/icons/Close"
 import HomeIcon from "@material-ui/icons/Home"
+import { myPage } from "../_action/user_action"
+import { useDispatch } from "react-redux"
+import { addRecord } from "../_action/exercise_action"
+
+//timez
+const moment = require("moment")
+var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 let copyCount = 20
 
@@ -16,6 +22,7 @@ function Test(props) {
   const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
   const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
+  const dispatch = useDispatch()
 
   const scale = 0.5 // 스켈레톤 점 크기
   const state = {
@@ -45,6 +52,36 @@ function Test(props) {
       clearTimeout(time)
     }
   }, [])
+
+  useEffect(() => {
+    if (count === 20) {
+      setcounterModal(!counterModal)
+    }
+  }, [count])
+
+  useEffect(() => {
+    if (counterModal === true) {
+      dispatch(myPage()).then((response) => {
+        if (response.payload.isAuth === false) {
+        } else {
+          const body = {
+            userName: response.payload.userName,
+            exercise: "squat",
+            numberOrTime: true,
+            count_: count,
+            useKcal: count * 0.4,
+            when: today,
+          }
+          dispatch(addRecord(body)).then((response) => {
+            if (response.payload.success) {
+            } else {
+              alert("db 오류 발생 ..")
+            }
+          })
+        }
+      })
+    }
+  }, [counterModal])
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, maxPredictions
@@ -133,23 +170,16 @@ function Test(props) {
             >
               운동 종료
             </button>
-            <Modal
-              isOpen={counterModal}
-              onRequestClose={() => {
-                setcounterModal(false)
-              }}
-              className="modal"
-            >
-              <CloseIcon
-                style={{ padding: "15px", cursor: "pointer" }}
-                onClick={() => {
-                  setcounterModal(false)
-                }}
-              />
+            <Modal isOpen={counterModal} className="modal" ariaHideApp={false}>
               <div className="center">
                 {count === 100 ? <div>{badgeModal}</div> : null}
                 <h2>수고하셨습니다!</h2>
                 <p>스쿼트를 총 {count}개 실시했습니다.</p>
+                <p>
+                  {count} x 0.5 kcal = {count * 0.4}kcal
+                </p>
+                <p>스쿼트는 회당 약 0.4~0.5 칼로리를 소모합니다.</p>
+                <br></br>
                 <Link to="/">
                   <HomeIcon style={{ color: "black" }} />
                 </Link>
