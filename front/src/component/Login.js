@@ -124,12 +124,12 @@ function SignIn(props) {
             로그인
           </Button>
           <Grid container>
-            <Grid item xs>
+            <Grid style={{ textAlign: "left" }} item xs>
               <Link href="./" variant="body2">
                 홈으로
               </Link>
             </Grid>
-            <Grid item>
+            <Grid style={{ textAlign: "right" }} item xs>
               <Link href="Register" variant="body2">
                 회원가입
               </Link>

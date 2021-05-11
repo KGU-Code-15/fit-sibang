@@ -165,14 +165,11 @@ function Test(props) {
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
             <span>tts자막</span>
-            <button
-              onClick={() => {
-                setcounterModal(!counterModal)
-              }}
+            <Modal
+              isOpen={counterModal}
+              className="exModal"
+              ariaHideApp={false}
             >
-              운동 종료
-            </button>
-            <Modal isOpen={counterModal} className="modal" ariaHideApp={false}>
               <div>
                 <h2>운동 결과</h2>
                 <p>횟수 : {count}회</p>
@@ -182,9 +179,8 @@ function Test(props) {
                 </p>
                 <p>스쿼트는 회당 약 0.4~0.5 칼로리를 소모합니다.</p>
                 <br></br>
-                <Link to="/">
-                  <HomeIcon style={{ color: "black" }} />
-                </Link>
+
+                <a href="/">홈</a>
               </div>
             </Modal>
           </div>
@@ -193,6 +189,13 @@ function Test(props) {
           <canvas id="canvas" />
           <div className="counter">
             <ProgressBar {...state} count={count} />
+            <button
+              onClick={() => {
+                setcounterModal(!counterModal)
+              }}
+            >
+              운동 종료
+            </button>
           </div>
           <div className="hiddenImg">
             <img src="/img/transparentsSquat.gif" alt="" />

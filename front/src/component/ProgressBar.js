@@ -4,13 +4,8 @@ import "../css/ProgressBar.css"
 const ProgressBar = (props) => {
   const [offset, setOffset] = useState(0)
 
-  const {
-    size,
-    progress,
-    strokeWidth,
-    circleOneStroke,
-    circleTwoStroke,
-  } = props
+  const { size, progress, strokeWidth, circleOneStroke, circleTwoStroke } =
+    props
 
   const center = size / 2
   const radius = size / 2 - strokeWidth / 2
@@ -44,7 +39,7 @@ const ProgressBar = (props) => {
           strokeDashoffset={offset}
           transform={`rotate(-90, ${center}, ${center})`}
         ></circle>
-        <text x={center} y={center} className="percentage">
+        <text x={center} y={95} className="percentage">
           {props.count}
         </text>
       </svg>
