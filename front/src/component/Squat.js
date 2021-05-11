@@ -14,7 +14,7 @@ import { addRecord } from "../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 20
+let copyCount = 19
 
 function Test(props) {
   let [count, setCount] = useState(copyCount)
@@ -22,6 +22,7 @@ function Test(props) {
   const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
   const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
+  const [totalCount, setTotalCount] = useState(0)
   const dispatch = useDispatch()
 
   const scale = 0.5 // 스켈레톤 점 크기
@@ -74,6 +75,7 @@ function Test(props) {
           }
           dispatch(addRecord(body)).then((response) => {
             if (response.payload.success) {
+              setTotalCount(response.payload.totalCount)
             } else {
               alert("db 오류 발생 ..")
             }
@@ -171,12 +173,12 @@ function Test(props) {
               운동 종료
             </button>
             <Modal isOpen={counterModal} className="modal" ariaHideApp={false}>
-              <div className="center">
-                {count === 100 ? <div>{badgeModal}</div> : null}
-                <h2>수고하셨습니다!</h2>
-                <p>스쿼트를 총 {count}개 실시했습니다.</p>
+              <div>
+                <h2>운동 결과</h2>
+                <p>횟수 : {count}회</p>
+                <p>누적 횟수 : {totalCount}</p>
                 <p>
-                  {count} x 0.5 kcal = {count * 0.4}kcal
+                  {count} x 0.5 kcal = {(count * 0.4).toFixed(1)}kcal
                 </p>
                 <p>스쿼트는 회당 약 0.4~0.5 칼로리를 소모합니다.</p>
                 <br></br>

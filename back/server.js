@@ -151,8 +151,16 @@ app.post("/exercise/record", (req, res) => {
     })
     record.save((err, userInfo) => {
       if (err) return res.json({ success: false, err })
+    })
+    let totalCount = 0
+    Record.find({ user: user, exercise: req.body.exercise }, (err, info) => {
+      for (let i = 0; i < info.length; i++) {
+        totalCount += info[i].count
+      }
+      totalCount += req.body.count_
       return res.status(200).json({
         success: true,
+        totalCount: totalCount,
       })
     })
   })
