@@ -273,10 +273,6 @@ html {
 }
 
 @media only screen and (max-width: 768px) and (min-width: 481px) {
-  body {
-    background-color: rgb(255, 255, 255);
-  }
-
   .wrapper {
     height: 330px;
     width: 570px;
