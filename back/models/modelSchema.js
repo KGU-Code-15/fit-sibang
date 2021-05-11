@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt') // 암호화
+const mongoose = require("mongoose")
+const bcrypt = require("bcrypt") // 암호화
 const saltRounds = 10
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken")
 
 //time
-const moment = require('moment')
-var date = moment().format('YYYY-MM-DD HH:mm:ss')
+const moment = require("moment")
+var date = moment().format("YYYY-MM-DD HH:mm:ss")
 
 //user schema
 const userSchema = mongoose.Schema({
@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
   address: {
     type: String,
     maxlength: 50,
-    default: '',
+    default: "",
   },
   age: {
     type: Number,
@@ -68,11 +68,11 @@ const exerciseSchema = mongoose.Schema({
 const recordSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   exercise: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Exercise',
+    ref: "Exercise",
   },
   when: {
     type: String,
@@ -86,9 +86,9 @@ const recordSchema = mongoose.Schema({
 })
 
 // save함수의 전처리
-userSchema.pre('save', function (next) {
+userSchema.pre("save", function (next) {
   var user = this
-  if (user.isModified('password')) {
+  if (user.isModified("password")) {
     // 비밀번호 변경시의 암호화
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err)
@@ -114,7 +114,7 @@ userSchema.methods.comparePassword = function (plainPassword, cb) {
 // login시 json webtoken 생성
 userSchema.methods.generateToken = function (cb) {
   var user = this
-  var token = jwt.sign(user._id.toHexString(), 'LEESM')
+  var token = jwt.sign(user._id.toHexString(), "LEESM")
 
   user.token = token
   user.save(function (err, user) {
@@ -127,7 +127,7 @@ userSchema.methods.generateToken = function (cb) {
 userSchema.statics.findByToken = function (token, cb) {
   var user = this
 
-  jwt.verify(token, 'LEESM', function (err, decoded) {
+  jwt.verify(token, "LEESM", function (err, decoded) {
     user.findOne({ _id: decoded, token: token }, (err, user) => {
       if (err) return cb(err)
       cb(null, user)
@@ -154,8 +154,8 @@ userSchema.methods.updateUser = function (err, info) {
   this.save()
 }
 
-const User = mongoose.model('User', userSchema)
-const Exercise = mongoose.model('Exercise', exerciseSchema)
-const Record = mongoose.model('Record', recordSchema)
+const User = mongoose.model("User", userSchema)
+const Exercise = mongoose.model("Exercise", exerciseSchema)
+const Record = mongoose.model("Record", recordSchema)
 
 module.exports = { User, Exercise, Record }
