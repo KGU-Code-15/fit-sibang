@@ -189,14 +189,14 @@ function Test(props) {
           <canvas id="canvas" />
           <div className="counter">
             <ProgressBar {...state} count={count} />
-            <button
-              onClick={() => {
-                setcounterModal(!counterModal)
-              }}
-            >
-              운동 종료
-            </button>
           </div>
+          <button
+            onClick={() => {
+              setcounterModal(!counterModal)
+            }}
+          >
+            운동 종료
+          </button>
           <div className="hiddenImg">
             <img src="/img/transparentsSquat.gif" alt="" />
           </div>
