@@ -14,7 +14,7 @@ import { addRecord } from "../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 19
+let copyCount = 18
 
 function Test(props) {
   let [count, setCount] = useState(copyCount)
@@ -135,25 +135,26 @@ function Test(props) {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-
-    if (prediction[0].probability.toFixed(2) >= 1.0) {
+    // init = stand
+    if (prediction[1].probability.toFixed(2) >= 1.0) {
+      // 0 squat 1 stand 2 bad 3 wa 4 none
       if (status === "squat") {
         setCount(count++)
       }
-
       status = "stand"
-    } else if (prediction[1].probability.toFixed(2) >= 0.95) {
+    } else if (prediction[0].probability.toFixed(2) >= 1.0) {
       status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
       status = "none"
     }
     for (let i = 0; i < maxPredictions; i++) {
-      // console.log(
-      //   prediction[i].className +
-      //     ": " +
-      //     prediction[i].probability.toFixed(2) * 100 +
-      //     "%",
-      // )
+      console.log(
+        prediction[i].className +
+          ": " +
+          prediction[i].probability.toFixed(2) * 100 +
+          "%"
+      )
+      console.log("-------------------")
       drawPose(pose)
     }
   }
