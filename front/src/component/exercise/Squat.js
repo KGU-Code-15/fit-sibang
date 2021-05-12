@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
 import ProgressBar from "../ProgressBar"
 import Modal from "react-modal"
-import HomeIcon from "@material-ui/icons/Home"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
@@ -16,7 +15,7 @@ var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 let copyCount = 0
 
-function Squat(props) {
+function Squat() {
   let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
   const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
@@ -148,14 +147,14 @@ function Squat(props) {
       status = "none"
     }
     for (let i = 0; i < maxPredictions; i++) {
-      console.log(
-        prediction[i].className +
-          ": " +
-          prediction[i].probability.toFixed(2) * 100 +
-          "%"
-      )
-      console.log("-------------------")
-      drawPose(pose)
+      // console.log(
+      //   prediction[i].className +
+      //     ": " +
+      //     prediction[i].probability.toFixed(2) * 100 +
+      //     "%",
+      // )
+      // console.log("-------------------")
+      // drawPose(pose)
     }
   }
 
@@ -171,17 +170,35 @@ function Squat(props) {
               className="exModal"
               ariaHideApp={false}
             >
-              <div>
-                <h2>운동 결과</h2>
-                <p>횟수 : {count}회</p>
-                <p>누적 횟수 : {totalCount}</p>
-                <p>
-                  {count} x 0.5 kcal = {(count * 0.4).toFixed(1)}kcal
-                </p>
-                <p>스쿼트는 회당 약 0.4~0.5 칼로리를 소모합니다.</p>
-                <br></br>
-
-                <a href="/">홈</a>
+              <div className="exermodalResult">
+                <div className="exerResult">
+                  <h2>운동 결과</h2>
+                </div>
+                <div className="exerCount">
+                  <img src="img/health_count.png" alt="health_count" />
+                  <p>
+                    횟수 : <span>{count}</span>회
+                  </p>
+                </div>
+                <div className="exertotalCount">
+                  <img
+                    src="img/health_total_count.png"
+                    alt="health_total_count"
+                  />
+                  <p>
+                    누적 횟수 : <span>{totalCount}</span>
+                  </p>
+                </div>
+                <div className="exerKcal">
+                  <img src="img/health_kcal.png" alt="kcal" />
+                  <p>
+                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
+                    kcal
+                  </p>
+                </div>
+                <a className="Home" href="/">
+                  홈
+                </a>
               </div>
             </Modal>
           </div>

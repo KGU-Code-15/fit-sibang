@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
 import ProgressBar from "../ProgressBar"
 import Modal from "react-modal"
-import HomeIcon from "@material-ui/icons/Home"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
@@ -152,7 +151,7 @@ function Warrior(props) {
         prediction[i].className +
           ": " +
           prediction[i].probability.toFixed(2) * 100 +
-          "%"
+          "%",
       )
       console.log("-------------------")
       drawPose(pose)
