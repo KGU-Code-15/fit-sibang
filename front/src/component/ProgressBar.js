@@ -18,7 +18,7 @@ const ProgressBar = (props) => {
   }, [setOffset, props.count, circumference, offset])
 
   return (
-    <div style={{ position: "absolute", top: "2%", left: "0%" }}>
+    <div style={{ position: "absolute", top: "2%", left: "1%" }}>
       <svg className="circularChart" width={size} height={size}>
         <circle
           className="circularBg"
