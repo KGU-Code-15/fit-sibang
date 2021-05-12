@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
-import "../css/Squat.css"
-import { Link, withRouter } from "react-router-dom"
-import Loader from "./Loader"
-import ProgressBar from "./ProgressBar"
+import "../../css/exer_css/Warrior.css"
+import { withRouter } from "react-router-dom"
+import Loader from "../Loader"
+import ProgressBar from "../ProgressBar"
 import Modal from "react-modal"
 import HomeIcon from "@material-ui/icons/Home"
-import { myPage } from "../_action/user_action"
+import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
-import { addRecord } from "../_action/exercise_action"
+import { addRecord } from "../../_action/exercise_action"
 
 //timez
 const moment = require("moment")
