@@ -16,7 +16,7 @@ var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 let copyCount = 0
 
-function Test(props) {
+function Squat(props) {
   let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
   const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
@@ -210,4 +210,4 @@ function Test(props) {
   )
 }
 
-export default withRouter(Test)
+export default withRouter(Squat)

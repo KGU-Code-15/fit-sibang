@@ -1,6 +1,6 @@
-import React from 'react'
-import '../css/Exercise.css'
-import { Link } from 'react-router-dom'
+import React from "react"
+import "../css/Exercise.css"
+import { Link } from "react-router-dom"
 
 function ExerciseSection() {
   return (
@@ -18,7 +18,9 @@ function ExerciseSection() {
                 </Link>
               </div>
               <div className="rutin__wrap">
-                <img src="/img/warrior.png" alt="health__image" />
+                <Link to="/Warrior">
+                  <img src="/img/warrior.png" alt="health__image" />
+                </Link>
               </div>
               <div className="rutin__wrap">
                 <img src="/img/good-mornings.gif" alt="health__image" />
