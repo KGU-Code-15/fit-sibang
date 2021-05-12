@@ -110,8 +110,8 @@ canvas {
   cursor: pointer;
   color: white;
   position: absolute;
-  top: 25%;
-  right: 6.7%;
+  top: 185px;
+  left: 15px;
 }
 
 .exModal {
@@ -185,7 +185,7 @@ canvas {
     width: 150px;
     position: absolute;
     top: 2%;
-    left: 5%;
+    right: 5%;
   }
   .hiddenImg img {
     width: 100%;

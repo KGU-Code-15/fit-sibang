@@ -154,7 +154,7 @@ function Squat() {
       //     "%",
       // )
       // console.log("-------------------")
-      // drawPose(pose)
+      drawPose(pose)
     }
   }
 
