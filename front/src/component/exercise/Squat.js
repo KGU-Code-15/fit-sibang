@@ -139,11 +139,18 @@ function Squat() {
       // 0 squat 1 stand 2 bad 3 wa 4 none
       if (status === "squat") {
         setCount(count++)
+        let audio = new Audio(count + ".mp3")
+        audio.play()
       }
       status = "stand"
     } else if (prediction[0].probability.toFixed(2) >= 1.0) {
       status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
+      if (status == "squat" || status == "stand") {
+        let audio = new Audio("./TTS/audio_22_자세를_똑바로_해주세요_.mp3")
+
+        audio.play()
+      }
       status = "none"
     }
     for (let i = 0; i < maxPredictions; i++) {
