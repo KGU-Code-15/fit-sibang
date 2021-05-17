@@ -147,8 +147,7 @@ function Squat() {
       status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
       if (status == "squat" || status == "stand") {
-        let audio = new Audio("./TTS/audio_22_자세를_똑바로_해주세요_.mp3")
-
+        let audio = new Audio("../../../public/TTS/1.mp3")
         audio.play()
       }
       status = "none"
