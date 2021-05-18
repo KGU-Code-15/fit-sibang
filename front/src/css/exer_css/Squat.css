@@ -97,6 +97,17 @@ canvas {
 .exerKcal img {
   width: 75px;
 }
+.st_button {
+  width: 80px;
+  height: 40px;
+  background-color: blue;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
 
 .canvasCenter button {
   width: 120px;

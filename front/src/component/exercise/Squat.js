@@ -131,23 +131,54 @@ function Squat() {
     }
   }
 
+  const audioTune = new Audio("/TTS/audio_0_자_스쿼트를_시작합니다_.mp3")
+
+  const [playInLoop, setPlayInLoop] = useState(false)
+
+  useEffect(() => {
+    audioTune.load()
+  }, [])
+
+  useEffect(() => {
+    audioTune.loop = playInLoop
+  }, [playInLoop])
+
+  const playSound = () => {
+    audioTune.play()
+    console.log("Play!")
+  }
+
+  const pauseSound = () => {
+    audioTune.pause()
+  }
+
+  const stopSound = () => {
+    audioTune.pause()
+    audioTune.currentTime = 0
+  }
+
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
     // init = stand
-    if (prediction[1].probability.toFixed(2) >= 1.0) {
+    if (prediction[0].probability.toFixed(2) >= 1.0) {
+      // 실험 코드
+      // prediction[4].probability.toFixed(2) >= 0.9
+
       // 0 squat 1 stand 2 bad 3 wa 4 none
       if (status === "squat") {
         setCount(count++)
-        let audio = new Audio(count + ".mp3")
-        audio.play()
+        let audioTune = new Audio("/TTS/물방울.mp3")
+        console.log(audioTune)
+        audioTune.play()
       }
       status = "stand"
     } else if (prediction[0].probability.toFixed(2) >= 1.0) {
       status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
       if (status == "squat" || status == "stand") {
-        let audio = new Audio("../../../public/TTS/1.mp3")
+        let audio = new Audio("/TTS/audio_22_자세를_똑바로_해주세요_.mp3")
+        console.log(audio)
         audio.play()
       }
       status = "none"
@@ -171,6 +202,9 @@ function Squat() {
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
             <span>tts자막</span>
+            <button className="st_button" onClick={playSound}>
+              Start
+            </button>
             <Modal
               isOpen={counterModal}
               className="exModal"
