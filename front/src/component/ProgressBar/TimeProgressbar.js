@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import "../../css/ProgressBar.css"
 import "../../css/exer_css/TimeExercise.css"
 
 const ProgressBar = (props) => {
@@ -12,7 +13,7 @@ const ProgressBar = (props) => {
   const circumference = 2 * Math.PI * radius
 
   useEffect(() => {
-    const progressOffset = ((30 - props.time) / 30) * circumference
+    const progressOffset = ((60 - props.time) / 60) * circumference
     setOffset(progressOffset)
     console.log("useEffect")
   }, [setOffset, props.time, circumference, offset])

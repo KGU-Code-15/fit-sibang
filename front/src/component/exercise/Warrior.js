@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
-import "../../css/exer_css/CountExercise.css"
+import "../../css/exer_css/TimeExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
 import ProgressBar from "../ProgressBar/TimeProgressbar"
@@ -12,38 +12,20 @@ let today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 function Warrior() {
   const [cam, setCam] = useState(false) // 캠 상태
-  const [rightTime, setRightTime] = useState(30) // 오른쪽 자세 시간
-  const [rightbool, setRightbool] = useState(true)
-  const [leftTime, setLeftTime] = useState(30) // 왼쪽 자세 시간
+  const [time, setTime] = useState(60) // 왼쪽 자세 시간
   const [timeModal, setTimeModal] = useState(false) // modal
+  const [start, setStart] = useState(false)
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [timeCount, setTimeCount] = useState(0)
   const scale = 0.5 // 스켈레톤 점 크기
-  const rightstate = {
+
+  const state = {
     size: 150,
-    progress: rightTime,
+    progress: time,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
     circleTwoStroke: "#7ea9e1",
-  }
-
-  const leftstate = {
-    size: 150,
-    progress: leftTime,
-    strokeWidth: 15,
-    circleOneStroke: "#d9edfe",
-    circleTwoStroke: "#7ea9e1",
-  }
-
-  function timeout() {
-    if (leftTime <= 0) {
-      setTimeModal(!timeModal)
-      return
-    }
-
-    const timeout = setTimeout(() => setLeftTime(leftTime - 1), 1000)
-    return () => clearTimeout(timeout)
   }
 
   useEffect(() => {
@@ -65,24 +47,21 @@ function Warrior() {
   }, [])
 
   useEffect(() => {
-    if (leftTime <= 0) {
-      setRightbool(!rightbool)
-    }
-  })
-  useEffect(() => {
-    if (leftTime <= 0) {
-      setTimeModal(!timeModal)
-      return
-    }
+    if (start === true) {
+      if (time <= 0) {
+        setTimeModal(!timeModal)
+        return
+      }
 
-    if (timeModal === true) {
+      if (timeModal === true) {
+        return () => clearTimeout(timeout)
+      }
+
+      const timeout = setTimeout(() => setTime(time - 1), 1000)
       return () => clearTimeout(timeout)
     }
-
-    const timeout = setTimeout(() => setLeftTime(leftTime - 1), 1000)
-    return () => clearTimeout(timeout)
-  }, [leftTime])
-
+  }, [time, start])
+  console.log(start)
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, maxPredictions
 
@@ -152,7 +131,7 @@ function Warrior() {
     <>
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
-          <img src="/img/warrior1.png" alt="" />
+          <img src="/img/warrior.svg" alt="" />
           <div className="tts">
             <span>tts자막</span>
             <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
@@ -162,15 +141,9 @@ function Warrior() {
                 </div>
                 <div className="exerCount">
                   <img src="img/health_count.png" alt="health_count" />
-                  {rightbool === true ? (
-                    <p>
-                      시간 : <span>{30 - rightTime}</span>초
-                    </p>
-                  ) : (
-                    <p>
-                      시간 : <span>{30 - leftTime}</span>초
-                    </p>
-                  )}
+                  <p>
+                    시간 : <span>{60 - time}</span>초
+                  </p>
                 </div>
                 <div className="exertotalCount">
                   <img
@@ -178,14 +151,13 @@ function Warrior() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 시간 : <span>{leftTime}</span>
+                    누적 시간 : <span>{time}</span>
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {leftTime} x 0.5 kcal ={" "}
-                    <span>{(leftTime * 0.4).toFixed(1)}</span>
+                    {time} x 0.5 kcal = <span>{(time * 0.4).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>
@@ -199,22 +171,29 @@ function Warrior() {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            {rightbool === true ? (
-              <ProgressBar {...rightstate} time={rightTime} />
-            ) : (
-              <ProgressBar {...leftstate} time={leftTime} />
-            )}
+            <ProgressBar {...state} time={time} />
           </div>
-          <button
-            onClick={() => {
-              setTimeModal(!timeModal)
-              clearTimeout(timeout)
-            }}
-          >
-            운동 종료
-          </button>
+          {start === true ? (
+            <button
+              onClick={() => {
+                setTimeModal(!timeModal)
+                // clearTimeout(timeout)
+              }}
+            >
+              운동 종료
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setStart(!start)
+              }}
+            >
+              운동 시작
+            </button>
+          )}
+
           <div className="hiddenImg">
-            <img src="/img/transparentsSquat.gif" alt="" />
+            <img src="/img/warrior.svg" alt="" />
           </div>
         </div>
       </div>

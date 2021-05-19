@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import "../../css/ProgressBar.css"
 import "../../css/exer_css/CountExercise.css"
 
 const ProgressBar = (props) => {
