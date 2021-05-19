@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
-import "../../css/exer_css/CountExercise.css"
+import "../../css/exer_css/TimeExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
-import ProgressBar from "../ProgressBar/CountProgressBar"
+import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
-import { myPage } from "../../_action/user_action"
-import { useDispatch } from "react-redux"
-import { addRecord } from "../../_action/exercise_action"
 
 //timez
 const moment = require("moment")
-var today = moment().format("YYYY-MM-DD HH:mm:ss")
+let today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 0
-
-function Squat() {
-  let [count, setCount] = useState(copyCount)
+function Warrior() {
   const [cam, setCam] = useState(false) // 캠 상태
-  const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
-  const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
-  const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
-  const [totalCount, setTotalCount] = useState(0)
-  const dispatch = useDispatch()
-
+  const [time, setTime] = useState(60) // 왼쪽 자세 시간
+  const [timeModal, setTimeModal] = useState(false) // modal
+  const [start, setStart] = useState(false)
+  // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
+  // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
+  const [timeCount, setTimeCount] = useState(0)
   const scale = 0.5 // 스켈레톤 점 크기
+
   const state = {
     size: 150,
-    progress: count,
+    progress: time,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
     circleTwoStroke: "#7ea9e1",
   }
-
-  let status = "stand"
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -54,39 +47,24 @@ function Squat() {
   }, [])
 
   useEffect(() => {
-    if (count === 20) {
-      setcounterModal(!counterModal)
-    }
-  }, [count])
+    if (start === true) {
+      if (time <= 0) {
+        setTimeModal(!timeModal)
+        return
+      }
 
-  useEffect(() => {
-    if (counterModal === true) {
-      dispatch(myPage()).then((response) => {
-        if (response.payload.isAuth === false) {
-        } else {
-          const body = {
-            userName: response.payload.userName,
-            exercise: "squat",
-            numberOrTime: true,
-            count_: count,
-            useKcal: count * 0.4,
-            when: today,
-          }
-          dispatch(addRecord(body)).then((response) => {
-            if (response.payload.success) {
-              setTotalCount(response.payload.totalCount)
-            } else {
-              alert("db 오류 발생 ..")
-            }
-          })
-        }
-      })
-    }
-  }, [counterModal])
+      if (timeModal === true) {
+        return () => clearTimeout(timeout)
+      }
 
+      const timeout = setTimeout(() => setTime(time - 1), 1000)
+      return () => clearTimeout(timeout)
+    }
+  }, [time, start])
+  console.log(start)
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, maxPredictions
-  // let labelContainer
+
   async function init() {
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
@@ -135,21 +113,12 @@ function Squat() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
     // init = stand
-    if (prediction[1].probability.toFixed(2) >= 1.0) {
-      // 0 squat 1 stand 2 bad 3 wa 4 none
-      if (status === "squat") {
-        setCount(count++)
-      }
-      status = "stand"
-    } else if (prediction[0].probability.toFixed(2) >= 1.0) {
-      status = "squat"
-    } else if (prediction[3].probability.toFixed(2) >= 1.0) {
-      status = "none"
+    if (prediction[0].probability.toFixed(2) >= 1.0) {
     }
     for (let i = 0; i < maxPredictions; i++) {
       // console.log(
       //   prediction[i].className +
-      //     ": " +
+      //     ": "
       //     prediction[i].probability.toFixed(2) * 100 +
       //     "%",
       // )
@@ -162,14 +131,10 @@ function Squat() {
     <>
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
-          <img src="/img/squat1.gif" alt="" />
+          <img src="/img/warrior.svg" alt="" />
           <div className="tts">
             <span>tts자막</span>
-            <Modal
-              isOpen={counterModal}
-              className="exModal"
-              ariaHideApp={false}
-            >
+            <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
               <div className="exermodalResult">
                 <div className="exerResult">
                   <h2>운동 결과</h2>
@@ -177,7 +142,7 @@ function Squat() {
                 <div className="exerCount">
                   <img src="img/health_count.png" alt="health_count" />
                   <p>
-                    횟수 : <span>{count}</span>회
+                    시간 : <span>{60 - time}</span>초
                   </p>
                 </div>
                 <div className="exertotalCount">
@@ -186,13 +151,13 @@ function Squat() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 횟수 : <span>{totalCount}</span>
+                    누적 시간 : <span>{time}</span>
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
+                    {time} x 0.5 kcal = <span>{(time * 0.4).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>
@@ -206,17 +171,29 @@ function Squat() {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            <ProgressBar {...state} count={count} />
+            <ProgressBar {...state} time={time} />
           </div>
-          <button
-            onClick={() => {
-              setcounterModal(!counterModal)
-            }}
-          >
-            운동 종료
-          </button>
+          {start === true ? (
+            <button
+              onClick={() => {
+                setTimeModal(!timeModal)
+                // clearTimeout(timeout)
+              }}
+            >
+              운동 종료
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setStart(!start)
+              }}
+            >
+              운동 시작
+            </button>
+          )}
+
           <div className="hiddenImg">
-            <img src="/img/transparentsSquat.gif" alt="" />
+            <img src="/img/warrior.svg" alt="" />
           </div>
         </div>
       </div>
@@ -227,4 +204,4 @@ function Squat() {
   )
 }
 
-export default withRouter(Squat)
+export default withRouter(Warrior)

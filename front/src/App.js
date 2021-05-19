@@ -12,7 +12,7 @@ import Products from "./component/Products"
 import Support from "./component/Support"
 import ExerciseGuide from "./component/ExerciseGuide"
 import Squat from "./component/exercise/Squat"
-
+import Warrior from "./component/exercise/Warrior"
 import "./css/App.css"
 
 //hoc
@@ -35,6 +35,7 @@ function App() {
       <Route path="/login" component={Auth(Login, false)} />
       <Route path="/register" component={Auth(Register, false)} />
       <Route path="/Squat" component={Auth(Squat, true)} />
+      <Route path="/Warrior" component={Auth(Warrior, true)} />
       <Route path="/ExerciseGuide" component={ExerciseGuide} />
     </div>
   )

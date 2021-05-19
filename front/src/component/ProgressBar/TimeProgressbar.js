@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import "../css/ProgressBar.css"
+import "../../css/ProgressBar.css"
+import "../../css/exer_css/TimeExercise.css"
 
 const ProgressBar = (props) => {
   const [offset, setOffset] = useState(0)
@@ -12,10 +13,10 @@ const ProgressBar = (props) => {
   const circumference = 2 * Math.PI * radius
 
   useEffect(() => {
-    const progressOffset = ((20 - props.count) / 20) * circumference
+    const progressOffset = ((60 - props.time) / 60) * circumference
     setOffset(progressOffset)
     console.log("useEffect")
-  }, [setOffset, props.count, circumference, offset])
+  }, [setOffset, props.time, circumference, offset])
 
   return (
     <div style={{ position: "absolute", top: "2%", left: "1%" }}>
@@ -40,7 +41,7 @@ const ProgressBar = (props) => {
           transform={`rotate(-90, ${center}, ${center})`}
         ></circle>
         <text x={center} y={95} className="percentage">
-          {props.count}
+          {props.time}
         </text>
       </svg>
     </div>
