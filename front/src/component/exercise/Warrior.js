@@ -62,7 +62,7 @@ function Warrior() {
     }
   }, [time, start])
   console.log(start)
-  const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
+  const URL = "https://teachablemachine.withgoogle.com/models/MBENJ9eel/"
   let model, webcam, ctx, maxPredictions
 
   async function init() {
@@ -151,7 +151,7 @@ function Warrior() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 시간 : <span>{time}</span>
+                    누적 시간 : <span>{time}</span>초
                   </p>
                 </div>
                 <div className="exerKcal">
