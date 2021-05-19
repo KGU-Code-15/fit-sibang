@@ -131,7 +131,7 @@ function Warrior() {
     <>
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
-          <img src="/img/warrior.svg" alt="" />
+          <img src="/img/warrior1.png" alt="" />
           <div className="tts">
             <span>tts자막</span>
             <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
@@ -193,7 +193,7 @@ function Warrior() {
           )}
 
           <div className="hiddenImg">
-            <img src="/img/warrior.svg" alt="" />
+            <img src="/img/warrior1.png" alt="" />
           </div>
         </div>
       </div>
