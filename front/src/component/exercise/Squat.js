@@ -19,9 +19,10 @@ function Squat() {
   let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
   const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
-  const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
-  const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
+  // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
+  // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [totalCount, setTotalCount] = useState(0)
+  const tts = ["잘하고 있어요", "거의 다 왔어요", "완료!"]
   const dispatch = useDispatch()
 
   const scale = 0.5 // 스켈레톤 점 크기
@@ -54,7 +55,14 @@ function Squat() {
   }, [])
 
   useEffect(() => {
+    if (count === 15) {
+      let audioTune = new Audio("/TTS/good.mp3")
+      audioTune.play()
+    }
+
     if (count === 20) {
+      let audioTune = new Audio("/TTS/finish.mp3")
+      audioTune.play()
       setcounterModal(!counterModal)
     }
   }, [count])
@@ -131,44 +139,14 @@ function Squat() {
     }
   }
 
-  const audioTune = new Audio("/TTS/audio_0_자_스쿼트를_시작합니다_.mp3")
-
-  const [playInLoop, setPlayInLoop] = useState(false)
-
-  useEffect(() => {
-    audioTune.load()
-  }, [])
-
-  useEffect(() => {
-    audioTune.loop = playInLoop
-  }, [playInLoop])
-
-  const playSound = () => {
-    audioTune.play()
-    console.log("Play!")
-  }
-
-  const pauseSound = () => {
-    audioTune.pause()
-  }
-
-  const stopSound = () => {
-    audioTune.pause()
-    audioTune.currentTime = 0
-  }
-
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-    // init = stand
     if (prediction[0].probability.toFixed(2) >= 1.0) {
-      // 실험 코드
-      // prediction[4].probability.toFixed(2) >= 0.9
-
       // 0 squat 1 stand 2 bad 3 wa 4 none
       if (status === "squat") {
         setCount(count++)
-        let audioTune = new Audio("/TTS/물방울.mp3")
+        let audioTune = new Audio("/TTS/count.mp3")
         console.log(audioTune)
         audioTune.play()
       }
@@ -177,9 +155,6 @@ function Squat() {
       status = "squat"
     } else if (prediction[3].probability.toFixed(2) >= 1.0) {
       if (status === "squat" || status === "stand") {
-        let audio = new Audio("/TTS/audio_22_자세를_똑바로_해주세요_.mp3")
-        console.log(audio)
-        audio.play()
       }
       status = "none"
     }
@@ -201,10 +176,10 @@ function Squat() {
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
-            <span>tts자막</span>
-            <button className="st_button" onClick={playSound}>
-              Start
-            </button>
+            {count === 5 ? <span>{tts[0]}</span> : count}
+            {count === 15 ? <span>{tts[1]}</span> : null}
+            {count === 20 ? <span>{tts[2]}</span> : null}
+
             <Modal
               isOpen={counterModal}
               className="exModal"

@@ -7,8 +7,6 @@ import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
 
 //timez
-const moment = require("moment")
-let today = moment().format("YYYY-MM-DD HH:mm:ss")
 
 function Warrior() {
   const [cam, setCam] = useState(false) // 캠 상태
@@ -17,7 +15,7 @@ function Warrior() {
   const [start, setStart] = useState(false)
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
-  const [timeCount, setTimeCount] = useState(0)
+  const tts = [" ", "운동을 시작합니다.", "자세를 반대로 바꿔주세요"]
   const scale = 0.5 // 스켈레톤 점 크기
 
   const state = {
@@ -48,6 +46,16 @@ function Warrior() {
 
   useEffect(() => {
     if (start === true) {
+      if (time === 33) {
+        let audioTune = new Audio("/TTS/change.mp3")
+        audioTune.play()
+      }
+
+      if (time === 30) {
+        let audioTune = new Audio("/TTS/countdown.mp3")
+        audioTune.play()
+      }
+
       if (time <= 0) {
         setTimeModal(!timeModal)
         return
@@ -61,8 +69,7 @@ function Warrior() {
       return () => clearTimeout(timeout)
     }
   }, [time, start])
-  console.log(start)
-  const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
+  const URL = "https://teachablemachine.withgoogle.com/models/MBENJ9eel/"
   let model, webcam, ctx, maxPredictions
 
   async function init() {
@@ -112,19 +119,18 @@ function Warrior() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-    // init = stand
-    if (prediction[0].probability.toFixed(2) >= 1.0) {
-    }
-    for (let i = 0; i < maxPredictions; i++) {
-      // console.log(
-      //   prediction[i].className +
-      //     ": "
-      //     prediction[i].probability.toFixed(2) * 100 +
-      //     "%",
-      // )
-      // console.log("-------------------")
-      drawPose(pose)
-    }
+    // if (prediction[0].probability.toFixed(2) >= 1.0) {
+    // }
+    // for (let i = 0; i < maxPredictions; i++) {
+    // console.log(
+    //   prediction[i].className +
+    //     ": "
+    //     prediction[i].probability.toFixed(2) * 100 +
+    //     "%",
+    // )
+    // console.log("-------------------")
+    drawPose(pose)
+    // }
   }
 
   return (
@@ -133,7 +139,9 @@ function Warrior() {
         <div className="exerImg">
           <img src="/img/warrior1.png" alt="" />
           <div className="tts">
-            <span>tts자막</span>
+            <span>{tts[0]}</span>
+            {time <= 59 && time >= 40 ? <span>{tts[1]}</span> : null}
+            {time <= 33 && time >= 30 ? <span>{tts[2]}</span> : null}
             <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
               <div className="exermodalResult">
                 <div className="exerResult">
