@@ -8,6 +8,7 @@ import Modal from "react-modal"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
+import setDayWithOptions from "date-fns/fp/setDayWithOptions"
 
 //timez
 const moment = require("moment")
@@ -22,7 +23,13 @@ function Squat() {
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [totalCount, setTotalCount] = useState(0)
-  const tts = ["잘하고 있어요", "거의 다 왔어요", "완료!"]
+  const [tts, setTTS] = useState([
+    "다리를 어깨넓이만큼 벌리고 양팔을 앞으로 모아줍니다.",
+    "잘하고 있어요",
+    "거의 다 왔어요",
+    "완료!",
+  ])
+
   const dispatch = useDispatch()
 
   const scale = 0.5 // 스켈레톤 점 크기
@@ -37,18 +44,13 @@ function Squat() {
   let status = "stand"
 
   useEffect(() => {
-    let timer = setTimeout(() => {
-      init()
-    }, 1)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
-
-  useEffect(() => {
+    init()
     let time = setTimeout(() => {
       setCam(!cam)
+      let audioTune = new Audio("/TTS/squat.mp3")
+      audioTune.play()
     }, 10000)
+
     return () => {
       clearTimeout(time)
     }
@@ -176,9 +178,10 @@ function Squat() {
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
-            {count === 5 ? <span>{tts[0]}</span> : count}
-            {count === 15 ? <span>{tts[1]}</span> : null}
-            {count === 20 ? <span>{tts[2]}</span> : null}
+            {count === 0 ? <span>{tts[0]}</span> : null}
+            {count === 5 ? <span>{tts[2]}</span> : null}
+            {count === 15 ? <span>{tts[3]}</span> : null}
+            {count === 20 ? <span>{tts[4]}</span> : null}
 
             <Modal
               isOpen={counterModal}
