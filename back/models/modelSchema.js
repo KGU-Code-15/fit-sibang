@@ -41,7 +41,6 @@ const userSchema = mongoose.Schema({
   ],
   gender: {
     type: Boolean, // true: 남 false : 여
-    default: true,
   },
   token: {
     type: String,
@@ -49,7 +48,16 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
-  badge: [{ badgeName: String }],
+  badge: {
+    babySqarter:{
+      type:Boolean,
+      default:false,
+    },
+    horseLeg: {
+      type:Boolean,
+      default:false,
+    },
+  }
 })
 
 //exercise record

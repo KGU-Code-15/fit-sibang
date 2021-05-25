@@ -52,6 +52,11 @@ function Mypage(props) {
   const [changeColor, setChangeColor] = useState("")
   const [dataset, setDataset] = useState("")
   const [height, setHeight] = useState("")
+
+  // badge
+  const [sqartBaby, setSqartBaby] = useState(false)
+  const [horseLeg, setHorseLeg] = useState(false)
+
   const dispatch = useDispatch()
 
   dispatch(myPage()).then((response) => {
@@ -63,6 +68,14 @@ function Mypage(props) {
       setUserName(userName_)
       var height_ = response.payload.height
       setHeight(height_)
+      // badge
+      if(response.payload.badge.babySqarter == true){
+        setSqartBaby(true)
+      }
+      if(response.payload.badge.horseLeg == true){
+        setHorseLeg(true)
+      }
+
       response.payload.weight.sort(function (a, b) {
         return a.date < b.date ? -1 : a.date > b.date ? 1 : 0
       })
@@ -254,18 +267,20 @@ function Mypage(props) {
                 }}
               />
               <div className="badgeGrid">
-                <div className="imgWidth">
-                  <img src="/img/Gold.png" alt="badge" />
-                  {/* <span>말벅지</span> */}
-                </div>
-                <div className="imgWidth">
-                  <img src="/img/Silver.png" alt="badge" />
-                  {/* <span>말벅지</span> */}
-                </div>
-                <div className="imgWidth">
-                  <img src="/img/Bronze.png" alt="badge" />
-                  {/* <span>말벅지</span> */}
-                </div>
+              {sqartBaby === true ? <div className="imgWidth">
+                  <img src="/img/bedge/sqart.png" alt="badge" />
+                  <span>아기 스쿼터</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/sqart_d.png" alt="badge" />
+                  <span>???</span>
+                </div>}
+               {horseLeg === true ? <div className="imgWidth">
+                  <img src="/img/bedge/sqart2.png" alt="badge" />
+                  <span>말벅지</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/sqart2_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
               </div>
             </Modal>
           </div>
@@ -283,7 +298,7 @@ function Mypage(props) {
               <div className="exerFeedback">
                 {chart === "" ? (
                   <>
-                    <span>운동 데이터가 아직 없습니다</span>
+                    <span>원하시는 지표의 버튼을 클릭해주세요.</span>
                     <button className="btnExercise">운동하러 가기</button>
                   </>
                 ) : (

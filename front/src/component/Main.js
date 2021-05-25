@@ -10,6 +10,7 @@ function Main() {
   const [auth_login, setAuth_login] = useState(false)
 
   axios.get(`/user/auth`).then((response) => {
+    console.log(response.data)
     if (response.data.isAuth) {
       let copyAuth = auth_login
       copyAuth = true
