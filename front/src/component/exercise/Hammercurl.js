@@ -1,79 +1,100 @@
 import React, { useState, useEffect } from "react"
 import * as tmPose from "@teachablemachine/pose"
-import "../../css/exer_css/TimeExercise.css"
+import "../../css/exer_css/CountExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
-import ProgressBar from "../ProgressBar/TimeProgressbar"
+import ProgressBar from "../ProgressBar/CountProgressBar"
 import Modal from "react-modal"
+import { myPage } from "../../_action/user_action"
+import { useDispatch } from "react-redux"
+import { addRecord } from "../../_action/exercise_action"
 
 //timez
+const moment = require("moment")
+var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-function Warrior() {
+let copyCount = 0
+
+function Hammercurl() {
+  let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
-  const [time, setTime] = useState(60) // 왼쪽 자세 시간
-  const [timeModal, setTimeModal] = useState(false) // modal
-  const [start, setStart] = useState(false)
+  const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
-  const tts = ["사진과 같은 자세를 취해주세요", "운동을 시작합니다.", "자세를 반대로 바꿔주세요"]
-  const scale = 0.5 // 스켈레톤 점 크기
+  const [totalCount, setTotalCount] = useState(0)
+  const tts = [
+    "양 손바닥이 마주하게 덤벨을 잡고 허리를 곧게 펴줍니다.",
+    "잘하고 있어요",
+    "거의 다 왔어요",
+    "완료!",
+  ]
+  const dispatch = useDispatch()
 
+  const scale = 0.5 // 스켈레톤 점 크기
   const state = {
     size: 150,
-    progress: time,
+    progress: count,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
     circleTwoStroke: "#7ea9e1",
   }
 
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      init()
-    }, 1)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
+  let status = "stand"
 
   useEffect(() => {
+    init()
     let time = setTimeout(() => {
       setCam(!cam)
-      let audioTune = new Audio("/TTS/warrior.mp3")
+      let audioTune = new Audio("/TTS/hammercurl.mp3")
       audioTune.play()
     }, 10000)
+
     return () => {
       clearTimeout(time)
     }
   }, [])
 
   useEffect(() => {
-    if (start === true) {
-      if (time === 33) {
-        let audioTune = new Audio("/TTS/change.mp3")
-        audioTune.play()
-      }
-
-      if (time === 30) {
-        let audioTune = new Audio("/TTS/countdown.mp3")
-        audioTune.play()
-      }
-
-      if (time <= 0) {
-        setTimeModal(!timeModal)
-        return
-      }
-
-      if (timeModal === true) {
-        return () => clearTimeout(timeout)
-      }
-
-      const timeout = setTimeout(() => setTime(time - 1), 1000)
-      return () => clearTimeout(timeout)
+    if (count === 15) {
+      let audioTune = new Audio("/TTS/good.mp3")
+      audioTune.play()
     }
-  }, [time, start])
-  const URL = "https://teachablemachine.withgoogle.com/models/MBENJ9eel/"
-  let model, webcam, ctx, maxPredictions
 
+    if (count === 20) {
+      let audioTune = new Audio("/TTS/finish.mp3")
+      audioTune.play()
+      setcounterModal(!counterModal)
+    }
+  }, [count])
+
+  useEffect(() => {
+    if (counterModal === true) {
+      dispatch(myPage()).then((response) => {
+        if (response.payload.isAuth === false) {
+        } else {
+          const body = {
+            userName: response.payload.userName,
+            exercise: "squat",
+            numberOrTime: true,
+            count_: count,
+            useKcal: count * 0.4,
+            when: today,
+          }
+          dispatch(addRecord(body)).then((response) => {
+            if (response.payload.success) {
+              setTotalCount(response.payload.totalCount)
+            } else {
+              alert("db 오류 발생 ..")
+            }
+          })
+        }
+      })
+    }
+  }, [counterModal])
+
+  const URL = "https://teachablemachine.withgoogle.com/models/XC-0U0des/"
+  let model, webcam, ctx, maxPredictions
+  // let labelContainer
   async function init() {
     const modelURL = URL + "model.json"
     const metadataURL = URL + "metadata.json"
@@ -121,30 +142,44 @@ function Warrior() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-      // if (prediction[0].probability.toFixed(2) >= 1.0) {
-      // }
-    
-
-    // for (let i = 0; i < maxPredictions; i++) {
-    //   console.log(
-    //     prediction[i].className + ":",
-    //     prediction[i].probability.toFixed(2) * 100 + "%",
-    //   )
-    //   console.log("-------------------")
-    drawPose(pose)
-    // }
+    if (prediction[0].probability.toFixed(2) >= 1.0) {
+      if (status === "hammercurl") {
+        setCount(count++)
+        let audioTune = new Audio("/TTS/count.mp3")
+        audioTune.play()
+      }
+      status = "stand"
+    } else if (prediction[1].probability.toFixed(2) >= 1.0) {
+      status = "hammercurl"
+    }
+    for (let i = 0; i < maxPredictions; i++) {
+      console.log(
+        prediction[i].className +
+          ": " +
+          prediction[i].probability.toFixed(2) * 100 +
+          "%",
+      )
+      console.log("-------------------")
+      drawPose(pose)
+    }
   }
 
   return (
     <>
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
-          <img src="/img/warrior1.png" alt="" />
+          <img src="/img/hammercurl1.jpg" alt="" />
           <div className="tts">
-            {time === 60 ? <span>{tts[0]}</span> : null }
-            {time <= 59 && time >= 40 ? <span>{tts[1]}</span> : null}
-            {time <= 33 && time >= 30 ? <span>{tts[2]}</span> : null}
-            <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
+            {count === 0 ? <span>{tts[0]}</span> : null}
+            {count === 5 ? <span>{tts[1]}</span> : null}
+            {count === 15 ? <span>{tts[2]}</span> : null}
+            {count === 20 ? <span>{tts[3]}</span> : null}
+
+            <Modal
+              isOpen={counterModal}
+              className="exModal"
+              ariaHideApp={false}
+            >
               <div className="exermodalResult">
                 <div className="exerResult">
                   <h2>운동 결과</h2>
@@ -152,7 +187,7 @@ function Warrior() {
                 <div className="exerCount">
                   <img src="img/health_count.png" alt="health_count" />
                   <p>
-                    시간 : <span>{60 - time}</span>초
+                    횟수 : <span>{count}</span>회
                   </p>
                 </div>
                 <div className="exertotalCount">
@@ -161,13 +196,13 @@ function Warrior() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 시간 : <span>{time}</span>초
+                    누적 횟수 : <span>{totalCount}</span>
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {time} x 0.5 kcal = <span>{(time * 0.4).toFixed(1)}</span>
+                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>
@@ -181,29 +216,17 @@ function Warrior() {
         <div className="canvasCenter">
           <canvas id="canvas" />
           <div className="counter">
-            <ProgressBar {...state} time={time} />
+            <ProgressBar {...state} count={count} />
           </div>
-          {start === true ? (
-            <button
-              onClick={() => {
-                setTimeModal(!timeModal)
-                // clearTimeout(timeout)
-              }}
-            >
-              운동 종료
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                setStart(!start)
-              }}
-            >
-              운동 시작
-            </button>
-          )}
-
+          <button
+            onClick={() => {
+              setcounterModal(!counterModal)
+            }}
+          >
+            운동 종료
+          </button>
           <div className="hiddenImg">
-            <img src="/img/warrior1.png" alt="" />
+            <img src="/img/transparentsHammercurl.png" alt="" />
           </div>
         </div>
       </div>
@@ -214,4 +237,4 @@ function Warrior() {
   )
 }
 
-export default withRouter(Warrior)
+export default withRouter(Hammercurl)
