@@ -18,7 +18,9 @@ const LoginForm = () => {
 
     try {
       // username 또는 password를 chatengine에 보낸다.
-      await axios.get("https://api.chatengine.io/chats", { header: authObject })
+      await axios.get("https://api.chatengine.io/chats", {
+        headers: authObject,
+      })
 
       localStorage.setItem("username", username)
       localStorage.setItem("password", password)
