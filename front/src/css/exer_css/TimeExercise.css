@@ -178,6 +178,12 @@ canvas {
   display: none;
 }
 
+@media screen and (max-width: 1024px) {
+  .tts span {
+    font-size: 18px;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .exModal {
     width: 80% !important;

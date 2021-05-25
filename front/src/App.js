@@ -13,6 +13,10 @@ import Support from "./component/Support"
 import ExerciseGuide from "./component/ExerciseGuide"
 import Squat from "./component/exercise/Squat"
 import Warrior from "./component/exercise/Warrior"
+import Plank from "./component/exercise/Plank"
+import Lunge from "./component/exercise/Lunge"
+import Hammercurl from "./component/exercise/Hammercurl"
+import GoodMorning from "./component/exercise/GoodMorning"
 import "./css/App.css"
 
 //hoc
@@ -25,18 +29,22 @@ import Auth from "./_hoc/auth"
 function App() {
   return (
     <div>
-      <Route path="/" exact="true" component={Home} />
-      <Route path="/mypage" component={Auth(Mypage, true)} />
-      <Route path="/challenge" component={Challenge} />
-      <Route path="/exercise" component={Exercise} />
-      <Route path="/products" component={Products} />
-      <Route path="/Guide" component={Guide} />
-      <Route path="/support" component={Support} />
-      <Route path="/login" component={Auth(Login, false)} />
-      <Route path="/register" component={Auth(Register, false)} />
-      <Route path="/Squat" component={Auth(Squat, true)} />
-      <Route path="/Warrior" component={Auth(Warrior, true)} />
-      <Route path="/ExerciseGuide" component={ExerciseGuide} />
+      <Route path="/" exact component={Home} />
+      <Route path="/mypage" exact component={Auth(Mypage, true)} />
+      <Route path="/challenge" exact component={Challenge} />
+      <Route path="/exercise" exact component={Exercise} />
+      <Route path="/products" exact component={Products} />
+      <Route path="/Guide" exact component={Guide} />
+      <Route path="/support" exact component={Support} />
+      <Route path="/login" exact component={Auth(Login, false)} />
+      <Route path="/register" exact component={Auth(Register, false)} />
+      <Route path="/Squat" exact component={Auth(Squat, true)} />
+      <Route path="/Warrior" exact component={Auth(Warrior, true)} />
+      <Route path="/Plank" exact component={Auth(Plank, true)} />
+      <Route path="/Lunge" exact component={Auth(Lunge, true)} />
+      <Route path="/Hammercurl" exact component={Auth(Hammercurl, true)} />
+      <Route path="/GoodMorning" exact component={Auth(GoodMorning, true)} />
+      <Route path="/ExerciseGuide" exact component={ExerciseGuide} />
     </div>
   )
 }

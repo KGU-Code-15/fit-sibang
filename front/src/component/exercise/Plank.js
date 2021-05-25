@@ -8,14 +8,18 @@ import Modal from "react-modal"
 
 //timez
 
-function Warrior() {
+function Plank() {
   const [cam, setCam] = useState(false) // 캠 상태
   const [time, setTime] = useState(60) // 왼쪽 자세 시간
   const [timeModal, setTimeModal] = useState(false) // modal
   const [start, setStart] = useState(false)
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
-  const tts = ["사진과 같은 자세를 취해주세요", "운동을 시작합니다.", "자세를 반대로 바꿔주세요"]
+  const tts = [
+    "사진과 같은 자세를 취해주세요",
+    "운동을 시작합니다.",
+    "30초 남았어요!",
+  ]
   const scale = 0.5 // 스켈레톤 점 크기
 
   const state = {
@@ -38,7 +42,7 @@ function Warrior() {
   useEffect(() => {
     let time = setTimeout(() => {
       setCam(!cam)
-      let audioTune = new Audio("/TTS/warrior.mp3")
+      let audioTune = new Audio("/TTS/plank.mp3")
       audioTune.play()
     }, 10000)
     return () => {
@@ -48,12 +52,12 @@ function Warrior() {
 
   useEffect(() => {
     if (start === true) {
-      if (time === 33) {
-        let audioTune = new Audio("/TTS/change.mp3")
+      if (time === 30) {
+        let audioTune = new Audio("/TTS/30s.mp3")
         audioTune.play()
       }
 
-      if (time === 30) {
+      if (time === 6) {
         let audioTune = new Audio("/TTS/countdown.mp3")
         audioTune.play()
       }
@@ -121,9 +125,8 @@ function Warrior() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-      // if (prediction[0].probability.toFixed(2) >= 1.0) {
-      // }
-    
+    // if (prediction[0].probability.toFixed(2) >= 1.0) {
+    // }
 
     // for (let i = 0; i < maxPredictions; i++) {
     //   console.log(
@@ -139,11 +142,11 @@ function Warrior() {
     <>
       <div className={cam ? "display" : "displayNone"}>
         <div className="exerImg">
-          <img src="/img/warrior1.png" alt="" />
+          <img src="/img/plank1.jpg" alt="" />
           <div className="tts">
-            {time === 60 ? <span>{tts[0]}</span> : null }
+            {time === 60 ? <span>{tts[0]}</span> : null}
             {time <= 59 && time >= 40 ? <span>{tts[1]}</span> : null}
-            {time <= 33 && time >= 30 ? <span>{tts[2]}</span> : null}
+            {time <= 30 && time >= 27 ? <span>{tts[2]}</span> : null}
             <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
               <div className="exermodalResult">
                 <div className="exerResult">
@@ -161,7 +164,7 @@ function Warrior() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 시간 : <span>{time}</span>초
+                    누적 시간 : <span>{time}</span>
                   </p>
                 </div>
                 <div className="exerKcal">
@@ -203,7 +206,7 @@ function Warrior() {
           )}
 
           <div className="hiddenImg">
-            <img src="/img/warrior1.png" alt="" />
+            <img src="/img/transparentsPlank.png" alt="" />
           </div>
         </div>
       </div>
@@ -214,4 +217,4 @@ function Warrior() {
   )
 }
 
-export default withRouter(Warrior)
+export default withRouter(Plank)
