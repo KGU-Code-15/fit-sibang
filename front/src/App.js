@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 
+import Chat from "./component/chat/Chat"
 import Home from "./component/Home"
 import Mypage from "./component/Mypage"
 import Exercise from "./component/Exercise"
@@ -17,6 +18,7 @@ import Plank from "./component/exercise/Plank"
 import Lunge from "./component/exercise/Lunge"
 import Hammercurl from "./component/exercise/Hammercurl"
 import GoodMorning from "./component/exercise/GoodMorning"
+
 import "./css/App.css"
 
 //hoc
@@ -29,6 +31,7 @@ import Auth from "./_hoc/auth"
 function App() {
   return (
     <div>
+      <Route path="/Chat" exact component={Chat} />
       <Route path="/" exact component={Home} />
       <Route path="/mypage" exact component={Auth(Mypage, true)} />
       <Route path="/challenge" exact component={Challenge} />
