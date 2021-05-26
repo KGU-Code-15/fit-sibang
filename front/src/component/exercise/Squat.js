@@ -77,7 +77,7 @@ function Squat() {
           const body = {
             userName: response.payload.userName,
             exercise: "squat",
-            numberOrTime: true,
+            countOrTime: true,
             count_: count,
             useKcal: count * 0.4,
             when: today,

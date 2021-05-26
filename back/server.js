@@ -166,4 +166,37 @@ app.post("/exercise/record", (req, res) => {
   })
 })
 
+app.post("/exercise/recordtime", (req, res) => {
+  User.findOne({ userName: req.body.userName }, (err, user) => {
+    const record = new Record({
+      user: user,
+      exercise: req.body.exercise,
+      when: req.body.when,
+      countOrTime: false,
+      time: req.body.time_,
+      useKcal: req.body.useKcal,
+    })
+    record.save((err, userInfo) => {
+      if (err) return res.json({ success: false, err })
+    })
+    let totaltimeSec = 0
+    let temp1 = 0
+    let temp2 = 0
+    let totaltime
+    Record.find({ user: user, exercise: req.body.exercise }, (err, info) => {
+      for (let i = 0; i < info.length; i++) {
+        totaltimeSec += info[i].time
+      }
+      totaltimeSec += req.body.time_ 
+      temp1 = parseInt(totaltimeSec/60)
+      temp2 = totaltimeSec % 60
+      totaltime = String(temp1) + '분 ' + String(temp2) + '초'
+      return res.status(200).json({
+        success: true,
+        totaltime: totaltime,
+      })
+    })
+  })
+})
+
 app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/`))
