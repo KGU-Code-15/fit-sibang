@@ -6,6 +6,36 @@ const LoginForm = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const tempid = [
+    "ENFJ",
+    "ENFP",
+    "ENTJ",
+    "ENTP",
+    "ESFJ",
+    "ESTJ",
+    "ESTP",
+    "INFJ",
+    "INFP",
+    "INTJ",
+    "ISFJ",
+    "ISFP",
+    "ISTJ",
+    "ISTP",
+    "ESFP",
+    "INTP",
+  ]
+
+  const createId = () => {
+    let rand = parseInt(Math.random() * 16 + 1)
+    alert(
+      "회원님의 임시 아이디는 : " +
+        tempid[rand] +
+        "\n" +
+        "비밀번호는 " +
+        tempid[rand].toLowerCase() +
+        "at",
+    )
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -17,7 +47,7 @@ const LoginForm = () => {
     }
 
     try {
-      // username 또는 password를 chatengine에 보낸다.
+      // username과 password를 chatengine에 보낸다.
       await axios.get("https://api.chatengine.io/chats", {
         headers: authObject,
       })
@@ -56,6 +86,9 @@ const LoginForm = () => {
           <div align="center">
             <button type="submit" className="button">
               <span>Start chatting</span>
+            </button>
+            <button onClick={createId} className="button">
+              <span>아이디 발급</span>
             </button>
           </div>
           {error}

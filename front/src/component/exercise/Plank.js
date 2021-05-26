@@ -3,6 +3,7 @@ import * as tmPose from "@teachablemachine/pose"
 import "../../css/exer_css/TimeExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
+import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
 
@@ -144,6 +145,7 @@ function Plank() {
         <div className="exerImg">
           <img src="/img/plank1.jpg" alt="" />
           <div className="tts">
+            <WebcamCapture />
             {time === 60 ? <span>{tts[0]}</span> : null}
             {time <= 59 && time >= 40 ? <span>{tts[1]}</span> : null}
             {time <= 30 && time >= 27 ? <span>{tts[2]}</span> : null}
@@ -207,6 +209,7 @@ function Plank() {
 
           <div className="hiddenImg">
             <img src="/img/transparentsPlank.png" alt="" />
+            <WebcamCapture />
           </div>
         </div>
       </div>

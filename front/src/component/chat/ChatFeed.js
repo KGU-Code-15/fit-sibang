@@ -1,4 +1,3 @@
-import { BiMessageSquareDetail } from "react-icons/bi"
 import MessageForm from "./MessageForm"
 import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"

@@ -10,7 +10,6 @@ import Login from "./component/Login"
 import Register from "./component/Register"
 import Challenge from "./component/Challenge"
 import Products from "./component/Products"
-import Support from "./component/Support"
 import ExerciseGuide from "./component/ExerciseGuide"
 import Squat from "./component/exercise/Squat"
 import Warrior from "./component/exercise/Warrior"
@@ -38,7 +37,6 @@ function App() {
       <Route path="/exercise" exact component={Exercise} />
       <Route path="/products" exact component={Products} />
       <Route path="/Guide" exact component={Guide} />
-      <Route path="/support" exact component={Support} />
       <Route path="/login" exact component={Auth(Login, false)} />
       <Route path="/register" exact component={Auth(Register, false)} />
       <Route path="/Squat" exact component={Auth(Squat, true)} />

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import ExerciseData from './ExerciseData'
-import TopHeader from './TopHeader'
+import React, { useState } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
+import ExerciseData from "./ExerciseData"
+import TopHeader from "./TopHeader"
 
-import '../css/Main.css'
+import "../css/Main.css"
 
 function Main() {
   const [auth_login, setAuth_login] = useState(false)
@@ -24,10 +24,11 @@ function Main() {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fafafa",
       }}
     >
       <TopHeader />

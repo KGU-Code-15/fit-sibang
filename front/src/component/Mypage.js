@@ -69,7 +69,7 @@ function Mypage(props) {
       //weight now
       var weight_ = [...weight]
       weight_ = String(
-        response.payload.weight[response.payload.weight.length - 1].weight_
+        response.payload.weight[response.payload.weight.length - 1].weight_,
       )
       setWeight(weight_)
 
@@ -231,7 +231,9 @@ function Mypage(props) {
             </div>
           </div>
           <div className="userSettingsList">
-            <button>트레이너 피드백</button>
+            <a href="/chat">
+              <button>트레이너 피드백</button>
+            </a>
             <button
               onClick={() => {
                 setbadgeModal(true)
