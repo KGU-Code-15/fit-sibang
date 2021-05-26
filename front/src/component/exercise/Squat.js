@@ -8,7 +8,6 @@ import Modal from "react-modal"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
-import setDayWithOptions from "date-fns/fp/setDayWithOptions"
 
 //timez
 const moment = require("moment")
@@ -204,13 +203,13 @@ function Squat() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 횟수 : <span>{totalCount}</span>
+                    누적 횟수 : <span>{totalCount}</span>회
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
+                    {count} x 0.4 kcal = <span>{(count * 0.4).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>

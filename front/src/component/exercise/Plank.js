@@ -101,6 +101,8 @@ function Plank() {
           dispatch(addRecordTime(body)).then(response =>{
             if (response.payload.success){
               setTotalTime(response.payload.totaltime)
+            } else{
+              alert("db 오류 발생 ...")
             }
           })
         }

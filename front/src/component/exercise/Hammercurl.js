@@ -13,7 +13,7 @@ import { addRecord } from "../../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 0
+let copyCount = 5
 
 function Hammercurl() {
   let [count, setCount] = useState(copyCount)
@@ -74,7 +74,7 @@ function Hammercurl() {
         } else {
           const body = {
             userName: response.payload.userName,
-            exercise: "squat",
+            exercise: "hammercurl",
             numberOrTime: true,
             count_: count,
             useKcal: count * 0.4,
@@ -196,13 +196,13 @@ function Hammercurl() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 횟수 : <span>{totalCount}</span>
+                    누적 횟수 : <span>{totalCount}</span>회
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
+                    {count} x 0.4 kcal = <span>{(count * 0.4).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>

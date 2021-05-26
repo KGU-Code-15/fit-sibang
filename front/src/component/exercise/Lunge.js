@@ -74,10 +74,10 @@ function Lunge() {
         } else {
           const body = {
             userName: response.payload.userName,
-            exercise: "squat",
+            exercise: "lunge",
             numberOrTime: true,
             count_: count,
-            useKcal: count * 0.4,
+            useKcal: count * 1.5,
             when: today,
           }
           dispatch(addRecord(body)).then((response) => {
@@ -196,13 +196,13 @@ function Lunge() {
                     alt="health_total_count"
                   />
                   <p>
-                    누적 횟수 : <span>{totalCount}</span>
+                    누적 횟수 : <span>{totalCount}</span>회
                   </p>
                 </div>
                 <div className="exerKcal">
                   <img src="img/health_kcal.png" alt="kcal" />
                   <p>
-                    {count} x 0.5 kcal = <span>{(count * 0.4).toFixed(1)}</span>
+                    {count} x 1.5 kcal = <span>{(count * 1.5).toFixed(1)}</span>
                     kcal
                   </p>
                 </div>
