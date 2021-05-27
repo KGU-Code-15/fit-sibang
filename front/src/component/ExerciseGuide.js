@@ -15,6 +15,7 @@ export default function ExerciseGuide() {
     },
   }
 
+  //youtube 로드가 완료되고 API 호출을 받을 준비가 될 때마다 실행 플레이어가 준비되는 즉시 유튜브 영상 실행을 막음
   function _onReady(e) {
     e.target.pauseVideo()
   }

@@ -4,6 +4,7 @@ import "../../css/exer_css/CountExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
 import ProgressBar from "../ProgressBar/CountProgressBar"
+import WebcamCapture from "../WebcamCapture"
 import Modal from "react-modal"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
@@ -153,13 +154,13 @@ function Hammercurl() {
       status = "hammercurl"
     }
     for (let i = 0; i < maxPredictions; i++) {
-      console.log(
-        prediction[i].className +
-          ": " +
-          prediction[i].probability.toFixed(2) * 100 +
-          "%",
-      )
-      console.log("-------------------")
+      // console.log(
+      //   prediction[i].className +
+      //     ": " +
+      //     prediction[i].probability.toFixed(2) * 100 +
+      //     "%",
+      // )
+      // console.log("-------------------")
       drawPose(pose)
     }
   }
@@ -170,6 +171,7 @@ function Hammercurl() {
         <div className="exerImg">
           <img src="/img/hammercurl1.jpg" alt="" />
           <div className="tts">
+            <WebcamCapture />
             {count === 0 ? <span>{tts[0]}</span> : null}
             {count === 5 ? <span>{tts[1]}</span> : null}
             {count === 15 ? <span>{tts[2]}</span> : null}
@@ -227,6 +229,7 @@ function Hammercurl() {
           </button>
           <div className="hiddenImg">
             <img src="/img/transparentsHammercurl.png" alt="" />
+            <WebcamCapture />
           </div>
         </div>
       </div>

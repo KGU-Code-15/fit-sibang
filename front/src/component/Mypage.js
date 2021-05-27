@@ -43,9 +43,12 @@ function getFormatDate(date) {
 }
 
 function Mypage(props) {
+  // 차트를 나타내기 위한 변수
   const [chart, setChart] = useState("")
-  const [weightmodal, setweightModal] = useState(false) // 몸무게 수정 modal
-  const [badgemodal, setbadgeModal] = useState(false) // 뱃지 modal
+  // 몸무게 수정을 위한 변수
+  const [weightmodal, setweightModal] = useState(false)
+  // 뱃지를 나타내기 위한 변수
+  const [badgemodal, setbadgeModal] = useState(false)
   const [userName, setUserName] = useState("")
   const [weight, setWeight] = useState("")
   const [weightChange, setWeightChange] = useState("")
@@ -69,7 +72,7 @@ function Mypage(props) {
       //weight now
       var weight_ = [...weight]
       weight_ = String(
-        response.payload.weight[response.payload.weight.length - 1].weight_
+        response.payload.weight[response.payload.weight.length - 1].weight_,
       )
       setWeight(weight_)
 
@@ -156,16 +159,19 @@ function Mypage(props) {
             <div className="userInfo">
               <span>{userName}</span>
               <div className="weightFlex">
-                {/* <span className="beforeWeight">64kg </span> */}
                 <span className="afterWeight">{weight}kg</span>
                 <div className="changeWeight">
                   <span className={changeColor}>{weightChange}</span>
+                  {/* + 버튼을 누르면 weightmodal 변수 true로 변경*/}
                   <AddIcon
                     style={{ cursor: "pointer" }}
                     onClick={() => {
                       setweightModal(true)
                     }}
                   />
+                  {/* weightmodal이 true일때 Modal창 생성 
+                      modal을 벗어난 곳이나 X버튼을 누르면 모달창 제거
+                  */}
                   <Modal
                     isOpen={weightmodal}
                     onRequestClose={() => {
@@ -179,6 +185,7 @@ function Mypage(props) {
                         setweightModal(false)
                       }}
                     />
+
                     {badgemodal === "true" ? <div></div> : null}
                     <div className="centerFlex">
                       <div className="day">
@@ -224,14 +231,15 @@ function Mypage(props) {
                       </div>
                     </div>
                   </Modal>
-                  {/* <span className="decreasePer"> -8.39%</span> */}
-                  {/* <span className="increasePer"> +8.39%</span> */}
                 </div>
               </div>
             </div>
           </div>
           <div className="userSettingsList">
-            <button>트레이너 피드백</button>
+            <a href="/chat">
+              <button>트레이너 피드백</button>
+            </a>
+            {/* 버튼 클릭시 badgemodal 변수 true로 변경*/}
             <button
               onClick={() => {
                 setbadgeModal(true)
@@ -239,7 +247,9 @@ function Mypage(props) {
             >
               내 뱃지
             </button>
-
+            {/* badgemodal이 true일때 모달창 생성
+                  modal을 벗어난 곳이나 X버튼을 누르면 모달창 제거
+              */}
             <Modal
               className="badgeModal"
               isOpen={badgemodal}

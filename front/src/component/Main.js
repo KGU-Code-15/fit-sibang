@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import ExerciseData from './ExerciseData'
-import TopHeader from './TopHeader'
+import React, { useState } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
+import ExerciseData from "./ExerciseData"
+import TopHeader from "./TopHeader"
 
-import '../css/Main.css'
+import "../css/Main.css"
 
 function Main() {
   const [auth_login, setAuth_login] = useState(false)
 
   axios.get(`/user/auth`).then((response) => {
     if (response.data.isAuth) {
+      // 로그인한 상태
       let copyAuth = auth_login
       copyAuth = true
-      setAuth_login(copyAuth) // 현 상태 : login
-    } else {
+      setAuth_login(copyAuth)
+    }
+    // 로그인하지 않은 상태
+    else {
       let copyAuth = auth_login
       copyAuth = false
-      setAuth_login(copyAuth) // 현 상태 : logout
+      setAuth_login(copyAuth)
     }
   })
 
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fafafa",
       }}
     >
       <TopHeader />
@@ -36,6 +40,7 @@ function Main() {
           <span>나의 하루 운동 양</span>
         </div>
         <span>
+          {/* 로그인한 유저 / 로그인 하지 않은 유저 구분 */}
           {auth_login === true ? (
             <ExerciseData />
           ) : (

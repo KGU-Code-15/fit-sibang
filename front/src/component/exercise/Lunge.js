@@ -4,6 +4,7 @@ import "../../css/exer_css/CountExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
 import ProgressBar from "../ProgressBar/CountProgressBar"
+import WebcamCapture from "../WebcamCapture"
 import Modal from "react-modal"
 import { myPage } from "../../_action/user_action"
 import { useDispatch } from "react-redux"
@@ -170,6 +171,7 @@ function Lunge() {
         <div className="exerImg">
           <img src="/img/lunge1.jpg" alt="" />
           <div className="tts">
+            <WebcamCapture />
             {count === 0 ? <span>{tts[0]}</span> : null}
             {count === 5 ? <span>{tts[1]}</span> : null}
             {count === 15 ? <span>{tts[2]}</span> : null}
@@ -227,6 +229,7 @@ function Lunge() {
           </button>
           <div className="hiddenImg">
             <img src="/img/transparentsLunge.png" alt="" />
+            <WebcamCapture />
           </div>
         </div>
       </div>
