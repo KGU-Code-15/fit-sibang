@@ -7,7 +7,7 @@ import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
 
-import { myPage } from "../../_action/user_action"
+import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecordTime } from "../../_action/exercise_action"
 //timez
@@ -20,6 +20,10 @@ function Plank() {
   const [timeModal, setTimeModal] = useState(false) // modal
   const [start, setStart] = useState(false)
   const [totalTime, setTotalTime] = useState('')
+  const [plBadge1, setPlBadge1] = useState(false)
+  const [plBadge2, setPlBadge2] = useState(false)
+  const [userName, setUserName] = useState('')
+
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const tts = [
@@ -58,6 +62,7 @@ function Plank() {
       clearTimeout(time)
     }
   }, [])
+  
 
   useEffect(() => {
     if (start === true) {
@@ -89,8 +94,8 @@ function Plank() {
     if (timeModal === true){
       dispatch(myPage()).then((Response) => {
         if (Response.payload.isAuth === false){
-        
         } else {
+          setUserName(Response.payload.userName)
           const body = {
             userName: Response.payload.userName,
             exercise: "plank",
@@ -102,14 +107,56 @@ function Plank() {
           dispatch(addRecordTime(body)).then(response =>{
             if (response.payload.success){
               setTotalTime(response.payload.totaltime)
+              if (response.payload.totaltimeSec > 59 && Response.payload.badge.plBadge1 === false){
+                setPlBadge1(true)
+              }
+              if (response.payload.totaltimeSec > 119 && Response.payload.badge.plBadge2 === false){
+                setPlBadge2(true)
+              }
             } else{
               alert("db 오류 발생 ...")
             }
-          })
+          })    
         }
       })
     }
   },[timeModal])
+
+  useEffect(() => {
+    if(plBadge1 === true){
+      const badge = {
+        userName : userName,
+        badge : "plBadge1"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+   
+      })
+    }
+  },[plBadge1])
+
+  useEffect(() => {
+    if(plBadge2 === true){
+      const badge = {
+        userName : userName,
+        badge : "plBadge2"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+      })
+    }
+  },[plBadge2])
+
+
   const URL = "https://teachablemachine.withgoogle.com/models/MBENJ9eel/"
   let model, webcam, ctx, maxPredictions
 
@@ -210,9 +257,24 @@ function Plank() {
                     kcal
                   </p>
                 </div>
-                <a className="Home" href="/">
-                  홈
-                </a>
+                {plBadge1 === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 플랭크입문자 *</p> <br/>
+                    <img src="img/bedge/pl.png" alt="pl" /><br/>
+                    <p>획득조건 : 플랭크 누적 60초 이상</p>
+                </div>:<div></div>}
+                {plBadge2 === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 어디서든 플랭크 *</p> <br/>
+                    <img src="img/bedge/pl1.png" alt="pl" /><br/>
+                    <p>획득조건 : 플랭크 누적 120초 이상</p>
+                </div>:<div></div>}
+                <div style ={{textAlign:"center"}}> 
+                  <a className="Home" href="/">
+                    홈으로
+                  </a>
+                </div>
+                
               </div>
             </Modal>
           </div>

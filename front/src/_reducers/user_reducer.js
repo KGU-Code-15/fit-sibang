@@ -4,6 +4,7 @@ import {
   AUTH_USER,
   MYPAGE_USER,
   ADD_WEIGHT,
+  UPDATE_BADGE,
 } from "../_action/types"
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -19,6 +20,8 @@ export default function (state = {}, action) {
       return { ...state, userData: action.payload }
     case ADD_WEIGHT:
       return { ...state, addWeightSuccess: action.payload }
+    case UPDATE_BADGE:
+      return { ...state, updateBadgeSuccess: action.payload}
     default:
       return state
   }

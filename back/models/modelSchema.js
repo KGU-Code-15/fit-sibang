@@ -57,6 +57,30 @@ const userSchema = mongoose.Schema({
       type:Boolean,
       default:false,
     },
+    gmBadge1: {
+      type:Boolean,
+      default:false,
+    },
+    gmBadge2: {
+      type:Boolean,
+      default:false,
+    },
+    hmBadge: {
+      type:Boolean,
+      default:false,
+    },
+    lgBadge1:{
+      type:Boolean,
+      default:false,
+    },
+    plBadge1:{
+      type:Boolean,
+      default:false,
+    },
+    plBadge2:{
+      type:Boolean,
+      default:false,
+    },
   }
 })
 

@@ -139,6 +139,80 @@ app.post("/user/updateUser", (req, res) => {
   })
 })
 
+app.post("/user/updateBadge", (req,res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(404).json({
+      success: false,
+      mesage: "don't have object",
+      message: "success user badge update",
+    })
+  }
+  
+  let badgeName = req.body.badge
+  
+  switch(badgeName){
+    case "babySqarter":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        if(!user){
+          console.log("cant find user")
+        }
+        user.badge.babySqarter = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "horseLeg":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.horseLeg = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "gmBadge1":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.gmBadge1 = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "gmBadge2":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.gmBadge2 = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "hmBadge":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.hmBadge = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "lgBadge1":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.lgBadge1 = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "plBadge1":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        if(!user){
+          console.log("cant find user")
+          return res.status(200).json({success: false})
+        }
+        user.badge.plBadge1 = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+    case "plBadge2":
+      User.findOne( {userName: req.body.userName} , (err, user) => {
+        user.badge.plBadge2 = true
+        user.save()
+      })
+      return res.status(200).json({success: true})
+
+    default :
+      return res.status(200).json({success: false})
+    
+  }
+})
+
 app.post("/exercise/record", (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     const record = new Record({
@@ -194,6 +268,7 @@ app.post("/exercise/recordtime", (req, res) => {
       return res.status(200).json({
         success: true,
         totaltime: totaltime,
+        totaltimeSec: totaltimeSec,
       })
     })
   })

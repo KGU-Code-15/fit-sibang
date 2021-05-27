@@ -5,6 +5,7 @@ import {
   AUTH_USER,
   MYPAGE_USER,
   ADD_WEIGHT,
+  UPDATE_BADGE,
 } from './types'
 
 export function loginUser(dataToSubmit) {
@@ -49,6 +50,16 @@ export function addWeightFunc(dataToSubmit) {
     .then((response) => response.data)
   return {
     type: ADD_WEIGHT,
+    payload: request,
+  }
+}
+
+export function updateBadge(dataToSubmit){
+  const request = axios
+    .post('/user/updateBadge',dataToSubmit)
+    .then(response => response.data)
+  return{
+    type: UPDATE_BADGE,
     payload: request,
   }
 }
