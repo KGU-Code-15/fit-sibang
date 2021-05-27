@@ -3,6 +3,7 @@ import "../../css/ProgressBar.css"
 import "../../css/exer_css/CountExercise.css"
 
 const ProgressBar = (props) => {
+  // 카운트를 위한 progressbar 정의
   const [offset, setOffset] = useState(0)
 
   const { size, progress, strokeWidth, circleOneStroke, circleTwoStroke } =
@@ -12,10 +13,10 @@ const ProgressBar = (props) => {
   const radius = size / 2 - strokeWidth / 2
   const circumference = 2 * Math.PI * radius
 
+  // 운동갯수가 1개씩 증가 할때마다 progressbar를 새로 그림
   useEffect(() => {
     const progressOffset = ((20 - props.count) / 20) * circumference
     setOffset(progressOffset)
-    console.log("useEffect")
   }, [setOffset, props.count, circumference, offset])
 
   return (

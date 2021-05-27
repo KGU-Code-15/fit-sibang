@@ -1,10 +1,12 @@
-import React from 'react'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import { Link } from 'react-router-dom'
+import React from "react"
+import ArrowBackIcon from "@material-ui/icons/ArrowBack"
+import { Link } from "react-router-dom"
 
-import '../css/Guide.css'
+import "../css/Guide.css"
 function Workout({ history }) {
   const date = new Date()
+
+  // 뒤로가기
   const goBack = () => {
     history.goBack()
   }
@@ -15,10 +17,11 @@ function Workout({ history }) {
         <div className="explain">
           <ArrowBackIcon
             onClick={goBack}
-            style={{ color: 'white', cursor: 'pointer' }}
+            style={{ color: "white", cursor: "pointer" }}
           />
 
           <p>
+            {/* 현재날짜 */}
             {date.getFullYear()}년&nbsp;
             {date.getMonth() + 1}월&nbsp;
             {date.getDate()}일

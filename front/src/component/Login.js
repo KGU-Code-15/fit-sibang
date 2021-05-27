@@ -54,12 +54,17 @@ function SignIn(props) {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
 
+  // username을 현재 입력한 값으로 변경
   const onUserNameHandler = (event) => {
     setUserName(event.currentTarget.value)
   }
+
+  // password를 현재 입력한 값으로 변경
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
+
+  // 로그인 버튼을 누르면 submit의 동작을 막음
   const onSubmitHandler = (event) => {
     event.preventDefault()
 
@@ -68,6 +73,9 @@ function SignIn(props) {
       password: password,
     }
 
+    // 입력한 username과 password로 database에 접근
+    // success라면 home으로 이동
+    // fail이면 error 메시지 출력
     dispatch(loginUser(body)).then((response) => {
       if (response.payload.success) {
         props.history.push("/")

@@ -6,6 +6,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  // 임시 아이디 발급을 위한 변수
   const tempid = [
     "ENFJ",
     "ENFP",
@@ -25,6 +26,7 @@ const LoginForm = () => {
     "INTP",
   ]
 
+  // tempid중 랜덤으로 임시아이디 발급
   const createId = () => {
     let rand = parseInt(Math.random() * 16 + 1)
     alert(
@@ -40,6 +42,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // chatengine의 계정이 존재하는지 확인
     const authObject = {
       "Project-ID": projectID,
       "User-Name": username,
@@ -47,18 +50,18 @@ const LoginForm = () => {
     }
 
     try {
-      // username과 password를 chatengine에 보낸다.
+      // username과 password를 chatengine에 보냄
       await axios.get("https://api.chatengine.io/chats", {
         headers: authObject,
       })
 
+      // username 과 password가 존재한다면 로그인
       localStorage.setItem("username", username)
       localStorage.setItem("password", password)
 
       window.location.reload()
-      // username 과 password가 존재한다면 로그인
     } catch (error) {}
-    // 그렇지 않다면 에러메시지를 출력한다.
+    // 그렇지 않다면 에러메시지를 출력
     setError("아이디와 비밀번호를 다시 확인해주세요")
   }
 

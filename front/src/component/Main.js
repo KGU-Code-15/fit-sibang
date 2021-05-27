@@ -11,13 +11,16 @@ function Main() {
 
   axios.get(`/user/auth`).then((response) => {
     if (response.data.isAuth) {
+      // 로그인한 상태
       let copyAuth = auth_login
       copyAuth = true
-      setAuth_login(copyAuth) // 현 상태 : login
-    } else {
+      setAuth_login(copyAuth)
+    }
+    // 로그인하지 않은 상태
+    else {
       let copyAuth = auth_login
       copyAuth = false
-      setAuth_login(copyAuth) // 현 상태 : logout
+      setAuth_login(copyAuth)
     }
   })
 
@@ -37,6 +40,7 @@ function Main() {
           <span>나의 하루 운동 양</span>
         </div>
         <span>
+          {/* 로그인한 유저 / 로그인 하지 않은 유저 구분 */}
           {auth_login === true ? (
             <ExerciseData />
           ) : (

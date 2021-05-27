@@ -1,3 +1,4 @@
+// 내가 보낸 첨부파일의 크기가 0이상이라면 출력
 const MyMessage = ({ message }) => {
   if (message?.attachments?.length > 0) {
     return (

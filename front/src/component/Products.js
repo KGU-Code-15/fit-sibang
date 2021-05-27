@@ -1,20 +1,21 @@
-import React from 'react'
-import '../css/Products.css'
-import TopHeader from './TopHeader'
-import { ProductData } from './ProductData'
-import Footer from './Footer'
+import React from "react"
+import "../css/Products.css"
+import TopHeader from "./TopHeader"
+import { ProductData } from "./ProductData"
+import Footer from "./Footer"
 
 export default function Products(props) {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <TopHeader />
+      {/* 반복문을 통해 ProductData.js의 내용들을 출력 */}
       {ProductData.map((item, index) => {
         return (
           <div key={index} className={item.cName}>

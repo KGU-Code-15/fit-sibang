@@ -9,7 +9,9 @@ const TheirMessage = ({ lastMessage, message }) => {
           style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
         />
       )}
-
+      {/* 상대방이 보낸 첨부파일의 크기가 0이상이라면 출력
+          첨부파일이 아니라면 텍스트 출력
+      */}
       {message?.attachments?.length > 0 ? (
         <video
           source

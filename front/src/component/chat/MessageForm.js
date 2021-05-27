@@ -6,6 +6,7 @@ const MessageForm = (props) => {
   const [value, setValue] = useState("")
   const { chatId, creds } = props
 
+  // 공백을 제거하고 현재 입력한 메시지의 길이가 0이상이라면 sendMessage
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -16,12 +17,13 @@ const MessageForm = (props) => {
     setValue("")
   }
 
+  // 메시지 입력을 위한 함수
   const handleChange = (event) => {
     setValue(event.target.value)
-
     isTyping(props, chatId)
   }
 
+  //file upload를 위한 함수
   const handleUpload = (event) => {
     sendMessage(creds, chatId, { files: event.target.files, text: "" })
   }

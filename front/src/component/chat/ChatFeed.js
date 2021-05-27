@@ -8,6 +8,11 @@ const ChatFeed = (props) => {
   const chat = chats && chats[activeChat]
 
   const renderReadReceipts = (message, isMyMessage) => {
+    {
+      /* 현재 채팅에 접속한 사람들의 메시지를 읽음
+         나의 채팅은 오른쪽 상대방의 채팅은 왼쪽에 img를 통해 읽었음을 표시
+      */
+    }
     return chat.people.map(
       (person, index) =>
         person.last_read === message.id && (
@@ -29,7 +34,9 @@ const ChatFeed = (props) => {
       const message = messages[key]
       const lastMessageKey = index === 0 ? null : keys[index - 1]
       const isMyMessage = userName === message.sender.username
-
+      {
+        /* 나의 메시지와 상대방의 메시지를 출력 */
+      }
       return (
         <div key={`msg_${index}`} style={{ width: "100%" }}>
           <div className="message-block">
