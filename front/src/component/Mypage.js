@@ -59,6 +59,12 @@ function Mypage(props) {
   // badge
   const [sqartBaby, setSqartBaby] = useState(false)
   const [horseLeg, setHorseLeg] = useState(false)
+  const [gmBadge1, setGmBadge1] = useState(false)
+  const [gmBadge2, setGmBadge2] = useState(false)
+  const [hmBadge, setHmBadge] = useState(false)
+  const [lgBadge1, setLgBadge1] = useState(false)
+  const [plBadge1, setPlBadge1] = useState(false)
+  const [plBadge2, setPlBadge2] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -77,6 +83,24 @@ function Mypage(props) {
       }
       if(response.payload.badge.horseLeg == true){
         setHorseLeg(true)
+      }
+      if(response.payload.badge.gmBadge1 == true){
+        setGmBadge1(true)
+      }
+      if(response.payload.badge.gmBadge2 == true){
+        setGmBadge2(true)
+      }
+      if(response.payload.badge.hmBadge == true){
+        setHmBadge(true)
+      }
+      if(response.payload.badge.lgBadge1 == true){
+        setLgBadge1(true)
+      }
+      if(response.payload.badge.plBadge1 == true){
+        setPlBadge1(true)
+      }
+      if(response.payload.badge.plBadge2 == true){
+        setPlBadge2(true)
       }
 
       response.payload.weight.sort(function (a, b) {
@@ -276,6 +300,8 @@ function Mypage(props) {
                   setbadgeModal(false)
                 }}
               />
+              <h4 style ={{textAlign: "center"}}>나의 뱃지 목록</h4>
+              <br></br>
               <div className="badgeGrid">
               {sqartBaby === true ? <div className="imgWidth">
                   <img src="/img/bedge/sqart.png" alt="badge" />
@@ -289,6 +315,48 @@ function Mypage(props) {
                   <span>말벅지</span>
                 </div>: <div className="imgWidth">
                   <img src="/img/bedge/sqart2_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {gmBadge1 === true ? <div className="imgWidth">
+                  <img src="/img/bedge/gm.png" alt="badge" />
+                  <span>??? : 굿모닝</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/gm_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {gmBadge2 === true ? <div className="imgWidth">
+                  <img src="/img/bedge/gm1.png" alt="badge" />
+                  <span>자기야~ 왜 칭얼거려</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/gm1_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {hmBadge === true ? <div className="imgWidth">
+                  <img src="/img/bedge/hammer.png" alt="badge" />
+                  <span>인간 헐크</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/hammer_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {lgBadge1 === true ? <div className="imgWidth">
+                  <img src="/img/bedge/lunge.png" alt="badge" />
+                  <span>런지 마스터</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/lunge_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {plBadge1 === true ? <div className="imgWidth">
+                  <img src="/img/bedge/pl.png" alt="badge" />
+                  <span>플랭크 입문자</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/pl_d.png" alt="badge" />
+                  <span>???</span>
+                </div> }
+                {plBadge2 === true ? <div className="imgWidth">
+                  <img src="/img/bedge/pl1.png" alt="badge" />
+                  <span>어디서든 플랭크</span>
+                </div>: <div className="imgWidth">
+                  <img src="/img/bedge/pl1_d.png" alt="badge" />
                   <span>???</span>
                 </div> }
               </div>
