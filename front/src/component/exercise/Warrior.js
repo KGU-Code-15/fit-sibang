@@ -3,6 +3,7 @@ import * as tmPose from "@teachablemachine/pose"
 import "../../css/exer_css/TimeExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
+import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
 
@@ -21,7 +22,11 @@ function Warrior() {
   const [totalTime, setTotalTime] = useState('')
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
-  const tts = ["사진과 같은 자세를 취해주세요", "운동을 시작합니다.", "자세를 반대로 바꿔주세요"]
+  const tts = [
+    "사진과 같은 자세를 취해주세요",
+    "운동을 시작합니다.",
+    "자세를 반대로 바꿔주세요",
+  ]
   const scale = 0.5 // 스켈레톤 점 크기
 
   const state = {
@@ -156,9 +161,8 @@ function Warrior() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-      // if (prediction[0].probability.toFixed(2) >= 1.0) {
-      // }
-    
+    // if (prediction[0].probability.toFixed(2) >= 1.0) {
+    // }
 
     // for (let i = 0; i < maxPredictions; i++) {
     //   console.log(
@@ -176,7 +180,8 @@ function Warrior() {
         <div className="exerImg">
           <img src="/img/warrior1.png" alt="" />
           <div className="tts">
-            {time === 60 ? <span>{tts[0]}</span> : null }
+            <WebcamCapture />
+            {time === 60 ? <span>{tts[0]}</span> : null}
             {time <= 59 && time >= 40 ? <span>{tts[1]}</span> : null}
             {time <= 33 && time >= 30 ? <span>{tts[2]}</span> : null}
             <Modal isOpen={timeModal} className="exModal" ariaHideApp={false}>
@@ -239,6 +244,7 @@ function Warrior() {
 
           <div className="hiddenImg">
             <img src="/img/warrior1.png" alt="" />
+            <WebcamCapture />
           </div>
         </div>
       </div>

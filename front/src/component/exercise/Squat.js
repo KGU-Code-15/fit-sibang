@@ -3,6 +3,7 @@ import * as tmPose from "@teachablemachine/pose"
 import "../../css/exer_css/CountExercise.css"
 import { withRouter } from "react-router-dom"
 import Loader from "../Loader"
+import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/CountProgressBar"
 import Modal from "react-modal"
 import { myPage } from "../../_action/user_action"
@@ -143,7 +144,7 @@ function Squat() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-    if (prediction[0].probability.toFixed(2) >= 1.0) {
+    if (prediction[1].probability.toFixed(2) >= 1.0) {
       // 0 squat 1 stand 2 bad 3 wa 4 none
       if (status === "squat") {
         setCount(count++)
@@ -177,6 +178,7 @@ function Squat() {
         <div className="exerImg">
           <img src="/img/squat1.gif" alt="" />
           <div className="tts">
+            <WebcamCapture />
             {count === 0 ? <span>{tts[0]}</span> : null}
             {count === 5 ? <span>{tts[2]}</span> : null}
             {count === 15 ? <span>{tts[3]}</span> : null}
@@ -225,6 +227,7 @@ function Squat() {
           <div className="counter">
             <ProgressBar {...state} count={count} />
           </div>
+
           <button
             onClick={() => {
               setcounterModal(!counterModal)
@@ -232,8 +235,10 @@ function Squat() {
           >
             운동 종료
           </button>
+
           <div className="hiddenImg">
             <img src="/img/transparentsSquat.gif" alt="" />
+            <WebcamCapture />
           </div>
         </div>
       </div>

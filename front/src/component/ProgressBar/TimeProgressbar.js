@@ -3,19 +3,18 @@ import "../../css/ProgressBar.css"
 import "../../css/exer_css/TimeExercise.css"
 
 const ProgressBar = (props) => {
+  // 시간카운트를 위한 progressbar 정의
   const [offset, setOffset] = useState(0)
-
   const { size, progress, strokeWidth, circleOneStroke, circleTwoStroke } =
     props
-
   const center = size / 2
   const radius = size / 2 - strokeWidth / 2
   const circumference = 2 * Math.PI * radius
 
+  // 1초 간격으로 값을 1씩 감소시키며 progreesbar를 다시그림
   useEffect(() => {
     const progressOffset = ((60 - props.time) / 60) * circumference
     setOffset(progressOffset)
-    console.log("useEffect")
   }, [setOffset, props.time, circumference, offset])
 
   return (

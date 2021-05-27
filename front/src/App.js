@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 
+import Chat from "./component/chat/Chat"
 import Home from "./component/Home"
 import Mypage from "./component/Mypage"
 import Exercise from "./component/Exercise"
@@ -9,7 +10,6 @@ import Login from "./component/Login"
 import Register from "./component/Register"
 import Challenge from "./component/Challenge"
 import Products from "./component/Products"
-import Support from "./component/Support"
 import ExerciseGuide from "./component/ExerciseGuide"
 import Squat from "./component/exercise/Squat"
 import Warrior from "./component/exercise/Warrior"
@@ -17,6 +17,7 @@ import Plank from "./component/exercise/Plank"
 import Lunge from "./component/exercise/Lunge"
 import Hammercurl from "./component/exercise/Hammercurl"
 import GoodMorning from "./component/exercise/GoodMorning"
+
 import "./css/App.css"
 
 //hoc
@@ -29,13 +30,13 @@ import Auth from "./_hoc/auth"
 function App() {
   return (
     <div>
+      <Route path="/Chat" exact component={Chat} />
       <Route path="/" exact component={Home} />
       <Route path="/mypage" exact component={Auth(Mypage, true)} />
       <Route path="/challenge" exact component={Challenge} />
       <Route path="/exercise" exact component={Exercise} />
       <Route path="/products" exact component={Products} />
       <Route path="/Guide" exact component={Guide} />
-      <Route path="/support" exact component={Support} />
       <Route path="/login" exact component={Auth(Login, false)} />
       <Route path="/register" exact component={Auth(Register, false)} />
       <Route path="/Squat" exact component={Auth(Squat, true)} />
