@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState ,useEffect} from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import ExerciseData from "./ExerciseData"
@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux"
 
 import "../css/Main.css"
 
+let randomExer = Math.floor(Math.random() * 5);
+
 function Main() {
   const [auth_login, setAuth_login] = useState(false)
   const [userName, setUserName] = useState("")
@@ -16,6 +18,9 @@ function Main() {
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
   const [myState, setMyState] = useState("")
+  const [randomTrue, setRandomTrue] = useState(false)
+  const [pathName,setPathName] = useState('플랭크')
+  const [path,setPath] = useState('/Plank')
   const dispatch = useDispatch()
   axios.get(`/user/auth`).then((response) => {
     if (response.data.isAuth) {
@@ -32,6 +37,8 @@ function Main() {
       setAuth_login(copyAuth)
     }
   })
+
+  
 
   if (auth_login === true) {
     dispatch(myPage()).then((response) => {
@@ -77,6 +84,34 @@ function Main() {
       }
     })
   }
+
+  
+  useEffect(() => {
+    if(randomTrue === false){
+      setRandomTrue(true)
+      if(randomExer === 0){
+        setPathName('홈핏:플랭크')
+        setPath('/Plank')
+      }
+      if(randomExer === 1){
+        setPathName('요가:전사자세')
+          setPath('/Warrior')
+      }
+      if(randomExer === 2){
+        setPathName('홈핏:스쿼트')
+        setPath('/Squat')
+      }
+      if(randomExer === 3){
+        setPathName('홈핏:런지')
+          setPath('/Lunge')
+      }
+      if(randomExer === 4){
+        setPathName('홈핏:해머컬')
+        setPath('/Hammercurl')
+      }
+    }
+  }, [randomTrue])
+
 
   return (
     <div
@@ -124,8 +159,8 @@ function Main() {
         </div>
       )}
       <div className="eeeeFlex">
-        <span className="">오늘의 추천 운동</span>
-        <span className="exercise">스쿼트</span>
+        <span className="">핏시방's Pick</span>
+        <span className="exercise"><a href={path}>{pathName}</a></span>
       </div>
 
       <div className="eeeeFlex">
