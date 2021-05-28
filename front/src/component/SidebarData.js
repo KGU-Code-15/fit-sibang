@@ -36,10 +36,4 @@ export const SidebarData = [
     icon: <GrIcons.GrProductHunt />,
     cName: "nav-text",
   },
-  {
-    title: "Support",
-    path: "/support",
-    icon: <BiIcons.BiSupport />,
-    cName: "nav-text",
-  },
 ]
