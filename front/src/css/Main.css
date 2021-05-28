@@ -86,7 +86,6 @@
   width: 50%;
   float: right;
 }
-
 .text2 span {
   margin-bottom: 10px;
 }
@@ -98,7 +97,7 @@
   font-size: 16px;
   margin-bottom: 4px;
 }
-.exer:nth-child(2n-1) {
+.exer:nth-child(2n-1) span{
   font-size: 16px;
   font-weight: bold;
   opacity: 1;
@@ -106,7 +105,7 @@
   color: #eb5374;
 }
 
-.exer:nth-child(2n) {
+.exer:nth-child(2n) span{
   font-size: 16px;
   font-weight: bold;
   opacity: 1;

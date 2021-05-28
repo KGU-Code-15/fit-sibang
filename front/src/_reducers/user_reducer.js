@@ -5,6 +5,7 @@ import {
   MYPAGE_USER,
   ADD_WEIGHT,
   UPDATE_BADGE,
+  GET_ALL_RECORD
 } from "../_action/types"
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -22,6 +23,8 @@ export default function (state = {}, action) {
       return { ...state, addWeightSuccess: action.payload }
     case UPDATE_BADGE:
       return { ...state, updateBadgeSuccess: action.payload}
+    case GET_ALL_RECORD:
+      return { ...state, getAllRecordSuccess: action.payload}
     default:
       return state
   }

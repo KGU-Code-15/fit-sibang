@@ -94,10 +94,10 @@ function Main() {
         <div>
           <div className="eeeeFlex">
             <div>
-              <span>나의 하루 운동 양</span>
+              <span>나의 누적 운동량</span>
             </div>
             <span>
-              <ExerciseData />
+              <ExerciseData/>
             </span>
           </div>
           <div className="eeeeFlex">

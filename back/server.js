@@ -274,4 +274,21 @@ app.post("/exercise/recordtime", (req, res) => {
   })
 })
 
+app.post("/user/getAllRecord", (req,res) => {
+  User.findOne({userName : req.body.userName}, (err,user)=>{
+    Record.find({user: user}, (err, info) => {
+      if(err){
+        return res.status(200).json({
+          success : false
+        })
+      }
+     
+      return res.status(200).json({
+        success : true,
+        info : info,
+      })
+    })
+  })
+})
+
 app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/`))

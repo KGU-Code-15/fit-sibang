@@ -6,6 +6,7 @@ import {
   MYPAGE_USER,
   ADD_WEIGHT,
   UPDATE_BADGE,
+  GET_ALL_RECORD
 } from './types'
 
 export function loginUser(dataToSubmit) {
@@ -60,6 +61,16 @@ export function updateBadge(dataToSubmit){
     .then(response => response.data)
   return{
     type: UPDATE_BADGE,
+    payload: request,
+  }
+}
+
+export function getAllRecord(dataToSubmit){
+  const request = axios
+    .post('/user/getAllRecord',dataToSubmit)
+    .then(response => response.data)
+  return{
+    type: GET_ALL_RECORD,
     payload: request,
   }
 }
