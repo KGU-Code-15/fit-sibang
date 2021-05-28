@@ -78,8 +78,8 @@
   margin: 10px auto;
 }
 
-.eeeeFlex img{
-  width : 100%;
+.eeeeFlex img {
+  width: 100%;
 }
 
 .exer {
@@ -127,6 +127,12 @@
 .main {
   text-align: center;
 }
+.bmiWeight,
+.myState {
+  font-family: bazzi !important;
+  font-size: 14px !important;
+}
+
 @media only screen and (max-width: 768px) and (min-width: 481px) {
   .main {
     max-width: 80%;
@@ -167,12 +173,7 @@
     margin: 10px auto;
     font-size: 0.5rem;
   }
-  .exer {
-    width: 80%;
-    float: center;
-    /* align-items: center; */
-    padding-right: 2rem;
-  }
+
   .exercise {
     padding-left: 3rem;
   }
