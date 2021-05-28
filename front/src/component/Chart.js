@@ -45,7 +45,6 @@ function Chart(body, type, height) {
     }
     colors = 'rgba(255,0,0,1)'
   } else {
-    console.log('분기')
   }
 
   //dataArray
