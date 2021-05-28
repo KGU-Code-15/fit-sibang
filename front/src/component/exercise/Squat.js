@@ -6,7 +6,7 @@ import Loader from "../Loader"
 import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/CountProgressBar"
 import Modal from "react-modal"
-import { myPage } from "../../_action/user_action"
+import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
 
@@ -14,7 +14,7 @@ import { addRecord } from "../../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 0
+let copyCount =10
 
 function Squat() {
   let [count, setCount] = useState(copyCount)
@@ -23,6 +23,10 @@ function Squat() {
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [totalCount, setTotalCount] = useState(0)
+  const [babySqarter, setBabySqarter] = useState(false)
+  const [horseLeg, setHorseLeg] = useState(false)
+  const [userName, setUserName] = useState('')
+
   const [tts, setTTS] = useState([
     "다리를 어깨넓이만큼 벌리고 양팔을 앞으로 모아줍니다.",
     "잘하고 있어요",
@@ -74,6 +78,7 @@ function Squat() {
       dispatch(myPage()).then((response) => {
         if (response.payload.isAuth === false) {
         } else {
+          setUserName(response.payload.userName)
           const body = {
             userName: response.payload.userName,
             exercise: "squat",
@@ -82,9 +87,15 @@ function Squat() {
             useKcal: count * 0.4,
             when: today,
           }
-          dispatch(addRecord(body)).then((response) => {
-            if (response.payload.success) {
-              setTotalCount(response.payload.totalCount)
+          dispatch(addRecord(body)).then((res) => {
+            if (res.payload.success) {
+              setTotalCount(res.payload.totalCount)
+              if(res.payload.totalCount > 9 && response.payload.badge.babySqarter === false){
+                setBabySqarter(true)
+              }
+              if(res.payload.totalCount > 19 && response.payload.badge.horseLeg === false){
+                setHorseLeg(true)
+              }
             } else {
               alert("db 오류 발생 ..")
             }
@@ -93,6 +104,42 @@ function Squat() {
       })
     }
   }, [counterModal])
+
+  useEffect(() => {
+    if(babySqarter === true){
+      const badge = {
+        userName : userName,
+        badge : "babySqarter"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+   
+      })
+    }
+  },[babySqarter])
+
+  useEffect(() => {
+    if(horseLeg === true){
+      const badge = {
+        userName : userName,
+        badge : "horseLeg"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+   
+      })
+    }
+  },[horseLeg])
 
   const URL = "https://teachablemachine.withgoogle.com/models/Bz-uPekOm/"
   let model, webcam, ctx, maxPredictions
@@ -215,9 +262,23 @@ function Squat() {
                     kcal
                   </p>
                 </div>
-                <a className="Home" href="/">
-                  홈
-                </a>
+                {babySqarter === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 아기 스쿼터 *</p> <br/>
+                    <img src="img/bedge/sqart.png" alt="sq" /><br/>
+                    <p>획득조건 : 스쿼트 누적 10개 이상</p>
+                </div>:<div></div>}
+                {horseLeg === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 말벅지 *</p> <br/>
+                    <img src="img/bedge/sqart2.png" alt="sq" /><br/>
+                    <p>획득조건 : 스쿼트 누적 20개 이상</p>
+                </div>:<div></div>}
+                <div style ={{textAlign:"center"}}> 
+                  <a className="Home" href="/">
+                    홈으로
+                  </a>
+                </div>
               </div>
             </Modal>
           </div>
