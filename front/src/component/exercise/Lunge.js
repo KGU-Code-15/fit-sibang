@@ -6,7 +6,7 @@ import Loader from "../Loader"
 import ProgressBar from "../ProgressBar/CountProgressBar"
 import WebcamCapture from "../WebcamCapture"
 import Modal from "react-modal"
-import { myPage } from "../../_action/user_action"
+import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
 
@@ -14,7 +14,7 @@ import { addRecord } from "../../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount = 0
+let copyCount = 19
 
 function Lunge() {
   let [count, setCount] = useState(copyCount)
@@ -23,6 +23,8 @@ function Lunge() {
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [totalCount, setTotalCount] = useState(0)
+  const [userName, setUserName] = useState('')
+  const [lgBadge1, setLgBadge1] = useState(false)
   const tts = [
     "서있는 자세에서 발을 하나 앞으로 먼저 뻗고나서 무릎을 굽혀 앉습니다.",
     "잘하고 있어요",
@@ -73,6 +75,7 @@ function Lunge() {
       dispatch(myPage()).then((response) => {
         if (response.payload.isAuth === false) {
         } else {
+          setUserName(response.payload.userName)
           const body = {
             userName: response.payload.userName,
             exercise: "lunge",
@@ -81,9 +84,12 @@ function Lunge() {
             useKcal: count * 1.5,
             when: today,
           }
-          dispatch(addRecord(body)).then((response) => {
-            if (response.payload.success) {
-              setTotalCount(response.payload.totalCount)
+          dispatch(addRecord(body)).then((res) => {
+            if (res.payload.success) {
+              setTotalCount(res.payload.totalCount)
+              if(res.payload.totalCount > 19 && response.payload.badge.lgBadge1 === false){
+                setLgBadge1(true)
+              }
             } else {
               alert("db 오류 발생 ..")
             }
@@ -92,6 +98,25 @@ function Lunge() {
       })
     }
   }, [counterModal])
+
+  useEffect(() => {
+    if(lgBadge1 === true){
+      const badge = {
+        userName : userName,
+        badge : "lgBadge1"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+   
+      })
+    }
+  },[lgBadge1])
+
 
   const URL = "https://teachablemachine.withgoogle.com/models/fBJRiCXJ0/"
   let model, webcam, ctx, maxPredictions
@@ -208,9 +233,17 @@ function Lunge() {
                     kcal
                   </p>
                 </div>
-                <a className="Home" href="/">
-                  홈
-                </a>
+                {lgBadge1 === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 런지 마스터 *</p> <br/>
+                    <img src="img/bedge/lunge.png" alt="lg" /><br/>
+                    <p>획득조건 : 런지 누적 20개 이상</p>
+                </div>:<div></div>}
+                <div style ={{textAlign:"center"}}> 
+                  <a className="Home" href="/">
+                    홈으로
+                  </a>
+                </div>
               </div>
             </Modal>
           </div>

@@ -6,7 +6,7 @@ import Loader from "../Loader"
 import ProgressBar from "../ProgressBar/CountProgressBar"
 import WebcamCapture from "../WebcamCapture"
 import Modal from "react-modal"
-import { myPage } from "../../_action/user_action"
+import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
 
@@ -23,6 +23,8 @@ function Hammercurl() {
   // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
   // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const [totalCount, setTotalCount] = useState(0)
+  const [hmBadge, setHmBadge] = useState(false)
+  const [userName, setUserName] = useState('')
   const tts = [
     "양 손바닥이 마주하게 덤벨을 잡고 허리를 곧게 펴줍니다.",
     "잘하고 있어요",
@@ -73,6 +75,7 @@ function Hammercurl() {
       dispatch(myPage()).then((response) => {
         if (response.payload.isAuth === false) {
         } else {
+          setUserName(response.payload.userName)
           const body = {
             userName: response.payload.userName,
             exercise: "hammercurl",
@@ -81,9 +84,12 @@ function Hammercurl() {
             useKcal: count * 0.4,
             when: today,
           }
-          dispatch(addRecord(body)).then((response) => {
-            if (response.payload.success) {
-              setTotalCount(response.payload.totalCount)
+          dispatch(addRecord(body)).then((res) => {
+            if (res.payload.success) {
+              setTotalCount(res.payload.totalCount)
+              if(res.payload.totalCount > 9 && response.payload.badge.hmBadge === false){
+                setHmBadge(true)
+              }
             } else {
               alert("db 오류 발생 ..")
             }
@@ -92,6 +98,24 @@ function Hammercurl() {
       })
     }
   }, [counterModal])
+
+  useEffect(() => {
+    if(hmBadge === true){
+      const badge = {
+        userName : userName,
+        badge : "hmBadge"
+      }
+      dispatch(updateBadge(badge)).then(response => {
+        
+        if(response.payload.success){
+          alert("뱃지획득!")
+        }else{
+          alert("err")
+        }
+   
+      })
+    }
+  },[hmBadge])
 
   const URL = "https://teachablemachine.withgoogle.com/models/XC-0U0des/"
   let model, webcam, ctx, maxPredictions
@@ -208,9 +232,17 @@ function Hammercurl() {
                     kcal
                   </p>
                 </div>
-                <a className="Home" href="/">
-                  홈
-                </a>
+                {hmBadge === true ? <div className="badge">
+                    <h4>새로운 뱃지 획득!</h4> <br/>
+                    <p>* 인간 헐크 *</p> <br/>
+                    <img src="img/bedge/hammer.png" alt="hm" /><br/>
+                    <p>획득조건 : 해머컬 누적 10개 달성</p>
+                </div>:<div></div>}
+                <div style ={{textAlign:"center"}}> 
+                  <a className="Home" href="/">
+                    홈으로
+                  </a>
+                </div>
               </div>
             </Modal>
           </div>

@@ -14,7 +14,7 @@ import { addRecord } from "../../_action/exercise_action"
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
-let copyCount =10
+let copyCount = 0
 
 function Squat() {
   let [count, setCount] = useState(copyCount)
