@@ -4,8 +4,8 @@
   "description": "fit-sibang backend with node.js",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "back": "nodemon server.js",
+    "start": "cd front && npm start",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "code-15",
@@ -21,6 +21,7 @@
     "mongoose": "^5.12.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5"
   }
 }

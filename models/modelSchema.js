@@ -131,9 +131,7 @@ userSchema.pre("save", function (next) {
       })
     })
   } else {
-    console.log(1)
     next()
-    console.log(2)
   }
 })
 
