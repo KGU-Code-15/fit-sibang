@@ -117,15 +117,23 @@ userSchema.pre("save", function (next) {
   if (user.isModified("password")) {
     // 비밀번호 변경시의 암호화
     bcrypt.genSalt(saltRounds, function (err, salt) {
-      if (err) return next(err)
+      if (err) {
+        console.log(err)
+        return next(err)
+      }
       bcrypt.hash(user.password, salt, function (err, hash) {
-        if (err) return next(err)
+        if (err) {
+          console.log(err)
+          return next(err)
+        }
         user.password = hash
         next()
       })
     })
   } else {
+    console.log(1)
     next()
+    console.log(2)
   }
 })
 
@@ -141,10 +149,12 @@ userSchema.methods.comparePassword = function (plainPassword, cb) {
 userSchema.methods.generateToken = function (cb) {
   var user = this
   var token = jwt.sign(user._id.toHexString(), "LEESM")
-
   user.token = token
   user.save(function (err, user) {
-    if (err) return cb(err)
+    if (err) {
+      console.log(err)
+      return cb(err)
+    }
     cb(null, user)
   })
 }
