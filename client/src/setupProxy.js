@@ -1,4 +1,6 @@
 const { createProxyMiddleware } = require("http-proxy-middleware")
+
+// server 와 client의 연결 생성
 module.exports = function (app) {
   app.use(
     "/user",

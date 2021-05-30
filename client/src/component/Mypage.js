@@ -22,7 +22,8 @@ import { withRouter } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import "../css/Mypage.css"
 import { addWeightFunc } from "../_action/user_action"
-//timez
+
+//time format
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DDTHH:mm:ss")
 function getFormatDate(date) {
@@ -78,28 +79,28 @@ function Mypage(props) {
       var height_ = response.payload.height
       setHeight(height_)
       // badge
-      if(response.payload.badge.babySqarter == true){
+      if(response.payload.badge.babySqarter === true){
         setSqartBaby(true)
       }
-      if(response.payload.badge.horseLeg == true){
+      if(response.payload.badge.horseLeg === true){
         setHorseLeg(true)
       }
-      if(response.payload.badge.gmBadge1 == true){
+      if(response.payload.badge.gmBadge1 === true){
         setGmBadge1(true)
       }
-      if(response.payload.badge.gmBadge2 == true){
+      if(response.payload.badge.gmBadge2 === true){
         setGmBadge2(true)
       }
-      if(response.payload.badge.hmBadge == true){
+      if(response.payload.badge.hmBadge === true){
         setHmBadge(true)
       }
-      if(response.payload.badge.lgBadge1 == true){
+      if(response.payload.badge.lgBadge1 === true){
         setLgBadge1(true)
       }
-      if(response.payload.badge.plBadge1 == true){
+      if(response.payload.badge.plBadge1 === true){
         setPlBadge1(true)
       }
-      if(response.payload.badge.plBadge2 == true){
+      if(response.payload.badge.plBadge2 === true){
         setPlBadge2(true)
       }
 

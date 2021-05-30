@@ -1,3 +1,6 @@
+
+/* 로그인 여부에 따른 페이지 접근권한 설정 */
+
 import { useEffect } from 'react'
 import React from 'react'
 import { useDispatch } from 'react-redux'

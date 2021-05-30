@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 const path = require('path');
+
+// 배포 환경과 개발 환경에 따른 포트번호 결정
 const port = process.env.PORT||5000
 
 // body-parser
@@ -32,14 +34,21 @@ const { User, Record } = require("./models/modelSchema")
 // auth
 const { auth } = require("./middleware/auth")
 
-
+// 배포 환경일 경우 리액트 정적 파일을 제공
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  });
 }
+
+
 // route
 // get method
 app.get("/", (req, res) => res.send("Hello World!zz"))
 
+// client 에서 온 인증 요청을 처리
 app.get("/user/auth", auth, (req, res) => {
   res.status(200).json({
     _id: req.user._id,
@@ -48,6 +57,7 @@ app.get("/user/auth", auth, (req, res) => {
   })
 })
 
+// client 에서 온 로그아웃 요청을 처리
 app.get("/user/logout", auth, (req, res) => {
   User.findOneAndUpdate(
     {
@@ -65,11 +75,15 @@ app.get("/user/logout", auth, (req, res) => {
   )
 })
 
+// 로그인 된 유저 정보를 clientd에 전송
 app.get("/user/mypage", auth, (req, res) => {
   return res.status(200).json(req.user)
 })
 
-//post method
+
+/* post method */
+
+// client 에서 받은 회원가입 정보를 암호화 하여 db에 등록
 app.post("/user/register", (req, res) => {
   const user = new User(req.body) // body-parser를 이용해 request를 json형식으로 받음
   user.save((err, userInfo) => {
@@ -79,6 +93,8 @@ app.post("/user/register", (req, res) => {
     })
   })
 })
+
+// client 에서 받은 로그인 정보를 암호화 하여 db정보와 비교 후 쿠키토큰을 발급하여 로그인 처리
 app.post("/user/login", (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     if (!user) {
@@ -105,6 +121,7 @@ app.post("/user/login", (req, res) => {
   })
 })
 
+// 유저의 몸무게 정보 객체를 추가
 app.post("/user/addWeight", (req, res) => {
   if (Object.keys(req.body).length === 0) {
     return res.status(404).json({
@@ -129,6 +146,7 @@ app.post("/user/addWeight", (req, res) => {
   })
 })
 
+// 유저정보 수정 요청을 처리
 app.post("/user/updateUser", (req, res) => {
   if (Object.keys(req.body).length === 0) {
     return res.status(404).json({
@@ -146,6 +164,7 @@ app.post("/user/updateUser", (req, res) => {
   })
 })
 
+// 뱃지 획득 시 뱃지 관련 db 처리
 app.post("/user/updateBadge", (req,res) => {
   if (Object.keys(req.body).length === 0) {
     return res.status(404).json({
@@ -220,6 +239,7 @@ app.post("/user/updateBadge", (req,res) => {
   }
 })
 
+// 운동 완료시 db에 운동 기록 저장 (count 관련 운동)
 app.post("/exercise/record", (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     const record = new Record({
@@ -247,6 +267,7 @@ app.post("/exercise/record", (req, res) => {
   })
 })
 
+// 운동 완료시 db에 운동 기록 저장 (time 관련 운동)
 app.post("/exercise/recordtime", (req, res) => {
   User.findOne({ userName: req.body.userName }, (err, user) => {
     const record = new Record({
@@ -281,6 +302,8 @@ app.post("/exercise/recordtime", (req, res) => {
   })
 })
 
+
+// User의 모든 운동 정보를 client에 전송
 app.post("/user/getAllRecord", (req,res) => {
   User.findOne({userName : req.body.userName}, (err,user)=>{
     Record.find({user: user}, (err, info) => {
@@ -298,8 +321,6 @@ app.post("/user/getAllRecord", (req,res) => {
   })
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
 
-app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/ `))
+
+app.listen(port, () => console.log(`Backend be hosting... http://localhost:${port}/ `))

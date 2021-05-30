@@ -6,11 +6,11 @@ import Loader from "../Loader"
 import WebcamCapture from "../WebcamCapture"
 import ProgressBar from "../ProgressBar/TimeProgressbar"
 import Modal from "react-modal"
-
 import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecordTime } from "../../_action/exercise_action"
-//timez
+
+// make today string format
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
@@ -20,12 +20,11 @@ function Plank() {
   const [timeModal, setTimeModal] = useState(false) // modal
   const [start, setStart] = useState(false)
   const [totalTime, setTotalTime] = useState('')
+  // about badge 
   const [plBadge1, setPlBadge1] = useState(false)
   const [plBadge2, setPlBadge2] = useState(false)
   const [userName, setUserName] = useState('')
 
-  // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
-  // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
   const tts = [
     "사진과 같은 자세를 취해주세요",
     "운동을 시작합니다.",
@@ -43,6 +42,7 @@ function Plank() {
 
   const dispatch = useDispatch()
 
+  // timer 설정
   useEffect(() => {
     let timer = setTimeout(() => {
       init()
@@ -52,6 +52,7 @@ function Plank() {
     }
   }, [])
 
+  // 운동시작 안내 tts 송출
   useEffect(() => {
     let time = setTimeout(() => {
       setCam(!cam)
@@ -62,8 +63,8 @@ function Plank() {
       clearTimeout(time)
     }
   }, [])
-  
 
+  // 타이머를 보고 tts 송출
   useEffect(() => {
     if (start === true) {
       if (time === 30) {
@@ -90,6 +91,7 @@ function Plank() {
     }
   }, [time, start])
 
+  // 운동이 끝나면 결과를 Modal에 띄우고 server에 보냄
   useEffect(() => {
     if (timeModal === true){
       dispatch(myPage()).then((Response) => {
@@ -122,6 +124,7 @@ function Plank() {
     }
   },[timeModal])
 
+  // 뱃지 획득 조건에 부합한다면 뱃지 획득
   useEffect(() => {
     if(plBadge1 === true){
       const badge = {
@@ -140,6 +143,7 @@ function Plank() {
     }
   },[plBadge1])
 
+  // 뱃지 획득 조건에 부합한다면 뱃지 획득
   useEffect(() => {
     if(plBadge2 === true){
       const badge = {
@@ -207,17 +211,7 @@ function Plank() {
   async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
     const prediction = await model.predict(posenetOutput)
-    // if (prediction[0].probability.toFixed(2) >= 1.0) {
-    // }
-
-    // for (let i = 0; i < maxPredictions; i++) {
-    //   console.log(
-    //     prediction[i].className + ":",
-    //     prediction[i].probability.toFixed(2) * 100 + "%",
-    //   )
-    //   console.log("-------------------")
     drawPose(pose)
-    // }
   }
 
   return (

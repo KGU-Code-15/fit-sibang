@@ -178,6 +178,7 @@ userSchema.methods.updateWeight = function (info, err) {
   this.save()
 }
 
+// update user infomation
 userSchema.methods.updateUser = function (err, info) {
   if (err) {
     console.log(err)

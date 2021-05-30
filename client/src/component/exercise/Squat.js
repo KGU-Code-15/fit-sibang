@@ -10,20 +10,20 @@ import { myPage ,updateBadge} from "../../_action/user_action"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../../_action/exercise_action"
 
-//timez
+// make today string format
 const moment = require("moment")
 var today = moment().format("YYYY-MM-DD HH:mm:ss")
 
+// default count
 let copyCount = 0
 
 function Squat() {
   let [count, setCount] = useState(copyCount)
   const [cam, setCam] = useState(false) // 캠 상태
-  const [counterModal, setcounterModal] = useState(false) // 운동 결과 스쿼트 몇회 했는지
-  // const [badgeModal, setbadgeModal] = useState(false) // 뱃지 획득
-  // const [newRecordModal, setnewRecordModal] = useState(false) // 신기록
+  const [counterModal, setcounterModal] = useState(false)
   const [totalCount, setTotalCount] = useState(0)
   const [babySqarter, setBabySqarter] = useState(false)
+  // about badge 
   const [horseLeg, setHorseLeg] = useState(false)
   const [userName, setUserName] = useState('')
 
@@ -47,6 +47,7 @@ function Squat() {
 
   let status = "stand"
 
+  // 운동시작 안내 tts 송출
   useEffect(() => {
     init()
     let time = setTimeout(() => {
@@ -60,6 +61,7 @@ function Squat() {
     }
   }, [])
 
+  // 현재 카운트 수를 보고 tts 송출
   useEffect(() => {
     if (count === 15) {
       let audioTune = new Audio("/TTS/good.mp3")
@@ -73,6 +75,7 @@ function Squat() {
     }
   }, [count])
 
+  // 운동이 끝나면 결과를 Modal에 띄우고 server에 보냄
   useEffect(() => {
     if (counterModal === true) {
       dispatch(myPage()).then((response) => {
@@ -105,6 +108,7 @@ function Squat() {
     }
   }, [counterModal])
 
+  // 뱃지 획득 조건에 부합한다면 뱃지 획득
   useEffect(() => {
     if(babySqarter === true){
       const badge = {
@@ -123,6 +127,7 @@ function Squat() {
     }
   },[babySqarter])
 
+  // 뱃지 획득 조건에 부합한다면 뱃지 획득
   useEffect(() => {
     if(horseLeg === true){
       const badge = {
@@ -208,13 +213,6 @@ function Squat() {
       status = "none"
     }
     for (let i = 0; i < maxPredictions; i++) {
-      // console.log(
-      //   prediction[i].className +
-      //     ": " +
-      //     prediction[i].probability.toFixed(2) * 100 +
-      //     "%",
-      // )
-      // console.log("-------------------")
       drawPose(pose)
     }
   }

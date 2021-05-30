@@ -1,3 +1,5 @@
+// axios about user function
+// client와 server를 연결
 import axios from 'axios'
 import {
   LOGIN_USER,
@@ -9,6 +11,7 @@ import {
   GET_ALL_RECORD
 } from './types'
 
+// login function link 
 export function loginUser(dataToSubmit) {
   const request = axios
     .post('/user/login', dataToSubmit)
@@ -19,6 +22,7 @@ export function loginUser(dataToSubmit) {
   }
 }
 
+// register function link
 export function registerUser(dataToSubmit) {
   const request = axios
     .post('/user/register', dataToSubmit)
@@ -29,6 +33,7 @@ export function registerUser(dataToSubmit) {
   }
 }
 
+// auth info link
 export function authUser() {
   const request = axios.get('/user/auth').then((response) => response.data)
   return {
@@ -37,6 +42,7 @@ export function authUser() {
   }
 }
 
+// user info : server -> client
 export function myPage() {
   const request = axios.get('/user/mypage').then((response) => response.data)
   return {
@@ -45,6 +51,7 @@ export function myPage() {
   }
 }
 
+// add weight : client -> server
 export function addWeightFunc(dataToSubmit) {
   const request = axios
     .post('/user/addWeight', dataToSubmit)
@@ -55,6 +62,7 @@ export function addWeightFunc(dataToSubmit) {
   }
 }
 
+// get badge : client -> server
 export function updateBadge(dataToSubmit){
   const request = axios
     .post('/user/updateBadge',dataToSubmit)
@@ -65,6 +73,7 @@ export function updateBadge(dataToSubmit){
   }
 }
 
+// get all record : server -> client
 export function getAllRecord(dataToSubmit){
   const request = axios
     .post('/user/getAllRecord',dataToSubmit)
