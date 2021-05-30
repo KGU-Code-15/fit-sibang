@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/client/node_modules
 /.pnp
 .pnp.js
 
@@ -25,11 +26,11 @@ yarn-error.log*
 
 # db
 database.js
+dev.js
 
 #log
 debug.log
 
-/config/dev.js
-/client/node_modules
+
 
 
