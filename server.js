@@ -37,10 +37,6 @@ const { auth } = require("./middleware/auth")
 // 배포 환경일 경우 리액트 정적 파일을 제공
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  });
 }
 
 
@@ -320,6 +316,10 @@ app.post("/user/getAllRecord", (req,res) => {
     })
   })
 })
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 
 
