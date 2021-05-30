@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "fit-sibang",
   "version": "1.0.0",
   "description": "fit-sibang backend with node.js",
   "main": "index.js",
@@ -9,7 +9,10 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:server": "nodemon server.js",
+    "dev:client": "cd client && npm run start"
   },
   "author": "code-15",
   "license": "ISC",
