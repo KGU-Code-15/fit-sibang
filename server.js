@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
-const port = 5000
+const path = require('path');
+const port = process.env.PORT||5000
 
 // body-parser
 const bodyParser = require("body-parser")
@@ -31,6 +32,10 @@ const { User, Record } = require("./models/modelSchema")
 // auth
 const { auth } = require("./middleware/auth")
 
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 // route
 // get method
 app.get("/", (req, res) => res.send("Hello World!zz"))
@@ -293,4 +298,8 @@ app.post("/user/getAllRecord", (req,res) => {
   })
 })
 
-app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/`))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
+app.listen(port, () => console.log(`로컬호스트 연결 http://localhost:${port}/ `))
